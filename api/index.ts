@@ -7,9 +7,7 @@ import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
 import { gamesTable, guessesTable } from "./drizzle/schema";
 import { eq } from "drizzle-orm";
-import postgres from "postgres";
-
-const { PostgresError } = postgres;
+import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
 
@@ -43,7 +41,7 @@ bot.command("new", async (ctx) => {
     });
     ctx.reply("Game started! Guess the 5 letter word!");
   } catch (error) {
-    if (error instanceof PostgresError && error.code === "23505") {
+    if (error instanceof NeonDbError && error.code === "23505") {
       return ctx.reply(
         "There is already a game in progress in this chat. Use /end to end the current game."
       );
