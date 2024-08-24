@@ -154,7 +154,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Bot is running!");
 });
 
-export { app };
+export default app;
 
 interface GuessEntry {
   id: number;
