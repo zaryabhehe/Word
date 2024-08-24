@@ -127,17 +127,21 @@ bot.on("message", async (ctx) => {
   ctx.reply(getFeedback(allGuesses, currentGame.word));
 });
 
-await bot.api.setMyCommands([
-  { command: "new", description: "Start a new game." },
-  {
-    command: "end",
-    description: "End the current game. Available for only admins in groups.",
-  },
-  {
-    command: "help",
-    description: "Get help on how to play and commands list.",
-  },
-]);
+async function init() {
+  await bot.api.setMyCommands([
+    { command: "new", description: "Start a new game." },
+    {
+      command: "end",
+      description: "End the current game. Available for only admins in groups.",
+    },
+    {
+      command: "help",
+      description: "Get help on how to play and commands list.",
+    },
+  ]);
+}
+
+init();
 
 if (env.NODE_ENV === "development") {
   bot.start({
