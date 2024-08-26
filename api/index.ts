@@ -5,8 +5,8 @@ import { env } from "./env";
 import allWords from "./allWords.json";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
-import { gamesTable, guessesTable } from "./drizzle/schema";
-import { asc, desc, eq } from "drizzle-orm";
+import { gamesTable, guessesTable, leaderboardTable } from "./drizzle/schema";
+import { asc, desc, eq, sql } from "drizzle-orm";
 import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
@@ -73,6 +73,55 @@ bot.command("end", async (ctx) => {
   }
 });
 
+type LeaderboardEntry = {
+  userId: string;
+  name: string;
+  username: string | null;
+  totalScore: number;
+};
+
+function formatLeaderboardMessage(data: LeaderboardEntry[]): string {
+  const header = `         🏆 Game Leaderboard 🏆
+\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-`;
+
+  const formattedEntries = data.map((entry, index) => {
+    const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
+    const username = entry.username || entry.name;
+    const line = `> ${rank}@${username} \\- ${entry.totalScore} pts`;
+
+    if (index === 2 || (index > 2 && (index - 2) % 10 === 0)) {
+      return `${line}\n`;
+    }
+    return line;
+  });
+
+  return `${header}\n${formattedEntries.join("\n")}`;
+}
+
+bot.command("leaderboard", async (ctx) => {
+  const chatId = ctx.chat.id.toString();
+  const memberScores = await db
+    .select({
+      userId: leaderboardTable.userId,
+      name: leaderboardTable.name,
+      username: leaderboardTable.username,
+      totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
+    })
+    .from(leaderboardTable)
+    .where(eq(leaderboardTable.chatId, chatId))
+    .groupBy(
+      leaderboardTable.userId,
+      leaderboardTable.name,
+      leaderboardTable.username
+    )
+    .orderBy(desc(sql`sum(${leaderboardTable.score})`))
+    .execute();
+
+  ctx.reply(formatLeaderboardMessage(memberScores), {
+    parse_mode: "MarkdownV2",
+  });
+});
+
 bot.on("message", async (ctx) => {
   const currentGuess = ctx.message.text?.toLowerCase();
   if (!currentGuess || currentGuess.length !== 5) return;
@@ -100,16 +149,24 @@ bot.on("message", async (ctx) => {
       where: eq(guessesTable.gameId, currentGame.id),
     });
 
-    const name = `ctx.from.first_name${
+    const name = `${ctx.from.first_name}${
       ctx.from.last_name ? " " + ctx.from.last_name : ""
     }`;
     const username = ctx.from.username;
-    const userId = ctx.from.id;
-    const chatId = ctx.chat.id;
+    const userId = ctx.from.id.toString();
+    const chatId = ctx.chat.id.toString();
 
     let additionalMessage = "";
     if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
+      const score = 30 - allGuesses.length;
       additionalMessage = `Added ${30 - allGuesses.length} to the leaderboard.`;
+      await db.insert(leaderboardTable).values({
+        userId,
+        score,
+        chatId,
+        name,
+        username,
+      });
     }
     ctx.reply(
       `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new`,

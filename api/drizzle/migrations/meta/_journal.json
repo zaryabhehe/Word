@@ -15,6 +15,27 @@
       "when": 1724645729178,
       "tag": "0001_perpetual_lake",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1724657052035,
+      "tag": "0002_neat_blizzard",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1724657357488,
+      "tag": "0003_strange_randall_flagg",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1724657375400,
+      "tag": "0004_ambiguous_butterfly",
+      "breakpoints": true
     }
   ]
 }

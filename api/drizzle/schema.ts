@@ -42,9 +42,9 @@ export const guessesTable = pgTable("guesses", {
 export const leaderboardTable = pgTable("leaderboard", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
-  username: varchar("username", { length: 255 }).notNull(),
-  userId: integer("user_id").notNull(),
-  chatId: integer("chat_id").notNull(),
+  username: varchar("username", { length: 255 }),
+  userId: varchar("user_id").notNull(),
+  chatId: varchar("chat_id").notNull(),
   score: integer("score").notNull().default(0),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
