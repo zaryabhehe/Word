@@ -6,7 +6,7 @@ import allWords from "./allWords.json";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
 import { gamesTable, guessesTable } from "./drizzle/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
@@ -96,9 +96,27 @@ bot.on("message", async (ctx) => {
     );
 
   if (currentGuess === currentGame.word) {
-    ctx.reply("Congrats! You guessed it correctly.\nStart with /new", {
-      reply_parameters: { message_id: ctx.message.message_id },
+    const allGuesses = await db.query.guessesTable.findMany({
+      where: eq(guessesTable.gameId, currentGame.id),
     });
+
+    const name = `ctx.from.first_name${
+      ctx.from.last_name ? " " + ctx.from.last_name : ""
+    }`;
+    const username = ctx.from.username;
+    const userId = ctx.from.id;
+    const chatId = ctx.chat.id;
+
+    let additionalMessage = "";
+    if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
+      additionalMessage = `Added ${30 - allGuesses.length} to the leaderboard.`;
+    }
+    ctx.reply(
+      `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new`,
+      {
+        reply_parameters: { message_id: ctx.message.message_id },
+      }
+    );
     ctx.react("🎉");
     await db.delete(gamesTable).where(eq(gamesTable.id, currentGame.id));
     return;
@@ -111,6 +129,7 @@ bot.on("message", async (ctx) => {
 
   const allGuesses = await db.query.guessesTable.findMany({
     where: eq(guessesTable.gameId, currentGame.id),
+    orderBy: desc(guessesTable.createdAt),
   });
 
   if (allGuesses.length === 30) {

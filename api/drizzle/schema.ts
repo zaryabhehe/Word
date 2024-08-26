@@ -39,6 +39,20 @@ export const guessesTable = pgTable("guesses", {
     .$onUpdate(() => new Date()),
 });
 
+export const leaderboardTable = pgTable("leaderboard", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  username: varchar("username", { length: 255 }).notNull(),
+  userId: integer("user_id").notNull(),
+  chatId: integer("chat_id").notNull(),
+  score: integer("score").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => new Date()),
+});
+
 export const gamesRelations = relations(gamesTable, ({ many }) => ({
   guesses: many(guessesTable),
 }));
