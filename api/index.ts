@@ -115,6 +115,7 @@ bot.command("leaderboard", async (ctx) => {
       leaderboardTable.username
     )
     .orderBy(desc(sql`sum(${leaderboardTable.score})`))
+    .limit(20)
     .execute();
 
   ctx.reply(formatLeaderboardMessage(memberScores), {
@@ -211,6 +212,10 @@ async function init() {
     {
       command: "help",
       description: "Get help on how to play and commands list.",
+    },
+    {
+      command: "leaderboard",
+      description: "Get leaderboard of the game in this chat.",
     },
   ]);
 }
