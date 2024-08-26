@@ -6,7 +6,7 @@ import allWords from "./allWords.json";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
 import { gamesTable, guessesTable } from "./drizzle/schema";
-import { desc, eq } from "drizzle-orm";
+import { asc, desc, eq } from "drizzle-orm";
 import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
@@ -129,7 +129,7 @@ bot.on("message", async (ctx) => {
 
   const allGuesses = await db.query.guessesTable.findMany({
     where: eq(guessesTable.gameId, currentGame.id),
-    orderBy: desc(guessesTable.createdAt),
+    orderBy: asc(guessesTable.createdAt),
   });
 
   if (allGuesses.length === 30) {
