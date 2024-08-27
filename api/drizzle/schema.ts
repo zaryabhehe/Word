@@ -32,6 +32,7 @@ export const guessesTable = pgTable("guesses", {
   gameId: integer("game_id")
     .notNull()
     .references(() => gamesTable.id, { onDelete: "cascade" }),
+  chatId: varchar("chat_id").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()

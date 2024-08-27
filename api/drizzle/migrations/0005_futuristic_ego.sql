@@ -1,0 +1,1 @@
+ALTER TABLE "guesses" ADD COLUMN "chat_id" varchar NOT NULL;

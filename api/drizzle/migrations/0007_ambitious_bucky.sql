@@ -1,0 +1,1 @@
+ALTER TABLE "guesses" ALTER COLUMN "chat_id" DROP DEFAULT;

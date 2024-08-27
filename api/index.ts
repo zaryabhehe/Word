@@ -6,7 +6,7 @@ import allWords from "./allWords.json";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
 import { gamesTable, guessesTable, leaderboardTable } from "./drizzle/schema";
-import { asc, desc, eq, sql } from "drizzle-orm";
+import { and, asc, desc, eq, sql } from "drizzle-orm";
 import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
@@ -137,7 +137,10 @@ bot.on("message", async (ctx) => {
     return ctx.reply(`${currentGuess} is not a valid word.`);
 
   const guessExists = await db.query.guessesTable.findFirst({
-    where: eq(guessesTable.guess, currentGuess),
+    where: and(
+      eq(guessesTable.guess, currentGuess),
+      eq(guessesTable.chatId, ctx.chat.id.toString())
+    ),
   });
 
   if (guessExists)
@@ -183,6 +186,7 @@ bot.on("message", async (ctx) => {
   await db.insert(guessesTable).values({
     gameId: currentGame.id,
     guess: currentGuess,
+    chatId: ctx.chat.id.toString(),
   });
 
   const allGuesses = await db.query.guessesTable.findMany({
