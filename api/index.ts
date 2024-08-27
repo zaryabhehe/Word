@@ -145,6 +145,7 @@ bot.command("leaderboard", async (ctx) => {
 
   ctx.reply(formatLeaderboardMessage(memberScores), {
     parse_mode: "HTML",
+    disable_notification: true,
   });
 });
 
