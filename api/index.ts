@@ -99,16 +99,12 @@ type LeaderboardEntry = {
 
 function formatLeaderboardMessage(data: LeaderboardEntry[]): string {
   const header = `         🏆 Game Leaderboard 🏆
-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-`;
+------------------------------------------------------`;
 
   const formattedEntries = data.map((entry, index) => {
     const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
-    const username = entry.username || entry.name;
-    const line = `> ${rank}@${username} \\- ${entry.totalScore} pts`;
-
-    if (index === 2 || (index > 2 && (index - 2) % 10 === 0)) {
-      return `${line}\n`;
-    }
+    const usernameLink = `<a href="tg://user?id=${entry.userId}">${entry.name}</a>`;
+    const line = `<blockquote>${rank}${usernameLink} - ${entry.totalScore} pts</blockquote>`;
     return line;
   });
 
@@ -141,7 +137,7 @@ bot.command("leaderboard", async (ctx) => {
     .execute();
 
   ctx.reply(formatLeaderboardMessage(memberScores), {
-    parse_mode: "MarkdownV2",
+    parse_mode: "HTML",
   });
 });
 
