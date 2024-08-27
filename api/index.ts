@@ -11,7 +11,19 @@ import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
 
-bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+bot.command("start", (ctx) =>
+  ctx.reply(
+    `Welcome!
+  
+  Use /new to start a game. Add me to a group with admin permission to play with your friends.
+  use /help to get help on how to play and commands list.
+  
+  <blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
+    {
+      parse_mode: "HTML",
+    }
+  )
+);
 
 bot.command("help", (ctx) =>
   ctx.reply(
@@ -29,7 +41,7 @@ Commands:
 - /end - End the current game. Available for only admins in groups.
 - /help - Get help on how to play and commands list.
 
-<blockquote>Have any suggestions? Contact me: @binamralamsal</blockquote>`,
+<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
     {
       parse_mode: "HTML",
     }
@@ -106,6 +118,11 @@ function formatLeaderboardMessage(data: LeaderboardEntry[]): string {
 }
 
 bot.command("leaderboard", async (ctx) => {
+  if (ctx.chat.type === "private")
+    return ctx.reply(
+      "This command is not available in private chats. Please add me in a group and use it."
+    );
+
   const chatId = ctx.chat.id.toString();
   const memberScores = await db
     .select({
