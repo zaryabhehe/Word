@@ -98,19 +98,25 @@ type LeaderboardEntry = {
 };
 
 function formatLeaderboardMessage(data: LeaderboardEntry[]): string {
-  const header = `         🏆 Game Leaderboard 🏆
+  const header = `<blockquote>🏆 Game Leaderboard 🏆</blockquote>
 ------------------------------------------------------`;
 
-  const formattedEntries = data.map((entry, index) => {
+  const blocks = data.reduce((acc, entry, index) => {
     const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
     const usernameLink = `<a href="tg://user?id=${entry.userId}">${entry.name}</a>`;
-    const line = `<blockquote>${rank}${usernameLink} - ${entry.totalScore} pts</blockquote>`;
-    return line;
-  });
+    const line = `${rank}${usernameLink} - ${entry.totalScore} pts`;
 
-  return `${header}\n${formattedEntries.join(
-    "\n"
-  )}\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
+    if (index < 3 || (index - 3) % 10 === 0) acc.push([]);
+    acc[acc.length - 1].push(line);
+
+    return acc;
+  }, [] as string[][]);
+
+  const formattedEntries = blocks
+    .map((block) => `<blockquote>${block.join("\n")}</blockquote>`)
+    .join("\n");
+
+  return `${header}\n${formattedEntries}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
 }
 
 bot.command("leaderboard", async (ctx) => {
