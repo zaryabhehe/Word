@@ -13,11 +13,9 @@ const bot = new Bot(env.BOT_TOKEN);
 
 bot.command("start", (ctx) =>
   ctx.reply(
-    `Welcome!
-  
-  Use /new to start a game. Add me to a group with admin permission to play with your friends.
-  use /help to get help on how to play and commands list.
-  
+    `<blockquote>How to Play:</blockquote>
+1. Use /new to start a game. Add me to a group with admin permission to play with your friends.
+2. use /help to get help on how to play and commands list.
   <blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
     {
       parse_mode: "HTML",
