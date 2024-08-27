@@ -108,7 +108,9 @@ function formatLeaderboardMessage(data: LeaderboardEntry[]): string {
     return line;
   });
 
-  return `${header}\n${formattedEntries.join("\n")}`;
+  return `${header}\n${formattedEntries.join(
+    "\n"
+  )}\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
 }
 
 bot.command("leaderboard", async (ctx) => {
