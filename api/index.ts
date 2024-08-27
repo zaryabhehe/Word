@@ -14,7 +14,8 @@ const bot = new Bot(env.BOT_TOKEN);
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 
 bot.command("help", (ctx) =>
-  ctx.reply(`How to Play:
+  ctx.reply(
+    `<blockquote>How to Play:</blockquote>
 1. You have to guess a random 5-letter word.
 2. After each guess, you'll get hints:
    - 🟩 - Correct letter in the right spot.
@@ -26,7 +27,13 @@ bot.command("help", (ctx) =>
 Commands:
 - /new - Start a new game.
 - /end - End the current game. Available for only admins in groups.
-- /help - Get help on how to play and commands list.`)
+- /help - Get help on how to play and commands list.
+
+<blockquote>Have any suggestions? Contact me: @binamralamsal</blockquote>`,
+    {
+      parse_mode: "HTML",
+    }
+  )
 );
 
 bot.command("new", async (ctx) => {
