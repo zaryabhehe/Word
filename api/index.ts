@@ -71,6 +71,19 @@ bot.command("new", async (ctx) => {
 
 bot.command("end", async (ctx) => {
   try {
+    if (!ctx.message) return;
+
+    if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
+      const chatMember = await ctx.api.getChatMember(
+        ctx.chat.id,
+        ctx.message.from.id
+      );
+
+      if (chatMember.status !== "administrator") {
+        return ctx.reply("Only admins can end the game.");
+      }
+    }
+
     const currentGame = await db.query.gamesTable.findFirst({
       where: eq(gamesTable.activeChat, String(ctx.chat.id)),
     });
