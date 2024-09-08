@@ -113,7 +113,12 @@ type LeaderboardEntry = {
 function formatLeaderboardMessage(data: LeaderboardEntry[]) {
   const blocks = data.reduce((acc, entry, index) => {
     const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
-    const usernameLink = `<a href="tg://user?id=${entry.userId}">${entry.name}</a>`;
+
+    let usernameLink = entry.name;
+    if (entry.username) {
+      usernameLink = `<a href="t.me/${entry.username}">${entry.name}</a>`;
+    }
+
     const line = `${rank}${usernameLink} - ${entry.totalScore} pts`;
 
     if (index === 0 || index === 3 || (index > 3 && (index - 3) % 10 === 0)) {
