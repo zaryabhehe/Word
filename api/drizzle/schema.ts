@@ -34,6 +34,18 @@ export const guessesTable = pgTable("guesses", {
     .$onUpdate(() => new Date()),
 });
 
+export const usersTable = pgTable("users", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  name: varchar("name", { length: 255 }).notNull(),
+  username: varchar("username", { length: 255 }),
+  telegramUserId: varchar("telegram_user_id").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => new Date()),
+});
+
 export const leaderboardTable = pgTable("leaderboard", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
@@ -57,4 +69,8 @@ export const guessesRelations = relations(guessesTable, ({ one }) => ({
     fields: [guessesTable.gameId],
     references: [gamesTable.id],
   }),
+}));
+
+export const usersRelations = relations(usersTable, ({ many }) => ({
+  leaderboard: many(leaderboardTable),
 }));
