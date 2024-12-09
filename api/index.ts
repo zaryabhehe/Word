@@ -273,16 +273,17 @@ async function init() {
 
 init();
 
+const app = express();
+app.use(express.json());
+
 if (env.NODE_ENV === "development") {
   bot.start({
     onStart: () => console.log("Bot started"),
     drop_pending_updates: true,
   });
+} else {
+  app.use(webhookCallback(bot, "express"));
 }
-
-const app = express();
-app.use(express.json());
-app.use(webhookCallback(bot, "express"));
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Bot is running!");
