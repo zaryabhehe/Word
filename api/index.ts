@@ -150,14 +150,14 @@ bot.command("leaderboard", async (ctx) => {
   const chatId = ctx.chat.id.toString();
   const memberScores = await db
     .select({
-      userId: leaderboardTable.userId,
+      userId: usersTable.telegramUserId,
       name: usersTable.name,
       username: usersTable.username,
       totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
     })
     .from(leaderboardTable)
     .where(eq(leaderboardTable.chatId, chatId))
-    .groupBy(leaderboardTable.userId, usersTable.name, usersTable.username)
+    .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
     .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.tempUserId))
     .orderBy(desc(sql`sum(${leaderboardTable.score})`))
     .limit(20)
@@ -230,11 +230,8 @@ bot.on("message", async (ctx) => {
         })
         .returning({ userId: usersTable.id });
       await db.insert(leaderboardTable).values({
-        userId,
         score,
         chatId,
-        name,
-        username,
         tempUserId: dbUser.userId,
       });
     }

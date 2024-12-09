@@ -47,9 +47,6 @@ export const usersTable = pgTable("users", {
 
 export const leaderboardTable = pgTable("leaderboard", {
   id: serial("id").primaryKey(),
-  name: varchar("name", { length: 255 }).notNull(),
-  username: varchar("username", { length: 255 }),
-  userId: varchar("user_id").notNull(),
   tempUserId: integer("temp_user_id")
     .references(() => usersTable.id, {
       onDelete: "cascade",
