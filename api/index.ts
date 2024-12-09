@@ -216,15 +216,8 @@ bot.on("message", async (ctx) => {
     if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
       const score = 30 - allGuesses.length;
       additionalMessage = `Added ${30 - allGuesses.length} to the leaderboard.`;
-      await db.insert(leaderboardTable).values({
-        userId,
-        score,
-        chatId,
-        name,
-        username,
-      });
 
-      await db
+      const [dbUser] = await db
         .insert(usersTable)
         .values({
           name,
@@ -237,7 +230,16 @@ bot.on("message", async (ctx) => {
             name,
             username,
           },
-        });
+        })
+        .returning({ userId: usersTable.id });
+      await db.insert(leaderboardTable).values({
+        userId,
+        score,
+        chatId,
+        name,
+        username,
+        tempUserId: dbUser.userId,
+      });
     }
     ctx.reply(
       `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new`,

@@ -71,6 +71,13 @@
       "when": 1733745806345,
       "tag": "0009_handy_mentor",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1733747635289,
+      "tag": "0010_legal_scrambler",
+      "breakpoints": true
     }
   ]
 }

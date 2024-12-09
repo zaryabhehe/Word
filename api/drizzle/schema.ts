@@ -50,6 +50,9 @@ export const leaderboardTable = pgTable("leaderboard", {
   name: varchar("name", { length: 255 }).notNull(),
   username: varchar("username", { length: 255 }),
   userId: varchar("user_id").notNull(),
+  tempUserId: integer("temp_user_id").references(() => usersTable.id, {
+    onDelete: "cascade",
+  }),
   chatId: varchar("chat_id").notNull(),
   score: integer("score").notNull().default(0),
   createdAt: timestamp("created_at").notNull().defaultNow(),
@@ -76,7 +79,7 @@ export const usersRelations = relations(usersTable, ({ many }) => ({
 
 export const leaderboardRelations = relations(leaderboardTable, ({ one }) => ({
   user: one(usersTable, {
-    fields: [leaderboardTable.userId],
+    fields: [leaderboardTable.tempUserId],
     references: [usersTable.id],
   }),
 }));
