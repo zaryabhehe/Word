@@ -5,7 +5,6 @@ import {
   serial,
   text,
   timestamp,
-  uniqueIndex,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -38,7 +37,7 @@ export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar("name", { length: 255 }).notNull(),
   username: varchar("username", { length: 255 }),
-  telegramUserId: varchar("telegram_user_id").notNull(),
+  telegramUserId: varchar("telegram_user_id").notNull().unique(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()

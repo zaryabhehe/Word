@@ -64,6 +64,13 @@
       "when": 1733743711920,
       "tag": "0008_wide_venus",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1733745806345,
+      "tag": "0009_handy_mentor",
+      "breakpoints": true
     }
   ]
 }
