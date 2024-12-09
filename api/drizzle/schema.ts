@@ -73,3 +73,10 @@ export const guessesRelations = relations(guessesTable, ({ one }) => ({
 export const usersRelations = relations(usersTable, ({ many }) => ({
   leaderboard: many(leaderboardTable),
 }));
+
+export const leaderboardRelations = relations(leaderboardTable, ({ one }) => ({
+  user: one(usersTable, {
+    fields: [leaderboardTable.userId],
+    references: [usersTable.id],
+  }),
+}));

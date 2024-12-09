@@ -5,7 +5,12 @@ import { env } from "./env";
 import allWords from "./allWords.json";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
-import { gamesTable, guessesTable, leaderboardTable } from "./drizzle/schema";
+import {
+  gamesTable,
+  guessesTable,
+  leaderboardTable,
+  usersTable,
+} from "./drizzle/schema";
 import { and, asc, desc, eq, sql } from "drizzle-orm";
 import { NeonDbError } from "@neondatabase/serverless";
 
@@ -218,6 +223,21 @@ bot.on("message", async (ctx) => {
         name,
         username,
       });
+
+      await db
+        .insert(usersTable)
+        .values({
+          name,
+          telegramUserId: userId,
+          username,
+        })
+        .onConflictDoUpdate({
+          target: [usersTable.telegramUserId],
+          set: {
+            name,
+            username,
+          },
+        });
     }
     ctx.reply(
       `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new`,
