@@ -158,7 +158,7 @@ bot.command("leaderboard", async (ctx) => {
     .from(leaderboardTable)
     .where(eq(leaderboardTable.chatId, chatId))
     .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
-    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.tempUserId))
+    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.userId))
     .orderBy(desc(sql`sum(${leaderboardTable.score})`))
     .limit(20)
     .execute();
@@ -232,7 +232,7 @@ bot.on("message", async (ctx) => {
       await db.insert(leaderboardTable).values({
         score,
         chatId,
-        tempUserId: dbUser.userId,
+        userId: dbUser.userId,
       });
     }
     ctx.reply(

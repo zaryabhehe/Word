@@ -47,7 +47,7 @@ export const usersTable = pgTable("users", {
 
 export const leaderboardTable = pgTable("leaderboard", {
   id: serial("id").primaryKey(),
-  tempUserId: integer("temp_user_id")
+  userId: integer("user_id")
     .references(() => usersTable.id, {
       onDelete: "cascade",
     })
@@ -78,7 +78,7 @@ export const usersRelations = relations(usersTable, ({ many }) => ({
 
 export const leaderboardRelations = relations(leaderboardTable, ({ one }) => ({
   user: one(usersTable, {
-    fields: [leaderboardTable.tempUserId],
+    fields: [leaderboardTable.userId],
     references: [usersTable.id],
   }),
 }));
