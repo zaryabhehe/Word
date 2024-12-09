@@ -1,4 +1,4 @@
-import { Bot, webhookCallback } from "grammy";
+import { Bot, InlineKeyboard, webhookCallback } from "grammy";
 import express from "express";
 import type { Request, Response } from "express";
 import { env } from "./env";
@@ -117,7 +117,11 @@ type LeaderboardEntry = {
   totalScore: number;
 };
 
-function formatLeaderboardMessage(data: LeaderboardEntry[], isGlobal: boolean) {
+function formatLeaderboardMessage(
+  data: LeaderboardEntry[],
+  searchKey: AllowedChatSearchKey,
+  timeKey: AllowedChatTimeKey
+) {
   const blocks = data.reduce((acc, entry, index) => {
     const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
 
@@ -141,8 +145,115 @@ function formatLeaderboardMessage(data: LeaderboardEntry[], isGlobal: boolean) {
     .join("\n");
 
   return `<blockquote>🏆 ${
-    isGlobal ? "Global" : "Group"
+    searchKey === "global" ? "Global" : "Group"
   } Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
+}
+
+const allowedChatSearchKeys = ["global", "group"] as const;
+type AllowedChatSearchKey = (typeof allowedChatSearchKeys)[number];
+const allowedChatTimeKeys = ["today", "week", "month", "year", "all"] as const;
+type AllowedChatTimeKey = (typeof allowedChatTimeKeys)[number];
+
+function parseInput(
+  input: string,
+  defaultSearchKey: AllowedChatSearchKey = "group",
+  defaultTimeKey: AllowedChatTimeKey = "month"
+) {
+  const parts = input.toLowerCase().trim().split(" ");
+
+  const searchKey = (parts.find((part) =>
+    allowedChatSearchKeys.includes(part as AllowedChatSearchKey)
+  ) || defaultSearchKey) as AllowedChatSearchKey;
+
+  const timeKey = (parts.find((part) =>
+    allowedChatTimeKeys.includes(part as AllowedChatTimeKey)
+  ) || defaultTimeKey) as AllowedChatTimeKey;
+
+  return { searchKey, timeKey };
+}
+
+function generateButtonText<T>(key: T, currentKey: T, label: string) {
+  return `${key === currentKey ? "✅ " : ""}${label}`;
+}
+
+function generateKeyboard(
+  searchKey: AllowedChatSearchKey,
+  timeKey: AllowedChatTimeKey
+) {
+  const keyboard = new InlineKeyboard();
+
+  allowedChatSearchKeys.forEach((key) => {
+    keyboard.text(
+      generateButtonText(
+        searchKey,
+        key,
+        key === "group" ? "This group" : "Global"
+      ),
+      `leaderboard ${key} ${timeKey}`
+    );
+  });
+  keyboard.row();
+
+  allowedChatTimeKeys.forEach((key, index) => {
+    keyboard.text(
+      generateButtonText(
+        timeKey,
+        key,
+        key === "all" ? "All time" : key === "today" ? "Today" : `This ${key}`
+      ),
+      `leaderboard ${searchKey} ${key}`
+    );
+    if ((index + 1) % 3 === 0) {
+      keyboard.row();
+    }
+  });
+
+  return keyboard;
+}
+
+async function getLeaderboardScores(
+  chatId: string,
+  searchKey: AllowedChatSearchKey,
+  timeKey: AllowedChatTimeKey
+) {
+  let timeFilter: any = undefined;
+  switch (timeKey) {
+    case "today":
+      timeFilter = sql`date_trunc('day', ${leaderboardTable.createdAt}) = date_trunc('day', now())`;
+      break;
+    case "week":
+      timeFilter = sql`date_trunc('week', ${leaderboardTable.createdAt}) = date_trunc('week', now())`;
+      break;
+    case "month":
+      timeFilter = sql`date_trunc('month', ${leaderboardTable.createdAt}) = date_trunc('month', now())`;
+      break;
+    case "year":
+      timeFilter = sql`date_trunc('year', ${leaderboardTable.createdAt}) = date_trunc('year', now())`;
+      break;
+    case "all":
+      timeFilter = undefined;
+      break;
+  }
+
+  const conditions = [
+    searchKey === "group" ? eq(leaderboardTable.chatId, chatId) : undefined,
+    timeFilter,
+  ].filter(Boolean);
+
+  return db
+    .select({
+      userId: usersTable.telegramUserId,
+      name: usersTable.name,
+      username: usersTable.username,
+      totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
+    })
+    .from(leaderboardTable)
+    .where(and(...conditions))
+    .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
+    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.userId))
+    .orderBy(desc(sql`sum(${leaderboardTable.score})`))
+    .limit(20)
+    .execute();
 }
 
 bot.command("leaderboard", async (ctx) => {
@@ -151,31 +262,60 @@ bot.command("leaderboard", async (ctx) => {
       "This command is not available in private chats. Please add me in a group and use it."
     );
 
-  const isGlobal = ctx.match.toLowerCase() === "global" ? true : false;
+  const { searchKey, timeKey } = parseInput(ctx.match);
+
+  const keyboard = generateKeyboard(searchKey, timeKey);
 
   const chatId = ctx.chat.id.toString();
-  const memberScores = await db
-    .select({
-      userId: usersTable.telegramUserId,
-      name: usersTable.name,
-      username: usersTable.username,
-      totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
-    })
-    .from(leaderboardTable)
-    .where(!isGlobal ? eq(leaderboardTable.chatId, chatId) : undefined)
-    .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
-    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.userId))
-    .orderBy(desc(sql`sum(${leaderboardTable.score})`))
-    .limit(20)
-    .execute();
+  const memberScores = await getLeaderboardScores(chatId, searchKey, timeKey);
 
-  ctx.reply(formatLeaderboardMessage(memberScores, isGlobal), {
+  ctx.reply(formatLeaderboardMessage(memberScores, searchKey, timeKey), {
     parse_mode: "HTML",
     disable_notification: true,
+    reply_markup: keyboard,
     link_preview_options: {
       is_disabled: true,
     },
   });
+});
+
+bot.on("callback_query:data", async (ctx) => {
+  condition: if (ctx.callbackQuery.data.startsWith("leaderboard")) {
+    const [, searchKey, timeKey] = ctx.callbackQuery.data.split(" ");
+    if (!allowedChatSearchKeys.includes(searchKey as AllowedChatSearchKey))
+      break condition;
+    if (!allowedChatTimeKeys.includes(timeKey as AllowedChatTimeKey))
+      break condition;
+    if (!ctx.chat) break condition;
+
+    const chatId = ctx.chat.id.toString();
+    const memberScores = await getLeaderboardScores(
+      chatId,
+      searchKey as AllowedChatSearchKey,
+      timeKey as AllowedChatTimeKey
+    );
+
+    const keyboard = generateKeyboard(
+      searchKey as AllowedChatSearchKey,
+      timeKey as AllowedChatTimeKey
+    );
+
+    await ctx
+      .editMessageText(
+        formatLeaderboardMessage(
+          memberScores,
+          searchKey as AllowedChatSearchKey,
+          timeKey as AllowedChatTimeKey
+        ),
+        {
+          reply_markup: keyboard,
+          link_preview_options: { is_disabled: true },
+          parse_mode: "HTML",
+        }
+      )
+      .catch(() => {});
+  }
+  await ctx.answerCallbackQuery();
 });
 
 bot.on("message", async (ctx) => {
