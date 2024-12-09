@@ -78,6 +78,13 @@
       "when": 1733747635289,
       "tag": "0010_legal_scrambler",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1733748741927,
+      "tag": "0011_even_mandroid",
+      "breakpoints": true
     }
   ]
 }
