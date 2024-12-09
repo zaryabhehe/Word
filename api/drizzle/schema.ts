@@ -9,22 +9,16 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const gamesTable = pgTable(
-  "games",
-  {
-    id: serial("id").primaryKey(),
-    word: varchar("word", { length: 5 }).notNull(),
-    activeChat: text("active_chat").notNull().unique(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at")
-      .notNull()
-      .default(sql`CURRENT_TIMESTAMP`)
-      .$onUpdate(() => new Date()),
-  },
-  (table) => ({
-    activeChatIndex: uniqueIndex("chat_idx"),
-  })
-);
+export const gamesTable = pgTable("games", {
+  id: serial("id").primaryKey(),
+  word: varchar("word", { length: 5 }).notNull(),
+  activeChat: text("active_chat").notNull().unique(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => new Date()),
+});
 
 export const guessesTable = pgTable("guesses", {
   id: serial("id").primaryKey(),
