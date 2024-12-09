@@ -151,17 +151,14 @@ bot.command("leaderboard", async (ctx) => {
   const memberScores = await db
     .select({
       userId: leaderboardTable.userId,
-      name: leaderboardTable.name,
-      username: leaderboardTable.username,
+      name: usersTable.name,
+      username: usersTable.username,
       totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
     })
     .from(leaderboardTable)
     .where(eq(leaderboardTable.chatId, chatId))
-    .groupBy(
-      leaderboardTable.userId,
-      leaderboardTable.name,
-      leaderboardTable.username
-    )
+    .groupBy(leaderboardTable.userId, usersTable.name, usersTable.username)
+    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.tempUserId))
     .orderBy(desc(sql`sum(${leaderboardTable.score})`))
     .limit(20)
     .execute();
