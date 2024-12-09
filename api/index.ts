@@ -43,6 +43,8 @@ Commands:
 - /new - Start a new game.
 - /end - End the current game. Available for only admins in groups.
 - /help - Get help on how to play and commands list.
+- /leaderboard - Get leaderboard from current group.
+- /leaderboard global - Get global leaderboard.
 
 <blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
     {
@@ -115,7 +117,7 @@ type LeaderboardEntry = {
   totalScore: number;
 };
 
-function formatLeaderboardMessage(data: LeaderboardEntry[]) {
+function formatLeaderboardMessage(data: LeaderboardEntry[], isGlobal: boolean) {
   const blocks = data.reduce((acc, entry, index) => {
     const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
 
@@ -138,7 +140,9 @@ function formatLeaderboardMessage(data: LeaderboardEntry[]) {
     .map((block) => `<blockquote>${block.join("\n")}</blockquote>`)
     .join("\n");
 
-  return `<blockquote>🏆 Game Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
+  return `<blockquote>🏆 ${
+    isGlobal ? "Global" : "Group"
+  } Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
 }
 
 bot.command("leaderboard", async (ctx) => {
@@ -146,6 +150,8 @@ bot.command("leaderboard", async (ctx) => {
     return ctx.reply(
       "This command is not available in private chats. Please add me in a group and use it."
     );
+
+  const isGlobal = ctx.match.toLowerCase() === "global" ? true : false;
 
   const chatId = ctx.chat.id.toString();
   const memberScores = await db
@@ -156,14 +162,14 @@ bot.command("leaderboard", async (ctx) => {
       totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
     })
     .from(leaderboardTable)
-    .where(eq(leaderboardTable.chatId, chatId))
+    .where(!isGlobal ? eq(leaderboardTable.chatId, chatId) : undefined)
     .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
     .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.userId))
     .orderBy(desc(sql`sum(${leaderboardTable.score})`))
     .limit(20)
     .execute();
 
-  ctx.reply(formatLeaderboardMessage(memberScores), {
+  ctx.reply(formatLeaderboardMessage(memberScores, isGlobal), {
     parse_mode: "HTML",
     disable_notification: true,
     link_preview_options: {
