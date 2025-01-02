@@ -125,9 +125,11 @@ function formatLeaderboardMessage(
   const blocks = data.reduce((acc, entry, index) => {
     const rank = index < 3 ? ["🥇", "🥈", "🥉"][index] : "🔅";
 
-    let usernameLink = entry.name;
+    let usernameLink = escapeHtmlEntities(entry.name);
     if (entry.username) {
-      usernameLink = `<a href="t.me/${entry.username}">${entry.name}</a>`;
+      usernameLink = `<a href="t.me/${entry.username}">${escapeHtmlEntities(
+        entry.name
+      )}</a>`;
     }
 
     const line = `${rank}${usernameLink} - ${entry.totalScore} pts`;
@@ -256,6 +258,19 @@ async function getLeaderboardScores(
     .execute();
 }
 
+function escapeHtmlEntities(text: string) {
+  const entityMap = {
+    "<": "&lt;",
+    ">": "&gt;",
+    "&": "&amp;",
+    '"': "&quot;",
+    "'": "&#39;", // Single quotes
+    "/": "&#x2F;", // Slash
+  };
+
+  return text.replace(/[<>&"'\/]/g, (char) => entityMap[char]);
+}
+
 bot.command("leaderboard", async (ctx) => {
   if (ctx.chat.type === "private")
     return ctx.reply(
@@ -268,6 +283,9 @@ bot.command("leaderboard", async (ctx) => {
 
   const chatId = ctx.chat.id.toString();
   const memberScores = await getLeaderboardScores(chatId, searchKey, timeKey);
+
+  const message = formatLeaderboardMessage(memberScores, searchKey, timeKey);
+  console.log(message);
 
   ctx.reply(formatLeaderboardMessage(memberScores, searchKey, timeKey), {
     parse_mode: "HTML",
