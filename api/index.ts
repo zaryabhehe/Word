@@ -86,7 +86,10 @@ bot.command("end", async (ctx) => {
         ctx.message.from.id
       );
 
-      if (chatMember.status !== "administrator") {
+      chatMember.status;
+
+      const allowedStatus = ["administrator", "creator"];
+      if (!allowedStatus.includes(chatMember.status)) {
         return ctx.reply("Only admins can end the game.");
       }
     }
@@ -479,23 +482,34 @@ interface GuessEntry {
   updatedAt: Date;
 }
 
-function getFeedback(data: GuessEntry[], solution: string): string {
+function getFeedback(data: GuessEntry[], solution: string) {
   return data
     .map((entry) => {
       let feedback = "";
       const guess = entry.guess.toUpperCase();
+      const solutionCount: Record<string, number> = {};
 
+      for (const char of solution.toUpperCase()) {
+        solutionCount[char] = (solutionCount[char] || 0) + 1;
+      }
+
+      const result = Array(guess.length).fill("🟥");
       for (let i = 0; i < guess.length; i++) {
         if (guess[i] === solution[i].toUpperCase()) {
-          feedback += "🟩 ";
-        } else if (solution.toUpperCase().includes(guess[i])) {
-          feedback += "🟨 ";
-        } else {
-          feedback += "🟥 ";
+          result[i] = "🟩";
+          solutionCount[guess[i]]--;
         }
       }
 
-      return `${feedback.trim()} ${guess}`;
+      for (let i = 0; i < guess.length; i++) {
+        if (result[i] === "🟥" && solutionCount[guess[i]] > 0) {
+          result[i] = "🟨";
+          solutionCount[guess[i]]--;
+        }
+      }
+
+      feedback = result.join(" ");
+      return `${feedback} ${guess}`;
     })
     .join("\n");
 }
