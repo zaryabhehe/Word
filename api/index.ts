@@ -45,6 +45,7 @@ Commands:
 - /help - Get help on how to play and commands list.
 - /leaderboard - Get leaderboard from current group.
 - /leaderboard global - Get global leaderboard.
+- /myscore - Get your score from current group.
 
 <blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
     {
@@ -135,7 +136,7 @@ function formatLeaderboardMessage(
       )}</a>`;
     }
 
-    const line = `${rank}${usernameLink} - ${entry.totalScore} pts`;
+    const line = `${rank}${usernameLink} - ${entry.totalScore.toLocaleString()} pts`;
 
     if (index === 0 || index === 3 || (index > 3 && (index - 3) % 10 === 0)) {
       acc.push([]);
@@ -183,7 +184,8 @@ function generateButtonText<T>(key: T, currentKey: T, label: string) {
 
 function generateKeyboard(
   searchKey: AllowedChatSearchKey,
-  timeKey: AllowedChatTimeKey
+  timeKey: AllowedChatTimeKey,
+  callbackKey: "leaderboard" | "myscore" = "leaderboard"
 ) {
   const keyboard = new InlineKeyboard();
 
@@ -194,7 +196,7 @@ function generateKeyboard(
         key,
         key === "group" ? "This group" : "Global"
       ),
-      `leaderboard ${key} ${timeKey}`
+      `${callbackKey} ${key} ${timeKey}`
     );
   });
   keyboard.row();
@@ -206,7 +208,7 @@ function generateKeyboard(
         key,
         key === "all" ? "All time" : key === "today" ? "Today" : `This ${key}`
       ),
-      `leaderboard ${searchKey} ${key}`
+      `${callbackKey} ${searchKey} ${key}`
     );
     if ((index + 1) % 3 === 0) {
       keyboard.row();
@@ -216,33 +218,66 @@ function generateKeyboard(
   return keyboard;
 }
 
-async function getLeaderboardScores(
-  chatId: string,
-  searchKey: AllowedChatSearchKey,
-  timeKey: AllowedChatTimeKey
-) {
-  let timeFilter: any = undefined;
+function getTimeFilter(timeKey: AllowedChatTimeKey) {
   switch (timeKey) {
     case "today":
-      timeFilter = sql`date_trunc('day', ${leaderboardTable.createdAt}) = date_trunc('day', now())`;
-      break;
+      return sql`date_trunc('day', ${leaderboardTable.createdAt}) = date_trunc('day', now())`;
     case "week":
-      timeFilter = sql`date_trunc('week', ${leaderboardTable.createdAt}) = date_trunc('week', now())`;
-      break;
+      return sql`date_trunc('week', ${leaderboardTable.createdAt}) = date_trunc('week', now())`;
     case "month":
-      timeFilter = sql`date_trunc('month', ${leaderboardTable.createdAt}) = date_trunc('month', now())`;
-      break;
+      return sql`date_trunc('month', ${leaderboardTable.createdAt}) = date_trunc('month', now())`;
     case "year":
-      timeFilter = sql`date_trunc('year', ${leaderboardTable.createdAt}) = date_trunc('year', now())`;
-      break;
+      return sql`date_trunc('year', ${leaderboardTable.createdAt}) = date_trunc('year', now())`;
     case "all":
-      timeFilter = undefined;
-      break;
+      return undefined;
   }
+}
 
+async function getLeaderboardScores({
+  chatId,
+  searchKey,
+  timeKey,
+}: {
+  chatId: string;
+  searchKey: AllowedChatSearchKey;
+  timeKey: AllowedChatTimeKey;
+}) {
   const conditions = [
     searchKey === "group" ? eq(leaderboardTable.chatId, chatId) : undefined,
-    timeFilter,
+    getTimeFilter(timeKey),
+  ].filter(Boolean);
+
+  return db
+    .select({
+      userId: usersTable.telegramUserId,
+      name: usersTable.name,
+      username: usersTable.username,
+      totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
+    })
+    .from(leaderboardTable)
+    .where(and(...conditions))
+    .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
+    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.userId))
+    .orderBy(desc(sql`sum(${leaderboardTable.score})`))
+    .limit(20)
+    .execute();
+}
+
+async function getUserScores({
+  chatId,
+  searchKey,
+  userId,
+  timeKey,
+}: {
+  chatId: string;
+  searchKey: AllowedChatSearchKey;
+  userId: string;
+  timeKey: AllowedChatTimeKey;
+}) {
+  const conditions = [
+    searchKey === "group" ? eq(leaderboardTable.chatId, chatId) : undefined,
+    getTimeFilter(timeKey),
+    eq(usersTable.telegramUserId, userId),
   ].filter(Boolean);
 
   return db
@@ -274,6 +309,55 @@ function escapeHtmlEntities(text: string) {
   return text.replace(/[<>&"'\/]/g, (char) => entityMap[char]);
 }
 
+bot.command("myscore", async (ctx) => {
+  if (!ctx.from) return;
+
+  if (ctx.chat.type === "private")
+    return ctx.reply(
+      "This command is not available in private chats. Please add me in a group and use it."
+    );
+
+  const { searchKey, timeKey } = parseInput(ctx.match);
+
+  const keyboard = generateKeyboard(searchKey, timeKey, "myscore");
+
+  const userId = ctx.from.id.toString();
+  const chatId = ctx.chat.id.toString();
+  const userScores = await getUserScores({
+    userId,
+    chatId,
+    searchKey,
+    timeKey,
+  });
+
+  const userScore = userScores[0];
+
+  const message = formatUserScoreMessage(userScore?.totalScore || 0, searchKey);
+
+  ctx.reply(message, {
+    parse_mode: "HTML",
+    disable_notification: true,
+    reply_markup: keyboard,
+    reply_parameters: {
+      message_id: ctx.msgId,
+    },
+    link_preview_options: {
+      is_disabled: true,
+    },
+  });
+});
+
+function formatUserScoreMessage(
+  totalScore: number,
+  searchKey: AllowedChatSearchKey
+) {
+  const message = `<blockquote><strong>🏆 Your total score ${
+    searchKey === "global" ? "globally" : "in group"
+  } is ${totalScore.toLocaleString()} 🏆</strong></blockquote>`;
+
+  return `${message}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
+}
+
 bot.command("leaderboard", async (ctx) => {
   if (ctx.chat.type === "private")
     return ctx.reply(
@@ -285,7 +369,11 @@ bot.command("leaderboard", async (ctx) => {
   const keyboard = generateKeyboard(searchKey, timeKey);
 
   const chatId = ctx.chat.id.toString();
-  const memberScores = await getLeaderboardScores(chatId, searchKey, timeKey);
+  const memberScores = await getLeaderboardScores({
+    chatId,
+    searchKey,
+    timeKey,
+  });
 
   const message = formatLeaderboardMessage(memberScores, searchKey, timeKey);
   console.log(message);
@@ -310,11 +398,11 @@ bot.on("callback_query:data", async (ctx) => {
     if (!ctx.chat) break condition;
 
     const chatId = ctx.chat.id.toString();
-    const memberScores = await getLeaderboardScores(
+    const memberScores = await getLeaderboardScores({
       chatId,
-      searchKey as AllowedChatSearchKey,
-      timeKey as AllowedChatTimeKey
-    );
+      searchKey: searchKey as AllowedChatSearchKey,
+      timeKey: timeKey as AllowedChatTimeKey,
+    });
 
     const keyboard = generateKeyboard(
       searchKey as AllowedChatSearchKey,
@@ -335,6 +423,46 @@ bot.on("callback_query:data", async (ctx) => {
         }
       )
       .catch(() => {});
+  } else if (ctx.callbackQuery.data.startsWith("myscore")) {
+    const [, searchKey, timeKey] = ctx.callbackQuery.data.split(" ");
+    if (!allowedChatSearchKeys.includes(searchKey as AllowedChatSearchKey))
+      break condition;
+    if (!allowedChatTimeKeys.includes(timeKey as AllowedChatTimeKey))
+      break condition;
+    if (!ctx.chat) break condition;
+    if (!ctx.msg?.reply_to_message?.from) break condition;
+
+    const chatId = ctx.chat.id.toString();
+    const userScores = await getUserScores({
+      chatId,
+      userId: ctx.msg.reply_to_message.from.id.toString(),
+      searchKey: searchKey as AllowedChatSearchKey,
+      timeKey: timeKey as AllowedChatTimeKey,
+    });
+
+    const userScore = userScores[0];
+
+    const keyboard = generateKeyboard(
+      searchKey as AllowedChatSearchKey,
+      timeKey as AllowedChatTimeKey,
+      "myscore"
+    );
+
+    await ctx
+      .editMessageText(
+        formatUserScoreMessage(
+          userScore?.totalScore || 0,
+          searchKey as AllowedChatSearchKey
+        ),
+        {
+          reply_markup: keyboard,
+          link_preview_options: { is_disabled: true },
+          parse_mode: "HTML",
+        }
+      )
+      .catch((e) => {
+        console.error(e);
+      });
   }
   await ctx.answerCallbackQuery();
 });
@@ -450,6 +578,10 @@ async function init() {
     {
       command: "leaderboard",
       description: "Get leaderboard of the game in this chat.",
+    },
+    {
+      command: "myscore",
+      description: "Get your score from current group",
     },
   ]);
 }
