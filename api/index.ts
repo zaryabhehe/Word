@@ -45,7 +45,6 @@ Commands:
 - /help - Get help on how to play and commands list.
 - /leaderboard - Get leaderboard from current group.
 - /leaderboard global - Get global leaderboard.
-- /myscore - Get your score from current group.
 
 <blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
     {
@@ -214,6 +213,9 @@ function generateKeyboard(
       keyboard.row();
     }
   });
+
+  keyboard.row();
+  keyboard.text("🔄 Refresh", `${callbackKey} ${searchKey} ${timeKey}`);
 
   return keyboard;
 }
@@ -430,12 +432,13 @@ bot.on("callback_query:data", async (ctx) => {
     if (!allowedChatTimeKeys.includes(timeKey as AllowedChatTimeKey))
       break condition;
     if (!ctx.chat) break condition;
+
     if (!ctx.msg?.reply_to_message?.from) break condition;
 
     const chatId = ctx.chat.id.toString();
     const userScores = await getUserScores({
       chatId,
-      userId: ctx.msg.reply_to_message.from.id.toString(),
+      userId: ctx.msg?.reply_to_message?.from?.id.toString(),
       searchKey: searchKey as AllowedChatSearchKey,
       timeKey: timeKey as AllowedChatTimeKey,
     });
@@ -460,9 +463,7 @@ bot.on("callback_query:data", async (ctx) => {
           parse_mode: "HTML",
         }
       )
-      .catch((e) => {
-        console.error(e);
-      });
+      .catch(() => {});
   }
   await ctx.answerCallbackQuery();
 });
@@ -578,10 +579,6 @@ async function init() {
     {
       command: "leaderboard",
       description: "Get leaderboard of the game in this chat.",
-    },
-    {
-      command: "myscore",
-      description: "Get your score from current group",
     },
   ]);
 }
