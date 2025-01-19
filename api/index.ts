@@ -11,7 +11,7 @@ import {
   leaderboardTable,
   usersTable,
 } from "./drizzle/schema";
-import { and, asc, desc, eq, sql } from "drizzle-orm";
+import { and, asc, count, countDistinct, desc, eq, sql } from "drizzle-orm";
 import { NeonDbError } from "@neondatabase/serverless";
 
 const bot = new Bot(env.BOT_TOKEN);
@@ -347,6 +347,21 @@ bot.command("myscore", async (ctx) => {
       is_disabled: true,
     },
   });
+});
+
+bot.command("stats", async (ctx) => {
+  if (!ctx.from) return;
+
+  if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
+
+  const [{ usersCount }] = await db
+    .select({ usersCount: count(usersTable.id) })
+    .from(usersTable);
+  const [{ groupsCount }] = await db
+    .select({ groupsCount: countDistinct(leaderboardTable.chatId) })
+    .from(leaderboardTable);
+
+  return ctx.reply(`Total Users: ${usersCount}\nTotal Groups: ${groupsCount}`);
 });
 
 function formatUserScoreMessage(
