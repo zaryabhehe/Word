@@ -21,7 +21,7 @@ bot.command("start", (ctx) =>
     `<blockquote>How to Play:</blockquote>
 1. Use /new to start a game. Add me to a group with admin permission to play with your friends.
 2. Use /help to get help on how to play and commands list.
-  <blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
+  <blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser</blockquote>`,
     {
       parse_mode: "HTML",
     }
@@ -46,7 +46,7 @@ Commands:
 - /leaderboard - Get leaderboard from current group.
 - /leaderboard global - Get global leaderboard.
 
-<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`,
+<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`,
     {
       parse_mode: "HTML",
     }
@@ -151,7 +151,7 @@ function formatLeaderboardMessage(
 
   return `<blockquote>🏆 ${
     searchKey === "global" ? "Global" : "Group"
-  } Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
+  } Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`;
 }
 
 const allowedChatSearchKeys = ["global", "group"] as const;
@@ -357,7 +357,7 @@ function formatUserScoreMessage(
     searchKey === "global" ? "globally" : "in group"
   } is ${totalScore.toLocaleString()} 🏆</strong></blockquote>`;
 
-  return `${message}\n\n<blockquote>Proudly built with ❤️ by Binamra Lamsal @BinamraBots.</blockquote>`;
+  return `${message}\n\n<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`;
 }
 
 bot.command("leaderboard", async (ctx) => {
