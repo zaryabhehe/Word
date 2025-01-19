@@ -184,7 +184,7 @@ function generateButtonText<T>(key: T, currentKey: T, label: string) {
 function generateKeyboard(
   searchKey: AllowedChatSearchKey,
   timeKey: AllowedChatTimeKey,
-  callbackKey: "leaderboard" | "myscore" = "leaderboard"
+  callbackKey: "leaderboard" | `myscore ${number}` = "leaderboard"
 ) {
   const keyboard = new InlineKeyboard();
 
@@ -279,21 +279,54 @@ async function getUserScores({
   const conditions = [
     searchKey === "group" ? eq(leaderboardTable.chatId, chatId) : undefined,
     getTimeFilter(timeKey),
-    eq(usersTable.telegramUserId, userId),
   ].filter(Boolean);
+
+  const totalCount = await db
+    .select({
+      count: count(leaderboardTable.userId),
+    })
+    .from(leaderboardTable)
+    .where(and(...conditions))
+    .groupBy(leaderboardTable.userId);
+
+  if (totalCount.length === 0) return null;
+
+  const leaderboardData = db
+    .select({
+      count: count(leaderboardTable.userId),
+      userId: leaderboardTable.userId,
+      totalScore:
+        sql<number>`cast(sum(${leaderboardTable.score}) as integer)`.as(
+          "totalScore"
+        ),
+      rank: sql<number>`cast(RANK() OVER (ORDER BY sum(${leaderboardTable.score}) DESC) as integer)`.as(
+        "rank"
+      ),
+    })
+    .from(leaderboardTable)
+    .where(and(...conditions))
+    .groupBy(leaderboardTable.userId)
+    .as("leaderboards");
 
   return db
     .select({
       userId: usersTable.telegramUserId,
       name: usersTable.name,
       username: usersTable.username,
-      totalScore: sql<number>`cast(sum(${leaderboardTable.score}) as integer)`,
+      totalScore: leaderboardData.totalScore,
+      rank: leaderboardData.rank,
     })
-    .from(leaderboardTable)
-    .where(and(...conditions))
-    .groupBy(usersTable.telegramUserId, usersTable.name, usersTable.username)
-    .innerJoin(usersTable, eq(usersTable.id, leaderboardTable.userId))
-    .orderBy(desc(sql`sum(${leaderboardTable.score})`))
+    .from(leaderboardData)
+    .where(and(...conditions, eq(usersTable.telegramUserId, userId)))
+    .groupBy(
+      usersTable.telegramUserId,
+      usersTable.name,
+      usersTable.username,
+      leaderboardData.rank,
+      leaderboardData.totalScore
+    )
+    .innerJoin(usersTable, eq(usersTable.id, leaderboardData.userId))
+    .orderBy(desc(sql`sum(${leaderboardData.totalScore})`))
     .limit(20)
     .execute();
 }
@@ -321,7 +354,11 @@ bot.command("myscore", async (ctx) => {
 
   const { searchKey, timeKey } = parseInput(ctx.match);
 
-  const keyboard = generateKeyboard(searchKey, timeKey, "myscore");
+  const keyboard = generateKeyboard(
+    searchKey,
+    timeKey,
+    `myscore ${ctx.from.id}`
+  );
 
   const userId = ctx.from.id.toString();
   const chatId = ctx.chat.id.toString();
@@ -332,9 +369,11 @@ bot.command("myscore", async (ctx) => {
     timeKey,
   });
 
+  if (userScores === null) return ctx.reply("No one has scored yet.");
+
   const userScore = userScores[0];
 
-  const message = formatUserScoreMessage(userScore?.totalScore || 0, searchKey);
+  const message = formatUserScoreMessage(userScore, searchKey);
 
   ctx.reply(message, {
     parse_mode: "HTML",
@@ -364,13 +403,26 @@ bot.command("stats", async (ctx) => {
   return ctx.reply(`Total Users: ${usersCount}\nTotal Groups: ${groupsCount}`);
 });
 
+type FormatUserScoreData = {
+  totalScore: number;
+  rank: number;
+  name: string;
+  username: string | null;
+  userId: string;
+};
+
 function formatUserScoreMessage(
-  totalScore: number,
+  data: FormatUserScoreData,
   searchKey: AllowedChatSearchKey
 ) {
-  const message = `<blockquote><strong>🏆 Your total score ${
+  const name = escapeHtmlEntities(data.name);
+  const mentionLink = data.username
+    ? `<a href="t.me/${data.username}">${name}'s</a>`
+    : `${name}'s`;
+
+  const message = `<blockquote><strong>🏆 ${mentionLink} total score ${
     searchKey === "global" ? "globally" : "in group"
-  } is ${totalScore.toLocaleString()} 🏆</strong></blockquote>`;
+  } is ${data.totalScore.toLocaleString()}, and rank is ${data.rank.toLocaleString()} 🏆</strong></blockquote>`;
 
   return `${message}\n\n<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`;
 }
@@ -441,37 +493,38 @@ bot.on("callback_query:data", async (ctx) => {
       )
       .catch(() => {});
   } else if (ctx.callbackQuery.data.startsWith("myscore")) {
-    const [, searchKey, timeKey] = ctx.callbackQuery.data.split(" ");
+    const [, userId, searchKey, timeKey] = ctx.callbackQuery.data.split(" ");
     if (!allowedChatSearchKeys.includes(searchKey as AllowedChatSearchKey))
       break condition;
     if (!allowedChatTimeKeys.includes(timeKey as AllowedChatTimeKey))
       break condition;
     if (!ctx.chat) break condition;
 
-    if (!ctx.msg?.reply_to_message?.from) break condition;
-
     const chatId = ctx.chat.id.toString();
     const userScores = await getUserScores({
       chatId,
-      userId: ctx.msg?.reply_to_message?.from?.id.toString(),
+      userId,
       searchKey: searchKey as AllowedChatSearchKey,
       timeKey: timeKey as AllowedChatTimeKey,
     });
+
+    if (!userScores)
+      return ctx.answerCallbackQuery({
+        text: "No one has scored yet.",
+        show_alert: true,
+      });
 
     const userScore = userScores[0];
 
     const keyboard = generateKeyboard(
       searchKey as AllowedChatSearchKey,
       timeKey as AllowedChatTimeKey,
-      "myscore"
+      `myscore ${ctx.from.id}`
     );
 
     await ctx
       .editMessageText(
-        formatUserScoreMessage(
-          userScore?.totalScore || 0,
-          searchKey as AllowedChatSearchKey
-        ),
+        formatUserScoreMessage(userScore, searchKey as AllowedChatSearchKey),
         {
           reply_markup: keyboard,
           link_preview_options: { is_disabled: true },
