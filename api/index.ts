@@ -515,7 +515,7 @@ bot.on("callback_query:data", async (ctx) => {
     const keyboard = generateKeyboard(
       searchKey as AllowedChatSearchKey,
       timeKey as AllowedChatTimeKey,
-      `myscore ${ctx.from.id}`
+      `myscore ${Number(userId)}`
     );
 
     await ctx
