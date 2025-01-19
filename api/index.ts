@@ -276,20 +276,17 @@ async function getUserScores({
   userId: string;
   timeKey: AllowedChatTimeKey;
 }) {
-  const conditions = [
+  let conditions = [
     searchKey === "group" ? eq(leaderboardTable.chatId, chatId) : undefined,
     getTimeFilter(timeKey),
   ].filter(Boolean);
 
-  const totalCount = await db
-    .select({
-      count: count(leaderboardTable.userId),
-    })
+  const [{ totalLeaderboards }] = await db
+    .select({ totalLeaderboards: count(leaderboardTable.userId) })
     .from(leaderboardTable)
-    .where(and(...conditions))
-    .groupBy(leaderboardTable.userId);
+    .where(and(...conditions));
 
-  if (totalCount.length === 0) return null;
+  if (totalLeaderboards === 0) return null;
 
   const leaderboardData = db
     .select({
@@ -317,7 +314,7 @@ async function getUserScores({
       rank: leaderboardData.rank,
     })
     .from(leaderboardData)
-    .where(and(...conditions, eq(usersTable.telegramUserId, userId)))
+    .where(and(eq(usersTable.telegramUserId, userId)))
     .groupBy(
       usersTable.telegramUserId,
       usersTable.name,
@@ -327,8 +324,7 @@ async function getUserScores({
     )
     .innerJoin(usersTable, eq(usersTable.id, leaderboardData.userId))
     .orderBy(desc(sql`sum(${leaderboardData.totalScore})`))
-    .limit(20)
-    .execute();
+    .limit(20);
 }
 
 function escapeHtmlEntities(text: string) {
