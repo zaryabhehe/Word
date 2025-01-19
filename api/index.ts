@@ -44,7 +44,9 @@ Commands:
 - /end - End the current game. Available for only admins in groups.
 - /help - Get help on how to play and commands list.
 - /leaderboard - Get leaderboard from current group.
-- /leaderboard global - Get global leaderboard.
+- /myscore - Get your score of the game.
+- Leaderboard, and MyScore parameters: /[leaderboard/myscore] [global/group] [today/week/month/year/all]
+- Example: <code>/leaderboard global month</code> <code>/myscore group all</code>
 
 <blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`,
     {
@@ -642,7 +644,11 @@ async function init() {
     },
     {
       command: "leaderboard",
-      description: "Get leaderboard of the game in this chat.",
+      description: "Get leaderboard of the game.",
+    },
+    {
+      command: "myscore",
+      description: "Get your score of the game.",
     },
   ]);
 }
