@@ -1,0 +1,2092 @@
+{
+  "aback": {
+    "meaning": "Toward the back or rear; backward.",
+    "pronunciation": "/əˈbæk/",
+    "example": "He was taken aback by the sudden change in her attitude."
+  },
+  "abase": {
+    "meaning": "To lower in rank, dignity, or esteem; to humiliate or degrade.",
+    "pronunciation": "/əˈbeɪs/",
+    "example": "He refused to abase himself in front of his rivals."
+  },
+  "abate": {
+    "meaning": "To reduce in degree, intensity, or amount; to diminish.",
+    "pronunciation": "/əˈbeɪt/",
+    "example": "The storm began to abate after several hours of heavy rain."
+  },
+  "abbey": {
+    "meaning": "A building or complex of buildings used by a community of monks or nuns.",
+    "pronunciation": "/ˈæb.i/",
+    "example": "The abbey stood majestically atop the hill."
+  },
+  "abbot": {
+    "meaning": "The superior or head of an abbey or monastery.",
+    "pronunciation": "/ˈæb.ət/",
+    "example": "The newly appointed abbot decided to take a tour of the abbey with the cardinal's emissary."
+  },
+  "abhor": {
+    "meaning": "To regard with extreme disgust or hatred; to detest.",
+    "pronunciation": "/əbˈhɔːr/",
+    "example": "I absolutely abhor being stuck in traffic jams."
+  },
+  "abide": {
+    "meaning": "To accept or endure something patiently; to remain or continue.",
+    "pronunciation": "/əˈbaɪd/",
+    "example": "He promised to abide by the rules of the agreement."
+  },
+  "abled": {
+    "meaning": "(In combination) Having a specified range of physical or mental abilities.",
+    "pronunciation": "/ˈeɪ.bl̩d/",
+    "example": "The abled athletes competed alongside their peers in the marathon."
+  },
+  "abode": {
+    "meaning": "A place of residence; a home.",
+    "pronunciation": "/əˈbəʊd/",
+    "example": "They invited us to their humble abode for dinner."
+  },
+  "abort": {
+    "meaning": "To terminate prematurely, especially a process or operation.",
+    "pronunciation": "/əˈbɔːt/",
+    "example": "The mission was aborted due to technical difficulties."
+  },
+  "about": {
+    "meaning": "In the vicinity; around; concerning or regarding something.",
+    "pronunciation": "/əˈbaʊt/",
+    "example": "He wandered about the garden, enjoying the flowers."
+  },
+  "above": {
+    "meaning": "In a higher position; overhead; superior to.",
+    "pronunciation": "/əˈbʌv/",
+    "example": "The plane flew above the clouds."
+  },
+  "abuse": {
+    "meaning": "Improper or harmful use of something; mistreatment.",
+    "pronunciation": "/əˈbjuːs/",
+    "example": "All abuse, whether physical, verbal, psychological, or sexual, is unacceptable."
+  },
+  "abyss": {
+    "meaning": "A deep or seemingly bottomless chasm; a profound depth.",
+    "pronunciation": "/əˈbɪs/",
+    "example": "The explorers peered into the dark abyss below."
+  },
+  "acorn": {
+    "meaning": "The fruit of an oak tree, a nut enclosed in a woody cupule.",
+    "pronunciation": "/ˈeɪ.kɔːn/",
+    "example": "Squirrels gathered acorns in preparation for the winter."
+  },
+  "acrid": {
+    "meaning": "Having an irritatingly strong and unpleasant taste or smell.",
+    "pronunciation": "/ˈæk.ɹɪd/",
+    "example": "The acrid smell of burning rubber filled the air."
+  },
+  "actor": {
+    "meaning": "A person who performs in plays, movies, or television shows.",
+    "pronunciation": "/ˈæk.tə/",
+    "example": "The actor gave an outstanding performance in the film."
+  },
+  "acute": {
+    "meaning": "Sharp or severe in effect; intense; brief but intense in duration.",
+    "pronunciation": "/əˈkjuːt/",
+    "example": "She experienced acute pain after twisting her ankle."
+  },
+  "adage": {
+    "meaning": "An old saying which has obtained credit by long use.",
+    "pronunciation": "/ˈæ.dɪdʒ/",
+    "example": "The adage 'What goes around, comes around' is often quoted."
+  },
+  "adapt": {
+    "meaning": "To make suitable for a particular purpose or situation; to adjust.",
+    "pronunciation": "/əˈdæpt/",
+    "example": "She had to adapt to the new environment when she moved to the city."
+  },
+  "adept": {
+    "meaning": "One fully skilled or well-versed in something; a proficient.",
+    "pronunciation": "/əˈdɛpt/",
+    "example": "She is an adept violinist, performing in prestigious orchestras."
+  },
+  "admin": {
+    "meaning": "Administration, or administrative work; to serve as an administrator for or of.",
+    "pronunciation": "/ədˈmɪn/",
+    "example": "There's a lot of admin involved in the birth of a child."
+  },
+  "admit": {
+    "meaning": "To allow to enter; to grant entrance (to), whether into a place, into the mind, or into consideration.",
+    "pronunciation": "/ədˈmɪt/",
+    "example": "A ticket admits one into a playhouse."
+  },
+  "adobe": {
+    "meaning": "An unburnt brick dried in the sun, used for building.",
+    "pronunciation": "/əˈdəʊ.bi/",
+    "example": "Many people in Texas and New Mexico live in adobe houses."
+  },
+  "adopt": {
+    "meaning": "To take by choice into a relationship (a child, heir, friend, citizen, etc.).",
+    "pronunciation": "/əˈdɒpt/",
+    "example": "They decided to adopt a child after years of infertility struggles."
+  },
+  "adore": {
+    "meaning": "To regard with deep, intense love or admiration.",
+    "pronunciation": "/əˈdɔː/",
+    "example": "She absolutely adores her grandmother and visits her every weekend."
+  },
+  "adorn": {
+    "meaning": "To make more beautiful or attractive; to decorate.",
+    "pronunciation": "/əˈdɔː(ɹ)n/",
+    "example": "The walls of the room were adorned with beautiful paintings."
+  },
+  "adult": {
+    "meaning": "A fully grown human or animal; fully grown.",
+    "pronunciation": "/əˈdʌlt/",
+    "example": "At 18, she was officially considered an adult."
+  },
+  "affix": {
+    "meaning": "That which is affixed; an appendage; to attach.",
+    "pronunciation": "/əˈfɪks/",
+    "example": "Please affix your signature to the bottom of the form."
+  },
+  "afire": {
+    "meaning": "On fire, often used metaphorically to indicate passion or enthusiasm.",
+    "pronunciation": "/əˈfaɪə(ɹ)/",
+    "example": "Her eyes were afire with excitement after hearing the good news."
+  },
+  "afoot": {
+    "meaning": "In progress; underway; on foot (walking).",
+    "pronunciation": "/əˈfʊt/",
+    "example": "There are plans afoot to renovate the old library."
+  },
+  "afoul": {
+    "meaning": "In a state of collision or entanglement, especially in nautical contexts.",
+    "pronunciation": "/əˈfaʊl/",
+    "example": "The ships’ lines and sails were all afoul, causing a delay in their journey."
+  },
+  "after": {
+    "meaning": "Later; next, following; behind in time or sequence.",
+    "pronunciation": "/ˈæf.tə(ɹ)/",
+    "example": "He went for a walk after finishing his homework."
+  },
+  "again": {
+    "meaning": "Another time; once more; (obsolete or dialectal) Against.",
+    "pronunciation": "/əˈɡeɪn/",
+    "example": "He promised to try again after taking a break."
+  },
+  "agape": {
+    "meaning": "In a state of astonishment, wonder, expectation, or eager attention; with mouth hanging open.",
+    "pronunciation": "/əˈɡeɪp/",
+    "example": "The audience was agape as the magician performed his final trick."
+  },
+  "agate": {
+    "meaning": "A semi-pellucid, uncrystallized variety of quartz, presenting various tints in the same specimen, with colors delicately arranged in stripes or bands.",
+    "pronunciation": "/ˈæ.ɡət/",
+    "example": "The jewelry was adorned with beautiful agate stones."
+  },
+  "agent": {
+    "meaning": "One who exerts power or has the power to act; a representative.",
+    "pronunciation": "/ˈeɪ.dʒənt/",
+    "example": "The agent handled all the contract negotiations on behalf of the client."
+  },
+  "agile": {
+    "meaning": "Having the ability to move quickly and easily; nimble.",
+    "pronunciation": "/ˈæd͡ʒ.aɪl/",
+    "example": "An agile creature like the cheetah can outrun most predators."
+  },
+  "aging": {
+    "meaning": "To cause to grow old; to become older or more mature.",
+    "pronunciation": "/ˈeɪ.dʒɪŋ/",
+    "example": "Grief ages us more than time itself."
+  },
+  "aglow": {
+    "meaning": "Glowing; radiant, often used figuratively.",
+    "pronunciation": "/əˈɡloʊ/",
+    "example": "Her face was aglow with happiness after hearing the good news."
+  },
+  "agony": {
+    "meaning": "Extreme pain or suffering, particularly physical or emotional.",
+    "pronunciation": "/ˈæ.ɡə.niː/",
+    "example": "The agony of losing a loved one is beyond words."
+  },
+  "agora": {
+    "meaning": "A place for gathering, especially in ancient Greece.",
+    "pronunciation": "/ˈæ.ɡə.ɹə/",
+    "example": "The citizens met in the agora to discuss the city's issues."
+  },
+  "agree": {
+    "meaning": "To harmonize in opinion, statement, or action; to concur.",
+    "pronunciation": "/əˈɡɹi/",
+    "example": "All parties agree in the expediency of the law."
+  },
+  "ahead": {
+    "meaning": "In or to the front; in advance; onward.",
+    "pronunciation": "/əˈhɛd/",
+    "example": "We have a long journey ahead of us."
+  },
+  "aider": {
+    "meaning": "One who assists or helps.",
+    "pronunciation": "/ˈeɪ.də(r)/",
+    "example": "The aide provided support to the students during the exam."
+  },
+  "aisle": {
+    "meaning": "A wing of a building, notably in a church, separated from the nave by piers.",
+    "pronunciation": "/aɪl/",
+    "example": "She walked down the aisle in a beautiful white dress."
+  },
+  "alarm": {
+    "meaning": "A summons to arms, as on the approach of an enemy; to call to arms for defense.",
+    "pronunciation": "/əˈlɑːm/",
+    "example": "The soldiers sprang into action at the sound of the alarm."
+  },
+  "album": {
+    "meaning": "A book specially designed to keep photographs, stamps, or autographs.",
+    "pronunciation": "/ˈælbəm/",
+    "example": "She showed me her photo album from her trip to Europe."
+  },
+  "alert": {
+    "meaning": "An alarm; attentive, awake, on guard.",
+    "pronunciation": "/əˈlɜːt/",
+    "example": "The guards remained alert throughout the night."
+  },
+  "algae": {
+    "meaning": "Any of many aquatic photosynthetic organisms, including seaweeds, whose size ranges from a single cell to giant kelps.",
+    "pronunciation": "/æl.ɡɪ/",
+    "example": "The pond was covered with a layer of green algae."
+  },
+  "alibi": {
+    "meaning": "A plea or defense under which a person proves being in another place when the alleged crime was committed.",
+    "pronunciation": "/ˈæl.ə.baɪ/",
+    "example": "He provided a solid alibi that proved he was at the party when the crime occurred."
+  },
+  "alien": {
+    "meaning": "Any life form of extraterrestrial or extradimensional origin; foreign, not belonging to the same country.",
+    "pronunciation": "/ˈeɪ.li.ən/",
+    "example": "The scientists were excited to discover evidence of alien life on the distant planet."
+  },
+  "align": {
+    "meaning": "To form a line or fall into a line; to arrange or adjust in proper position.",
+    "pronunciation": "/æˈlaɪn/",
+    "example": "The workers aligned the bricks perfectly for the new wall."
+  },
+  "alike": {
+    "meaning": "Having resemblance or similarity; in the same manner or degree.",
+    "pronunciation": "/əˈlaɪk/",
+    "example": "The twins looked so alike that even their parents had trouble telling them apart."
+  },
+  "alive": {
+    "meaning": "Having life; living; not dead; (used attributively) having life.",
+    "pronunciation": "/əˈlaɪv/",
+    "example": "As long as the plant is alive, he will continue to water it."
+  },
+  "allay": {
+    "meaning": "To calm, soothe, or alleviate; to put at rest.",
+    "pronunciation": "/əˈleɪ/",
+    "example": "Her kind words helped allay his fears about the surgery."
+  },
+  "alley": {
+    "meaning": "A narrow street or passageway, especially one giving access to the rear of buildings.",
+    "pronunciation": "/ˈæ.li/",
+    "example": "The parking lot to my friend's apartment building is in the alley."
+  },
+  "allot": {
+    "meaning": "To distribute or apportion by (or as if by) lot.",
+    "pronunciation": "/əˈlɒt/",
+    "example": "They allotted the tasks evenly among the team members."
+  },
+  "allow": {
+    "meaning": "To grant, give, admit, accord, or yield; to let one have.",
+    "pronunciation": "/əˈlaʊ/",
+    "example": "The teacher allowed the students to leave early on Friday."
+  },
+  "alloy": {
+    "meaning": "A metal that is a combination of two or more elements, at least one of which is a metal.",
+    "pronunciation": "/ˈæ.lɔɪ/",
+    "example": "Bronze is an alloy made of copper and tin."
+  },
+  "aloft": {
+    "meaning": "At, to, or in the air or sky.",
+    "pronunciation": "/əˈlɑft/",
+    "example": "The kite flew high aloft in the clear blue sky."
+  },
+  "alone": {
+    "meaning": "By oneself, solitary; apart from or exclusive of others.",
+    "pronunciation": "/əˈləʊn/",
+    "example": "I can't ask for help because I am alone."
+  },
+  "along": {
+    "meaning": "In company; together; by the length of; in a line with the length of; lengthwise next to.",
+    "pronunciation": "/əˈlɑŋ/",
+    "example": "John played the piano and everyone sang along."
+  },
+  "aloof": {
+    "meaning": "Reserved and remote; either physically or emotionally distant; standoffish; at or from a distance, but within view, or at a small distance; apart; away.",
+    "pronunciation": "/əˈluːf/",
+    "example": "She remained aloof from the rest of the group."
+  },
+  "aloud": {
+    "meaning": "Spoken out loud; with a loud voice, or great noise; loudly; audibly.",
+    "pronunciation": "/əˈlaʊd/",
+    "example": "He read the poem aloud to the class."
+  },
+  "alpha": {
+    "meaning": "The name of the first letter of the Greek alphabet (Α, α), followed by beta. In the Latin alphabet, it is the predecessor to A; designates the first in an order of precedence.",
+    "pronunciation": "/ˈælfə/",
+    "example": "He was the alpha of the team, leading everyone with confidence."
+  },
+  "altar": {
+    "meaning": "A table or similar flat-topped structure used for religious rites.",
+    "pronunciation": "/ˈɑl.tɚ/",
+    "example": "They knelt at the altar to pray."
+  },
+  "alter": {
+    "meaning": "To change the form or structure of.",
+    "pronunciation": "/ˈɑl.tɚ/",
+    "example": "She decided to alter her dress for the party."
+  },
+  "amass": {
+    "meaning": "A large number of things collected or piled together; to collect into a mass or heap.",
+    "pronunciation": "/əˈmæs/",
+    "example": "Over the years, he amassed a collection of rare books."
+  },
+  "amaze": {
+    "meaning": "Amazement, astonishment; to fill with wonder and surprise; to astonish, astound, surprise, or perplex.",
+    "pronunciation": "/əˈmeɪz/",
+    "example": "The magician's tricks never failed to amaze the audience."
+  },
+  "amber": {
+    "meaning": "Ambergris, the waxy product of the sperm whale; to perfume or flavour with ambergris; of a brownish-yellow colour, like that of most amber.",
+    "pronunciation": "/ˈæmbər/",
+    "example": "She wore an amber-colored necklace."
+  },
+  "amble": {
+    "meaning": "An unhurried leisurely walk or stroll; to stroll or walk slowly and leisurely.",
+    "pronunciation": "/ˈæm.bəl/",
+    "example": "We decided to amble through the park on a sunny afternoon."
+  },
+  "amend": {
+    "meaning": "(usually in the plural) An act of righting a wrong; compensation; to make better; improve.",
+    "pronunciation": "/əˈmɛnd/",
+    "example": "He amended the document before sending it to the client."
+  },
+  "amiss": {
+    "meaning": "Fault; wrong; an evil act, a bad deed; wrong; faulty; out of order; improper or otherwise incorrect; wrongly.",
+    "pronunciation": "/əˈmɪs/",
+    "example": "Something seems amiss with the machine."
+  },
+  "amity": {
+    "meaning": "Friendship; the cooperative and supportive relationship between people or animals, which involves mutual knowledge, esteem, affection, and respect.",
+    "pronunciation": "/ˈæ.mɪ.ti/",
+    "example": "Their amity lasted through many years of friendship."
+  },
+  "among": {
+    "meaning": "Denotes a mingling or intermixing with distinct or separable objects.",
+    "pronunciation": "/əˈmɒŋ/",
+    "example": "How can you speak with authority about their customs when you have never lived among them?"
+  },
+  "ample": {
+    "meaning": "Large; great in size, extent, capacity, or bulk; spacious, roomy, or widely extended.",
+    "pronunciation": "/ˈæm.pl/",
+    "example": "The house had ample space for all of our belongings."
+  },
+  "amply": {
+    "meaning": "In an ample manner.",
+    "pronunciation": "/ˈæmp.li/",
+    "example": "The dessert was amply sweet for everyone's taste."
+  },
+  "amuse": {
+    "meaning": "To entertain or occupy in a pleasant manner; to stir with pleasing emotions.",
+    "pronunciation": "/əˈmjuːz/",
+    "example": "The comedian's jokes amused the audience."
+  },
+  "angel": {
+    "meaning": "An incorporeal and sometimes divine messenger from a deity, often depicted as a youthful winged figure in flowing robes; to support by donating money.",
+    "pronunciation": "/ˈeɪn.dʒəl/",
+    "example": "She was an angel, always helping others in need."
+  },
+  "anger": {
+    "meaning": "A strong feeling of displeasure, hostility, or antagonism towards someone or something; to cause such a feeling.",
+    "pronunciation": "/ˈæŋɡə(ɹ)/",
+    "example": "You need to control your anger."
+  },
+  "angle": {
+    "meaning": "A figure formed by two rays which start from a common point (a plane angle) or by three planes that intersect (a solid angle); (often in the passive) to place (something) at an angle.",
+    "pronunciation": "/ˈæŋ.ɡəl/",
+    "example": "The angle between the two walls was 90 degrees."
+  },
+  "angry": {
+    "meaning": "Displaying or feeling anger.",
+    "pronunciation": "/ˈæŋ.ɡɹi/",
+    "example": "An angry mob started looting the warehouse."
+  },
+  "angst": {
+    "meaning": "Emotional turmoil; painful sadness; to suffer angst; to fret.",
+    "pronunciation": "/æŋ(k)st/",
+    "example": "The character's angst was evident throughout the film."
+  },
+  "anime": {
+    "meaning": "An artistic style originating in, and associated with, Japanese animation, and that has also been adopted by a comparatively low number of animated works from other countries.",
+    "pronunciation": "/ˈæn.ɪ.meɪ/",
+    "example": "I enjoy watching anime series in my free time."
+  },
+  "ankle": {
+    "meaning": "The skeletal joint which connects the foot with the leg; the uppermost portion of the foot and lowermost portion of the leg, which contain this skeletal joint; to walk.",
+    "pronunciation": "/ˈæŋ.kəl/",
+    "example": "She twisted her ankle while running."
+  },
+  "annex": {
+    "meaning": "An addition, an extension.",
+    "pronunciation": "/ˈænɛks/",
+    "example": "They built an annex to the main building."
+  },
+  "annoy": {
+    "meaning": "A feeling of discomfort or vexation caused by what one dislikes; to disturb or irritate, especially by continued or repeated acts; to bother with unpleasant deeds.",
+    "pronunciation": "/əˈnɔɪ/",
+    "example": "The loud noise from the construction site began to annoy me."
+  },
+  "annul": {
+    "meaning": "To formally revoke the validity of.",
+    "pronunciation": "/əˈnʌl/",
+    "example": "The contract was annulled after the breach of terms."
+  },
+  "anode": {
+    "meaning": "An electrode, of a cell or other electrically polarized device, through which a positive current of electricity flows inwards (and thus, electrons flow outwards). It can have either a negative or a positive voltage.",
+    "pronunciation": "/ˈæn.əʊd/",
+    "example": "The anode is part of the electrochemical reaction in the battery."
+  },
+  "antic": {
+    "meaning": "A grotesque representation of a figure; a gargoyle; to perform antics, caper; playful, funny, absurd; having existed in ancient times, descended from antiquity; used especially in reference to Greece and Rome.",
+    "pronunciation": "/ˈæn.tɪk/",
+    "example": "The clown's antics kept the children entertained."
+  },
+  "anvil": {
+    "meaning": "A heavy iron block used in the blacksmithing trade as a surface upon which metal can be struck and shaped; to fashion on an anvil (often used figuratively).",
+    "pronunciation": "/ˈæn.vɪl/",
+    "example": "The blacksmith hammered the iron on the anvil."
+  },
+  "aorta": {
+    "meaning": "The great artery which carries the blood from the heart to all parts of the body except the lungs; the main trunk of the arterial system.",
+    "pronunciation": "/eɪˈɔːtə/",
+    "example": "The surgeon repaired the damaged aorta during the operation."
+  },
+  "apart": {
+    "meaning": "(Used after a noun or in the predicate) Exceptional, distinct; placed separately (in regard to space or time).",
+    "pronunciation": "/əˈpɑː(ɹ)t/",
+    "example": "They were worlds apart in their ideas."
+  },
+  "aphid": {
+    "meaning": "Sapsucking pest insect of the superfamily Aphidoidea; an aphidian.",
+    "pronunciation": "/ˈeɪ.fɪd/",
+    "example": "The aphids infested the roses in the garden."
+  },
+  "aping": {
+    "meaning": "To behave like an ape; foolish imitation or mimicry.",
+    "pronunciation": "/ˈeɪ.pɪŋ/",
+    "example": "He was aping the behavior of the celebrity he admired."
+  },
+  "apnea": {
+    "meaning": "The cessation of breathing.",
+    "pronunciation": "/ˈæp.ni.ə/",
+    "example": "Sleep apnea can disrupt a person's rest."
+  },
+  "apple": {
+    "meaning": "A common, round fruit produced by the tree Malus domestica, cultivated in temperate climates; to become apple-like.",
+    "pronunciation": "/ˈæp.əl/",
+    "example": "She ate an apple as an afternoon snack."
+  },
+  "apply": {
+    "meaning": "To lay or place; to put (one thing to another).",
+    "pronunciation": "/əˈplaɪ/",
+    "example": "You should apply sunscreen before going outside."
+  },
+  "apron": {
+    "meaning": "An article of clothing worn over the front of the torso and/or legs for protection from spills; also historically worn by Freemasons and as part of women's fashion; to cover with, or as if with, an apron.",
+    "pronunciation": "/ˈeɪ.pɹən/",
+    "example": "She wore an apron to protect her clothes while cooking."
+  },
+  "aptly": {
+    "meaning": "In an apt or suitable manner; fitly; appropriately.",
+    "pronunciation": "/ˈæp(t).li/",
+    "example": "The book was aptly titled 'The Silent Observer.'"
+  },
+  "arbor": {
+    "meaning": "A shady sitting place or pergola usually in a park or garden, surrounded by climbing shrubs, vines or other vegetation.",
+    "pronunciation": "/ˈɑːbər/",
+    "example": "We sat in the arbor, enjoying the breeze."
+  },
+  "ardor": {
+    "meaning": "Great warmth of feeling; fervor; passion.",
+    "pronunciation": "/ˈɑːdɔːr/",
+    "example": "His ardor for the project inspired the whole team."
+  },
+  "arena": {
+    "meaning": "An enclosed area, often outdoor, for the presentation of sporting events (sports arena) or other spectacular events; earthen area, often oval, specifically for rodeos (North America) or circular area for bullfights (especially Hispanic America).",
+    "pronunciation": "/əˈɹiːnə/",
+    "example": "A large crowd filled the seats of the arena."
+  },
+  "argue": {
+    "meaning": "To show grounds for concluding (that); to indicate, imply.",
+    "pronunciation": "/ˈɑː.ɡjuː/",
+    "example": "They argue that the policy will benefit the economy."
+  },
+  "arise": {
+    "meaning": "To come up from a lower to a higher position.",
+    "pronunciation": "/əˈɹaɪz/",
+    "example": "He arose from his chair to speak."
+  },
+  "armor": {
+    "meaning": "A protective layer over a body, vehicle, or other object intended to deflect or diffuse damaging forces; to equip something with armor or a protective coating or hardening.",
+    "pronunciation": "/ˈɑː.mə/",
+    "example": "The knight donned his armor before battle."
+  },
+  "aroma": {
+    "meaning": "A smell; especially a pleasant spicy or fragrant one.",
+    "pronunciation": "/əˈɹəʊmə/",
+    "example": "The aroma of freshly baked bread filled the kitchen."
+  },
+  "arose": {
+    "meaning": "To come up from a lower to a higher position.",
+    "pronunciation": "/əˈɹoʊz/",
+    "example": "A storm arose suddenly in the afternoon."
+  },
+  "array": {
+    "meaning": "Clothing and ornamentation; to clothe and ornament; to adorn or attire.",
+    "pronunciation": "/əˈɹeɪ/",
+    "example": "The guests were arrayed in formal attire."
+  },
+  "arrow": {
+    "meaning": "A projectile consisting of a shaft, a point, and a tail with stabilizing fins that is shot from a bow; to move swiftly and directly (like an arrow).",
+    "pronunciation": "/ˈæɹ.əʊ/",
+    "example": "The archer released the arrow with great precision."
+  },
+  "arson": {
+    "meaning": "The crime of deliberately starting a fire with intent to cause damage; to illegally set fire to; to burn down in a criminal manner.",
+    "pronunciation": "/ˈɑːsən/",
+    "example": "The suspect was arrested for arson after the fire was traced to his actions."
+  },
+  "artsy": {
+    "meaning": "(sometimes derogatory) Inclined towards the arts; arty.",
+    "pronunciation": "/ˈɑɹtsi/",
+    "example": "The gallery was full of artsy people discussing modern paintings."
+  },
+  "ascot": {
+    "meaning": "Ascot tie.",
+    "pronunciation": "/ˈæskɒt/",
+    "example": "He wore a formal ascot to the gala."
+  },
+  "ashen": {
+    "meaning": "Made from the wood of the ash-tree.",
+    "pronunciation": "/ˈæʃ.ɪn/",
+    "example": "An ashen bow and quiver of arrows beside."
+  },
+  "aside": {
+    "meaning": "An incidental remark made quietly so as to be heard by the person to whom it is said and not by any others in the vicinity; to or on one side so as to be out of the way.",
+    "pronunciation": "/əˈsaɪd/",
+    "example": "He made a comment aside, only for his friend to hear."
+  },
+  "askew": {
+    "meaning": "Turned or twisted to one side; tilted to one side.",
+    "pronunciation": "/əˈskjuː/",
+    "example": "The picture was hanging askew on the wall."
+  },
+  "assay": {
+    "meaning": "Trial, attempt; to attempt (something).",
+    "pronunciation": "/əˈseɪ/",
+    "example": "The scientist will assay the new method to determine its effectiveness."
+  },
+  "asset": {
+    "meaning": "Something or someone of any value; any portion of one's property or effects so considered.",
+    "pronunciation": "/ˈæsɛt/",
+    "example": "These shares are a valuable asset."
+  },
+  "atoll": {
+    "meaning": "A type of island consisting of a ribbon reef that nearly or entirely surrounds a lagoon and supports, in most cases, one to many islets on the reef platform. Atolls have a unique geology, so not all islands with a reef and a lagoon are atolls.",
+    "pronunciation": "/əˈtɒl/",
+    "example": "The tropical island was part of an atoll."
+  },
+  "atone": {
+    "meaning": "To make reparation, compensation, amends, or satisfaction for an offense, crime, mistake, or deficiency.",
+    "pronunciation": "/əˈtoʊn/",
+    "example": "He sought to atone for his past mistakes."
+  },
+  "attic": {
+    "meaning": "The space, often unfinished and with sloped walls, directly below the roof in the uppermost part of a house or other building, generally used for storage or habitation.",
+    "pronunciation": "/ˈætɪk/",
+    "example": "We went up to the attic to look for the boxes containing our childhood keepsakes."
+  },
+  "audio": {
+    "meaning": "A sound, or a sound signal; focused on audible sound, as opposed to sight.",
+    "pronunciation": "/ˈɔː.di.əʊ/",
+    "example": "I need to adjust the audio settings for the movie."
+  },
+  "audit": {
+    "meaning": "A judicial examination; to examine and adjust (e.g., an account).",
+    "pronunciation": "/ɔː.dɪt/",
+    "example": "The company hired an expert to audit their financial records."
+  },
+  "augur": {
+    "meaning": "A diviner who foretells events by the behaviour of birds or other animals, or by signs derived from celestial phenomena, or unusual occurrences; to foretell events; to exhibit signs of future events.",
+    "pronunciation": "/ˈɔːɡə/",
+    "example": "The astrologer tried to augur the future based on the stars."
+  },
+  "aunty": {
+    "meaning": "The sister or sister-in-law of one’s parent; term of familiarity or respect for a middle-aged or elderly woman.",
+    "pronunciation": "/ˈɑːnti/",
+    "example": "Aunty Mary is coming over for dinner."
+  },
+  "avail": {
+    "meaning": "Effect in achieving a goal or aim; purpose, use (now usually in negative constructions); to turn to the advantage of.",
+    "pronunciation": "/əˈveɪl/",
+    "example": "I tried fixing it, to no avail. Labor, without economy, is of little avail."
+  },
+  "avert": {
+    "meaning": "To turn aside or away.",
+    "pronunciation": "/əˈvɜːt/",
+    "example": "To avert the eyes from an object."
+  },
+  "avian": {
+    "meaning": "A bird; characteristic of or pertaining to birds, or to bird-like or flying creatures.",
+    "pronunciation": "/ˈeɪvi.ən/",
+    "example": "The avian species in the forest are diverse."
+  },
+  "avoid": {
+    "meaning": "To try not to meet or communicate with (a person); to shun.",
+    "pronunciation": "/əˈvɔɪd/",
+    "example": "He tries to avoid confrontations at all costs."
+  },
+  "await": {
+    "meaning": "A waiting for; ambush; to wait for.",
+    "pronunciation": "/əˈwɛɪt/",
+    "example": "We await your response with great anticipation."
+  },
+  "awake": {
+    "meaning": "Not asleep; conscious.",
+    "pronunciation": "/əˈweɪk/",
+    "example": "I woke up and was instantly awake, alert to the sounds around me."
+  },
+  "award": {
+    "meaning": "A judgment, sentence, or final decision; to give by sentence or judicial determination; to assign or apportion, after careful regard to the nature of the case; to adjudge.",
+    "pronunciation": "/əˈwɔːd/",
+    "example": "She won the award for best actress at the ceremony."
+  },
+  "aware": {
+    "meaning": "Vigilant or on one's guard against danger or difficulty.",
+    "pronunciation": "/əˈweːɹ/",
+    "example": "Stay aware! Don't let your guard down."
+  },
+  "awash": {
+    "meaning": "Washed by the waves or tide (of a rock or strip of shore, or of an anchor, etc., when flush with the surface of the water, so that the waves break over it); covered with water.",
+    "pronunciation": "/əˈwɒʃ/",
+    "example": "The shore was awash with the tide, leaving no trace of footprints."
+  },
+  "awful": {
+    "meaning": "Very bad; awfully; dreadfully; terribly.",
+    "pronunciation": "/ˈɔːfəl/",
+    "example": "My socks smell awful."
+  },
+  "awoke": {
+    "meaning": "To become conscious after having slept.",
+    "pronunciation": "/əˈwəʊk/",
+    "example": "She awoke from her nap feeling refreshed."
+  },
+  "axial": {
+    "meaning": "A flight feather that appears between the primaries and secondaries on some birds; relating to, resembling, or situated on an axis.",
+    "pronunciation": "/ˈæksi.əl/",
+    "example": "The bird's axial feathers help with balance during flight."
+  },
+  "axiom": {
+    "meaning": "A seemingly self-evident or necessary truth which is based on assumption; a principle or proposition which cannot actually be proved or disproved.",
+    "pronunciation": "/ˈæksɪəm/",
+    "example": "It is an axiom that light travels faster than sound."
+  },
+  "axion": {
+    "meaning": "A hypothetical subatomic particle postulated to resolve certain symmetry problems concerning the strong nuclear force.",
+    "pronunciation": "/ˈæksɪɒn/",
+    "example": "The discovery of the axion would help explain certain mysteries in physics."
+  },
+  "azure": {
+    "meaning": "A blue colour on a coat of arms, represented in engraving by horizontal parallel lines; to colour blue; sky blue; resembling the clear blue colour of the unclouded sky.",
+    "pronunciation": "/æˈzjʊə/",
+    "example": "The sky was a perfect azure as the sun set."
+  },
+  "bacon": {
+    "meaning": "Cured meat from the sides, belly or back of a pig.",
+    "pronunciation": "/ˈbeɪ.kən/",
+    "example": "I love a crispy slice of bacon for breakfast."
+  },
+  "badge": {
+    "meaning": "A distinctive mark, token, sign, emblem or cognizance, worn on one's clothing, as an insignia of some rank, or of the membership of an organization; to mark or distinguish with a badge.",
+    "pronunciation": "/bædʒ/",
+    "example": "She proudly wore the badge of her achievements."
+  },
+  "badly": {
+    "meaning": "Ill, unwell; in a bad manner.",
+    "pronunciation": "/ˈbæd.li/",
+    "example": "He's never badly hurt in any of his adventures."
+  },
+  "bagel": {
+    "meaning": "A toroidal bread roll that is boiled before it is baked; to achieve a score of 6-0 in a tennis set.",
+    "pronunciation": "/bæ.ɡɫ̩/",
+    "example": "She grabbed a bagel for breakfast on her way to work."
+  },
+  "baggy": {
+    "meaning": "Of clothing, very loose-fitting, so as to hang away from the body.",
+    "pronunciation": "/ˈbæɡi/",
+    "example": "She wore baggy jeans that were comfortable for lounging."
+  },
+  "baker": {
+    "meaning": "A person who bakes and sells bread, cakes, and similar items.",
+    "pronunciation": "/ˈbeɪ.kə(ɹ)/",
+    "example": "The baker is famous for his freshly baked pastries."
+  },
+  "baler": {
+    "meaning": "A machine for creating bales, e.g., of hay or cotton.",
+    "pronunciation": "/ˈbeɪlə/",
+    "example": "Farmer Jones is in straits because his baler is broken down and he's got three fields of hay ready to bale."
+  },
+  "balmy": {
+    "meaning": "Producing balm.",
+    "pronunciation": "/ˈbɑːmi/",
+    "example": "The evening air was balmy and warm."
+  },
+  "banal": {
+    "meaning": "Common in a boring way, to the point of being predictable; containing nothing new or fresh.",
+    "pronunciation": "/bəˈnæl/",
+    "example": "The movie was so banal, offering nothing original or exciting."
+  },
+  "banjo": {
+    "meaning": "A stringed musical instrument (chordophone), usually with a round body, a membrane-like soundboard, and a fretted neck, played by plucking or strumming the strings; to play a banjo.",
+    "pronunciation": "/ˈbæn.dʒəʊ/",
+    "example": "He strummed his banjo while singing folk songs."
+  },
+  "barge": {
+    "meaning": "A large flat-bottomed towed or self-propelled boat used mainly for river and canal transport of heavy goods or bulk cargo; to intrude or break through, particularly in an unwelcome or clumsy manner.",
+    "pronunciation": "/bɑːdʒ/",
+    "example": "The cargo was loaded onto the barge for transport."
+  },
+  "baron": {
+    "meaning": "The male ruler of a barony.",
+    "pronunciation": "/ˈbæɹən/",
+    "example": "The baron ruled over the lands with great power."
+  },
+  "basal": {
+    "meaning": "Base, bottom, minimum; basic, elementary; relating to, or forming, the base, or point of origin.",
+    "pronunciation": "/ˈbeɪsəl/",
+    "example": "The basal layer of the skin is where new cells are produced."
+  },
+  "basic": {
+    "meaning": "A necessary commodity, a staple requirement; necessary, essential for life or some process.",
+    "pronunciation": "/ˈbeɪsɪk/",
+    "example": "Rice is a basic for many Asian villagers."
+  },
+  "basil": {
+    "meaning": "A plant (Ocimum basilicum), often used as a herb in cooking.",
+    "pronunciation": "/ˈbæz.əl/",
+    "example": "I added fresh basil to the salad for extra flavor."
+  },
+  "basin": {
+    "meaning": "A wide bowl for washing, sometimes affixed to a wall; To create a concavity or depression in.",
+    "pronunciation": "/ˈbeɪsɪn/",
+    "example": "She filled the basin with water to wash her hands."
+  },
+  "basis": {
+    "meaning": "A physical base or foundation, or a principle on which something is based.",
+    "pronunciation": "/ˈbeɪsɪs/",
+    "example": "The basis for his argument is the evidence provided in the study."
+  },
+  "baste": {
+    "meaning": "To sew with long or loose stitches, as for temporary use, or in preparation for gathering the fabric.",
+    "pronunciation": "/beɪst/",
+    "example": "I need to baste the fabric before stitching it together for the final design."
+  },
+  "batch": {
+    "meaning": "The quantity of bread or other baked goods baked at one time.; To aggregate things together into a batch.; Of a process, operating for a defined set of conditions, and then halting.",
+    "pronunciation": "/bæt͡ʃ/",
+    "example": "We made a batch of cookies to take to the party."
+  },
+  "bathe": {
+    "meaning": "The act of swimming or bathing, especially in the sea, a lake, or a river; a swimming bath.; To clean oneself by immersion in water or using water; to take a bath, have a bath.",
+    "pronunciation": "/beɪð/",
+    "example": "I'm going to have a midnight bathe tonight."
+  },
+  "baton": {
+    "meaning": "A staff or truncheon, used for various purposes; To strike with a baton.",
+    "pronunciation": "/ˈbætɒn/",
+    "example": "The officer carried a baton as part of his uniform."
+  },
+  "batty": {
+    "meaning": "Mad, crazy, silly.",
+    "pronunciation": "/ˈbæti/",
+    "example": "He’s acting batty after staying up all night."
+  },
+  "bawdy": {
+    "meaning": "Soiled, dirty; crude or vulgar in a humorous or sexual way.",
+    "pronunciation": "/ˈbɔːdi/",
+    "example": "The comedian's bawdy jokes caused the audience to laugh nervously."
+  },
+  "bayou": {
+    "meaning": "A slow-moving, often stagnant creek or river.",
+    "pronunciation": "/ˈbaɪ.oʊ/",
+    "example": "We paddled our canoe down the peaceful bayou."
+  },
+  "beach": {
+    "meaning": "The shore of a body of water, especially when sandy or pebbly.; To run aground on a beach.; A gravel-filled zone on a racetrack, used as a hazard, exclusionary region, and safety device to slow down and trap vehicles.",
+    "pronunciation": "/biːt͡ʃ/",
+    "example": "We spent the afternoon lounging on the beach."
+  },
+  "beady": {
+    "meaning": "Resembling beads; small, round, and gleaming.",
+    "pronunciation": "/ˈbiːdi/",
+    "example": "She had beady eyes that sparkled in the sunlight."
+  },
+  "beard": {
+    "meaning": "Facial hair on the chin, cheeks, jaw, and neck.; To grow hair on the chin and jaw.",
+    "pronunciation": "/bɪəd/",
+    "example": "He decided to grow a beard for the winter."
+  },
+  "beast": {
+    "meaning": "Any animal other than a human; usually only applied to land vertebrates, especially large or dangerous four-footed ones.; To impose arduous exercises, either as training or as punishment.; (chiefly Midwestern and northeastern US) great; excellent; powerful.",
+    "pronunciation": "/biːst/",
+    "example": "The lion is considered the beast of the savannah."
+  },
+  "beech": {
+    "meaning": "A tree of the genus Fagus having a smooth, light grey trunk, oval, pointed leaves, and many branches.",
+    "pronunciation": "/biːt͡ʃ/",
+    "example": "The beech tree provided a perfect spot for our picnic."
+  },
+  "beefy": {
+    "meaning": "Similar to, or tasting like beef.",
+    "pronunciation": "/ˈbiːfi/",
+    "example": "The beefy stew was perfect for a cold evening."
+  },
+  "befit": {
+    "meaning": "To be fit for.",
+    "pronunciation": "/bɪˈfɪt/",
+    "example": "His conduct was not befitting an officer of his station."
+  },
+  "began": {
+    "meaning": "To start, to initiate or take the first step into something.",
+    "pronunciation": "/bɪˈɡæn/",
+    "example": "I began playing the piano at the age of five. Now that everyone is here, we should begin the presentation."
+  },
+  "begat": {
+    "meaning": "An element of a lineage, especially of a lineage given in the Bible; To father; to sire; to produce (a child).",
+    "pronunciation": "/biˈɡæt/",
+    "example": "The Bible mentions who begat whom in genealogical lines."
+  },
+  "beget": {
+    "meaning": "To father; to sire; to produce (a child).",
+    "pronunciation": "/bɪˈɡɛt/",
+    "example": "He was the first to beget a child in the family after many generations."
+  },
+  "begin": {
+    "meaning": "To start, to initiate or take the first step into something.",
+    "pronunciation": "/biˈɡɪn/",
+    "example": "I will begin my workout as soon as I finish this chapter."
+  },
+  "begun": {
+    "meaning": "The past participle of 'begin'; used to describe an action that has started but not yet completed.",
+    "pronunciation": "/bɪˈɡʌn/",
+    "example": "I have begun reading the new book you gave me."
+  },
+  "being": {
+    "meaning": "A living creature; the state of existing; existence.",
+    "pronunciation": "/ˈbiːɪŋ/",
+    "example": "Human beings are capable of complex thought and emotions."
+  },
+  "belch": {
+    "meaning": "The sound one makes when belching; to expel (gas) loudly from the stomach through the mouth.",
+    "pronunciation": "/ˈbɛltʃ/",
+    "example": "He couldn't help but belch after drinking the soda."
+  },
+  "belie": {
+    "meaning": "To give a false impression of; to lie about something.",
+    "pronunciation": "/bɪˈlʌɪ/",
+    "example": "Her calm demeanor belied her nervousness inside."
+  },
+  "belle": {
+    "meaning": "An attractive woman.",
+    "pronunciation": "/bɛl/",
+    "example": "In her new dress, she felt like the belle of the ball."
+  },
+  "belly": {
+    "meaning": "The abdomen, especially a fat one; to position one’s belly; to move on one’s belly.",
+    "pronunciation": "/bɛli/",
+    "example": "The baby’s belly was full after finishing the bottle."
+  },
+  "below": {
+    "meaning": "In a lower place; lower in spatial position than.",
+    "pronunciation": "/bɪˈləʊ/",
+    "example": "The treasure chest is buried below the ground."
+  },
+  "bench": {
+    "meaning": "A long seat with or without a back, found for example in parks and schools; to remove a player from play.",
+    "pronunciation": "/bɛntʃ/",
+    "example": "They sat on a park bench and tossed bread crumbs to the ducks and pigeons."
+  },
+  "beret": {
+    "meaning": "A type of round, brimless cap with a soft top and a headband to secure it to the head; usually culturally associated with France.",
+    "pronunciation": "/ˈbeɹ.eɪ/",
+    "example": "She wore a red beret that complemented her outfit."
+  },
+  "berry": {
+    "meaning": "A small, succulent fruit, of any one of many varieties; to pick berries.",
+    "pronunciation": "/ˈbɛɹi/",
+    "example": "We spent the afternoon picking berries in the garden."
+  },
+  "berth": {
+    "meaning": "A fixed bunk for sleeping (in caravans, trains, etc); to bring (a ship or vehicle) into its berth.",
+    "pronunciation": "/bɜːθ/",
+    "example": "The captain instructed the crew to prepare the ship for its berth at the dock."
+  },
+  "beset": {
+    "meaning": "To surround or hem in.",
+    "pronunciation": "/bɪˈsɛt/",
+    "example": "The town was beset by heavy rain and flooding for days."
+  },
+  "betel": {
+    "meaning": "Either of two plants often used in combination, primarily for their leaves which are chewed for their stimulant effects.",
+    "pronunciation": "/ˈbiːtəl/",
+    "example": "He offered me a leaf of betel to chew as part of the tradition."
+  },
+  "bevel": {
+    "meaning": "An edge that is canted, one that is not a 90-degree angle; a chamfer; to give a canted edge to a surface.",
+    "pronunciation": "/ˈbɛvəl/",
+    "example": "The carpenter used a bevel to smooth the edges of the wooden frame."
+  },
+  "bezel": {
+    "meaning": "The sloping edge or face on a cutting tool; also refers to the edge of a watch or a gemstone setting.",
+    "pronunciation": "/ˈbɛz.əl/",
+    "example": "The bezel of the watch was encrusted with tiny diamonds."
+  },
+  "bible": {
+    "meaning": "An exemplar of the Bible; a piece of soft sandstone used for scouring the wooden decks of ships.",
+    "pronunciation": "/ˈbaɪbəl/",
+    "example": "The sailor used a bible to scrub the deck clean."
+  },
+  "bicep": {
+    "meaning": "A muscle located at the front of the upper arm, responsible for flexing the arm.",
+    "pronunciation": "/ˈbaɪsɛp/",
+    "example": "He flexed his biceps proudly after lifting the heavy weights."
+  },
+  "biddy": {
+    "meaning": "A woman, especially an old woman; regarded as fussy, mean, or gossipy.",
+    "pronunciation": "/ˈbɪdi/",
+    "example": "The old biddy at the corner store always has something to gossip about."
+  },
+  "bigot": {
+    "meaning": "One who is narrow-mindedly devoted to one's own ideas and intolerant of others.",
+    "pronunciation": "/ˈbɪɡət/",
+    "example": "The politician was accused of being a bigot after making inflammatory remarks."
+  },
+  "bilge": {
+    "meaning": "The rounded portion of a ship's hull, forming a transition between the bottom and the sides; to spring a leak in the bilge.",
+    "pronunciation": "/bɪldʒ/",
+    "example": "The ship took on water through the bilge after hitting the rocks."
+  },
+  "billy": {
+    "meaning": "A billy club.",
+    "pronunciation": "/ˈbɪli/",
+    "example": "The police officer carried a billy for self-defense."
+  },
+  "binge": {
+    "meaning": "A short period of excessive consumption, especially of food, alcohol, narcotics, etc.; to engage in a short period of excessive consumption, especially of excessive alcohol consumption.",
+    "pronunciation": "/bɪndʒ/",
+    "example": "She went on a binge after the stressful week at work."
+  },
+  "bingo": {
+    "meaning": "A game of chance for two or more players, who mark off numbers on a grid as they are announced by the caller; the game is won by the first person to call out 'bingo!' or 'house!' after crossing off all numbers on the grid or in one line of the grid; to play the game of bingo; just sufficient to return to base (or, alternatively, to divert to an alternative airfield). Used by players of bingo to claim a win.",
+    "pronunciation": "/ˈbɪŋɡoʊ/",
+    "example": "After marking off all the numbers, she yelled 'Bingo!' and won the game."
+  },
+  "biome": {
+    "meaning": "Any major regional biological community such as that of forest or desert.",
+    "pronunciation": "/ˈbaɪoʊm/",
+    "example": "The Amazon Rainforest is one of the most biodiverse biomes on Earth."
+  },
+  "birch": {
+    "meaning": "Any of various trees of the genus Betula, native to countries in the Northern Hemisphere; to punish with a stick, bundle of twigs, or rod made of birch wood.",
+    "pronunciation": "/bɜːtʃ/",
+    "example": "The children carved their names into the bark of a birch tree."
+  },
+  "birth": {
+    "meaning": "The process of childbearing; the beginning of life; to bear or give birth to (a child); a familial relationship established by childbirth.",
+    "pronunciation": "/bɜːθ/",
+    "example": "The birth of their first child was a joyous occasion for the family."
+  },
+  "bison": {
+    "meaning": "A wild ox, Bison bonasus.",
+    "pronunciation": "/ˈbaɪsən/",
+    "example": "We spotted a herd of bison while driving through the national park."
+  },
+  "bitty": {
+    "meaning": "(often in the plural) bitch, girl, woman, especially one that is promiscuous; containing bits, fragmented.",
+    "pronunciation": "/bɪti/",
+    "example": "He's got it made, hanging around with the bitties all the time."
+  },
+  "black": {
+    "meaning": "The colour/color perceived in the absence of light, but also when no light is reflected, but rather absorbed; to make black; to blacken; (of an object) absorbing all light and reflecting none, dark and hueless.",
+    "pronunciation": "/blak/",
+    "example": "The night sky was pitch black, with not a star in sight."
+  },
+  "blade": {
+    "meaning": "The sharp cutting edge of a knife, chisel, or other tool, a razor blade/sword; to skate on rollerblades; a kind of piton used in thin cracks.",
+    "pronunciation": "/bleɪd/",
+    "example": "The sword's blade gleamed in the sunlight."
+  },
+  "blame": {
+    "meaning": "Censure.",
+    "pronunciation": "/bleɪm/",
+    "example": "She blamed herself for the mistake, even though it wasn't her fault."
+  },
+  "bland": {
+    "meaning": "Having a soothing effect; not irritating or stimulating.",
+    "pronunciation": "/blænd/",
+    "example": "The soup was rather bland, so I added some seasoning."
+  },
+  "blank": {
+    "meaning": "A small French coin, originally of silver, afterwards of copper, worth 5 deniers; also a silver coin of Henry V current in the parts of France then held by the English, worth about 8 pence; to make void; to erase; white or pale, without colour.",
+    "pronunciation": "/blæŋk/",
+    "example": "She stared at the blank sheet of paper, unsure of where to begin."
+  },
+  "blare": {
+    "meaning": "A loud sound; to make a loud sound.",
+    "pronunciation": "/blɛə(ɹ)/",
+    "example": "The blare of the car horn startled everyone on the street."
+  },
+  "blast": {
+    "meaning": "A violent gust of wind.",
+    "pronunciation": "/blɑːst/",
+    "example": "A blast of cold air swept through the open window."
+  },
+  "blaze": {
+    "meaning": "A fire, especially a fast-burning fire producing a lot of flames and light.",
+    "pronunciation": "/bleɪz/",
+    "example": "The blaze from the campfire illuminated the forest around us."
+  },
+  "bleak": {
+    "meaning": "Without color; pale; pallid.",
+    "pronunciation": "/bliːk/",
+    "example": "The bleak winter landscape seemed endless."
+  },
+  "bleat": {
+    "meaning": "The characteristic cry of a sheep or a goat; of a sheep or goat, to make its characteristic cry; of a human, to mimic this sound.",
+    "pronunciation": "/ˈbliːt/",
+    "example": "We could hear the faint bleat of the sheep in the distance."
+  },
+  "bleed": {
+    "meaning": "An incident of bleeding, as in haemophilia; (of a person or animal) to lose blood through an injured blood vessel.",
+    "pronunciation": "/ˈbliːd/",
+    "example": "The cut was deep enough to make him bleed profusely."
+  },
+  "bleep": {
+    "meaning": "A brief high-pitched sound, as from some electronic device; to emit one or more bleeps.",
+    "pronunciation": "/bliːp/",
+    "example": "The phone emitted a bleep when the message arrived."
+  },
+  "blend": {
+    "meaning": "A mixture of two or more things; to mingle, to mix, to unite intimately; to pass or shade insensibly into each other.",
+    "pronunciation": "/blɛnd/",
+    "example": "Our department has a good blend of experienced workers and young promise."
+  },
+  "bless": {
+    "meaning": "To make something holy by religious rite, sanctify.",
+    "pronunciation": "/blɛs/",
+    "example": "The priest blessed the congregation during the ceremony."
+  },
+  "blimp": {
+    "meaning": "An airship constructed with a non-rigid lifting agent container; to expand like a blimp or balloon; to become fat.",
+    "pronunciation": "/blɪmp/",
+    "example": "The blimp floated above the stadium during the game."
+  },
+  "blind": {
+    "meaning": "A covering for a window to keep out light. The covering may be made of cloth or of narrow slats that can block light or allow it to pass; to make temporarily or permanently blind; (of a person or animal) Unable to see, due to physiological or neurological factors; Without seeing, unseeingly.",
+    "pronunciation": "/blaɪnd/",
+    "example": "He closed the blinds to block out the morning sunlight."
+  },
+  "blink": {
+    "meaning": "The act of very quickly closing both eyes and opening them again; to close and reopen both eyes quickly.",
+    "pronunciation": "/blɪŋk/",
+    "example": "She blinked rapidly as the bright light flashed in her eyes."
+  },
+  "bliss": {
+    "meaning": "Perfect happiness.",
+    "pronunciation": "/blɪs/",
+    "example": "They spent their vacation in bliss, enjoying the peace and quiet of the beach."
+  },
+  "blitz": {
+    "meaning": "A sudden attack, especially an air raid; usually with reference to the Blitz; to attack quickly or suddenly, as by an air raid or similar action.",
+    "pronunciation": "/blɪts/",
+    "example": "The city was hit by a blitz of heavy snowstorms."
+  },
+  "bloat": {
+    "meaning": "Distention of the abdomen from death; to cause to become distended; bloated.",
+    "pronunciation": "/bloʊt/",
+    "example": "The fish started to bloat after being out of water for too long."
+  },
+  "block": {
+    "meaning": "A substantial, often approximately cuboid, piece of any substance; to fill (something) so that it is not possible to pass.",
+    "pronunciation": "/blɒk/",
+    "example": "We need to block the entrance with this large block of wood."
+  },
+  "bloke": {
+    "meaning": "A man, a fellow; an ordinary man, a man on the street.",
+    "pronunciation": "/bloʊk/",
+    "example": "He's just a regular bloke, nothing special about him."
+  },
+  "blond": {
+    "meaning": "A pale yellowish (golden brown) color, especially said of hair color; to color or dye blond; of a bleached or pale golden (light yellowish) colour; (especially of a woman) stupid, ignorant, naive.",
+    "pronunciation": "/blɒnd/",
+    "example": "She had long, blonde hair that shone in the sunlight."
+  },
+  "blood": {
+    "meaning": "A member of the Los Angeles gang The Bloods; a vital liquid flowing in the bodies of many types of animals that usually conveys nutrients and oxygen. In vertebrates, it is colored red by hemoglobin, is conveyed by arteries and veins, is pumped by the heart and is usually generated in bone marrow; to cause something to be covered with blood; to bloody.",
+    "pronunciation": "/blʊd/",
+    "example": "The crime scene was covered in blood after the violent altercation."
+  },
+  "bloom": {
+    "meaning": "A blossom; the flower of a plant; an expanded bud.",
+    "pronunciation": "/bluːm/",
+    "example": "The garden was full of colorful blooms in early spring."
+  },
+  "blown": {
+    "meaning": "To produce an air current; to blossom; to cause to bloom or blossom; distended, swollen, or inflated.",
+    "pronunciation": "/bləʊn/",
+    "example": "The balloon had blown up in the hot air."
+  },
+  "bluer": {
+    "meaning": "Of the colour blue.",
+    "pronunciation": "/ˈbluːə/",
+    "example": "The ocean became even bluer as we sailed farther from the shore."
+  },
+  "bluff": {
+    "meaning": "An act of bluffing; a false expression of the strength of one's position in order to intimidate; braggadocio; to make a bluff; to give the impression that one's hand is stronger than it is.",
+    "pronunciation": "/blʌf/",
+    "example": "He called his opponent's bluff and won the game."
+  },
+  "blunt": {
+    "meaning": "A fencer's practice foil with a soft tip; having a thick edge or point; not sharp.",
+    "pronunciation": "/blʌnt/",
+    "example": "The knife had a blunt edge, making it difficult to cut through the bread."
+  },
+  "blurb": {
+    "meaning": "A short description of a book, film, or other work, written and used for promotional purposes; to write or quote in a blurb.",
+    "pronunciation": "/blɝːb/",
+    "example": "The book's blurb on the back cover intrigued me, so I decided to buy it."
+  },
+  "blurt": {
+    "meaning": "An abrupt outburst; to utter suddenly and unadvisedly; to speak quickly or without thought; to divulge inconsiderately — commonly with out.",
+    "pronunciation": "/blɜːrt/",
+    "example": "He blurted out the secret without thinking about the consequences."
+  },
+  "blush": {
+    "meaning": "An act of blushing; a red glow on the face caused by shame, modesty, etc.; to become red in the face (and sometimes experience an associated feeling of warmth), especially due to shyness, shame, excitement, or embarrassment.",
+    "pronunciation": "/blʌʃ/",
+    "example": "She couldn't help but blush when he complimented her on her dress."
+  },
+  "board": {
+    "meaning": "A relatively long, wide and thin piece of any material, usually wood or similar, often for use in construction or furniture-making; to step or climb onto or otherwise enter a ship, aircraft, train, or other conveyance.",
+    "pronunciation": "/bɔːd/",
+    "example": "We will board the plane in about 30 minutes."
+  },
+  "boast": {
+    "meaning": "A brag; ostentatious positive appraisal of oneself; to brag; to talk loudly in praise of oneself.",
+    "pronunciation": "/bəʊst/",
+    "example": "He liked to boast about his achievements in front of his colleagues."
+  },
+  "bobby": {
+    "meaning": "A police officer.",
+    "pronunciation": "/ˈbɒbi/",
+    "example": "The bobby stopped the car for a routine check."
+  },
+  "boney": {
+    "meaning": "Having or resembling bones; thin or gaunt.",
+    "pronunciation": "/ˈbəʊni/",
+    "example": "The boney figure of the man startled her."
+  },
+  "bongo": {
+    "meaning": "A striped bovine mammal found in Africa, Tragelaphus eurycerus.",
+    "pronunciation": "/ˈbɒŋɡəʊ/",
+    "example": "The bongo is native to the forests of Central Africa."
+  },
+  "bonus": {
+    "meaning": "Something extra that is good; an added benefit; to pay a bonus, premium.",
+    "pronunciation": "/ˈbəʊ.nəs/",
+    "example": "The company gave each employee a bonus for their hard work."
+  },
+  "booby": {
+    "meaning": "A stupid person; to behave stupidly; to act like a booby.",
+    "pronunciation": "/ˈbuːbi/",
+    "example": "He was acting like a booby when he spilled coffee all over his papers."
+  },
+  "boost": {
+    "meaning": "A push from behind, as to one who is endeavoring to climb; to lift or push from behind (one who is endeavoring to climb); to push up.",
+    "pronunciation": "/buːst/",
+    "example": "She gave him a boost over the wall."
+  },
+  "booth": {
+    "meaning": "A small stall for the display and sale of goods.",
+    "pronunciation": "/buːð/",
+    "example": "The booth at the fair was selling handmade jewelry."
+  },
+  "booty": {
+    "meaning": "A form of prize which, when a ship was captured at sea, could be distributed at once.",
+    "pronunciation": "/ˈbuːti/",
+    "example": "Pirates divided the booty after the successful raid."
+  },
+  "booze": {
+    "meaning": "Any alcoholic beverage; to drink alcohol.",
+    "pronunciation": "/buːz/",
+    "example": "They went out to booze on a Friday night."
+  },
+  "boozy": {
+    "meaning": "(of a person) Intoxicated by alcohol.",
+    "pronunciation": "/ˈbuːzi/",
+    "example": "He was acting boozy after the party."
+  },
+  "borax": {
+    "meaning": "A white or gray/grey crystalline salt, with a slight alkaline taste, used as a flux, in soldering metals, making enamels, fixing colors/colours on porcelain, and as a soap, etc.",
+    "pronunciation": "/ˈbɔːræks/",
+    "example": "Borax is often used in laundry detergents."
+  },
+  "borne": {
+    "meaning": "To carry or convey, literally or figuratively; carried, supported.",
+    "pronunciation": "/bɔːn/",
+    "example": "Judging from the look on his face, he wasn't bearing good news."
+  },
+  "bosom": {
+    "meaning": "(somewhat obsolete) The breast or chest of a human (or sometimes of another animal); to enclose or carry in the bosom; to keep with care; to take to heart; to cherish; in a very close relationship.",
+    "pronunciation": "/ˈbʊz(ə)m/",
+    "example": "She held the baby close to her bosom."
+  },
+  "bossy": {
+    "meaning": "Tending to give orders to others, especially when unwarranted; domineering.",
+    "pronunciation": "/ˈbɑsi/",
+    "example": "He was very bossy during the meeting, telling everyone what to do."
+  },
+  "botch": {
+    "meaning": "An action, job, or task that has been performed very badly; a ruined, defective, or clumsy piece of work; to perform (a task) in an unacceptable or incompetent manner; to make a mess of something.",
+    "pronunciation": "/bɒt͡ʃ/",
+    "example": "She botched the presentation by forgetting key points."
+  },
+  "bough": {
+    "meaning": "A firm branch of a tree.",
+    "pronunciation": "/baʊ/",
+    "example": "When the bough breaks, the cradle will fall."
+  },
+  "boule": {
+    "meaning": "One of the bowls used in the French game of boules; to shape (a piece of dough) into a ball.",
+    "pronunciation": "/buːl/",
+    "example": "He rolled the boule across the court during the game."
+  },
+  "bound": {
+    "meaning": "To tie; to confine by any ligature.; (with infinitive) Obliged (to).",
+    "pronunciation": "/ˈbaʊnd/",
+    "example": "She felt bound to help her friend in need."
+  },
+  "bowel": {
+    "meaning": "A part or division of the intestines, usually the large intestine.; To disembowel.",
+    "pronunciation": "/baʊl/",
+    "example": "The doctor explained that the bowel is crucial for digestion."
+  },
+  "boxer": {
+    "meaning": "A participant (fighter) in a boxing match.",
+    "pronunciation": "/ˈbɒksə/",
+    "example": "You can tell she's a boxer by looking at her nose."
+  },
+  "brace": {
+    "meaning": "Armor for the arm; vambrace.; To prepare for something bad, such as an impact or blow.",
+    "pronunciation": "/bɹeɪs/",
+    "example": "He had to brace himself for the impact of the fall."
+  },
+  "braid": {
+    "meaning": "To interweave strands of hair or other materials.; To make a sudden movement with, to jerk.",
+    "pronunciation": "/bɹeɪd/",
+    "example": "She decided to braid her hair for the party."
+  },
+  "brain": {
+    "meaning": "The control center of the central nervous system of an animal located in the skull which is responsible for perception, cognition, attention, memory, emotion, and action.; To dash out the brains of; to kill by smashing the skull.",
+    "pronunciation": "/bɹeɪn/",
+    "example": "The brain is responsible for all our thoughts and actions."
+  },
+  "brake": {
+    "meaning": "A device for slowing or stopping a vehicle.; To slow down or stop a vehicle.",
+    "pronunciation": "/bɹeɪk/",
+    "example": "Make sure to brake gently when approaching the stop sign."
+  },
+  "brand": {
+    "meaning": "A conflagration; a flame.; To burn the flesh with a hot iron, either as a marker (for criminals, slaves etc.) or to cauterise a wound.",
+    "pronunciation": "/bɹand/",
+    "example": "The rancher used a hot iron to brand the cattle."
+  },
+  "brash": {
+    "meaning": "Overly bold or self-assertive to the point of being insensitive, tactless or impudent; shameless.",
+    "pronunciation": "/bɹæʃ/",
+    "example": "His brash comments offended many at the meeting."
+  },
+  "brass": {
+    "meaning": "A metallic alloy of copper and zinc used in many industrial and plumbing applications.; To coat with brass.; Made of brass, of or pertaining to brass.",
+    "pronunciation": "/bɹɑːs/",
+    "example": "The door handles were made of polished brass."
+  },
+  "brave": {
+    "meaning": "Strong in the face of fear; courageous.; A Native American warrior.",
+    "pronunciation": "/bɹeɪv/",
+    "example": "The firefighter was brave in rescuing the child from the fire."
+  },
+  "bravo": {
+    "meaning": "Used to express acclaim, especially to a performer.; A hired soldier; an assassin; a desperado.",
+    "pronunciation": "/ˈbrɑː.voʊ/",
+    "example": "The audience shouted 'bravo!' after the stunning performance."
+  },
+  "brawl": {
+    "meaning": "A disorderly argument or fight, usually with a large number of people involved.; To engage in a brawl; to fight or quarrel.",
+    "pronunciation": "/bɹɔːl/",
+    "example": "The bar was closed early due to a brawl that broke out."
+  },
+  "brawn": {
+    "meaning": "Strong muscles or lean flesh, especially of the arm, leg or thumb.; Make fat, especially of a boar.",
+    "pronunciation": "/bɹɔːn/",
+    "example": "He relied on his brawn to lift the heavy weights."
+  },
+  "bread": {
+    "meaning": "A foodstuff made by baking dough made from cereals.; To coat with breadcrumbs.",
+    "pronunciation": "/bɹeːd/",
+    "example": "She decided to bake fresh bread for dinner."
+  },
+  "break": {
+    "meaning": "An instance of breaking something into two or more pieces.; To separate into two or more pieces, to fracture or crack, by a process that cannot easily be reversed for reassembly.",
+    "pronunciation": "/bɹeɪk/",
+    "example": "The femur has a clean break and so should heal easily."
+  },
+  "breed": {
+    "meaning": "All animals or plants of the same species or subspecies.; To produce offspring sexually; to bear young.",
+    "pronunciation": "/bɹiːd/",
+    "example": "The farmer decided to breed his best horses."
+  },
+  "briar": {
+    "meaning": "Any of many plants with thorny stems growing in dense clusters, such as many in the Rosa, Rubus, and Smilax genera.",
+    "pronunciation": "/bɹʌɪə/",
+    "example": "The path was overgrown with briars, making it hard to walk."
+  },
+  "bribe": {
+    "meaning": "Something (usually money) given in exchange for influence or as an inducement to dishonesty.; To give a bribe to; specifically, to ask a person to do something, usually against his/her will, in exchange for some type of reward or relief from potential trouble.",
+    "pronunciation": "/bɹaɪb/",
+    "example": "He was caught trying to bribe the official."
+  },
+  "brick": {
+    "meaning": "A hardened rectangular block of mud, clay etc., used for building.; To build with bricks.; (of weather) Extremely cold.",
+    "pronunciation": "/bɹɪk/",
+    "example": "This wall is made of bricks."
+  },
+  "bride": {
+    "meaning": "A woman in the context of her own wedding; one who is going to marry or has just been married.; To make a bride of.",
+    "pronunciation": "/bɹaɪd/",
+    "example": "The bride walked down the aisle with a radiant smile."
+  },
+  "brief": {
+    "meaning": "Of short duration; happening quickly.; To summarize a recent development to some person with decision-making power.",
+    "pronunciation": "/bɹiːf/",
+    "example": "The meeting was brief, lasting only fifteen minutes."
+  },
+  "brine": {
+    "meaning": "Salt water; water saturated or strongly impregnated with salt; a salt-and-water solution for pickling.; To preserve food in a salt solution.",
+    "pronunciation": "/bɹaɪn/",
+    "example": "Do you want a can of tuna in oil or in brine?"
+  },
+  "bring": {
+    "meaning": "(ditransitive) To transport toward somebody/somewhere.",
+    "pronunciation": "/ˈbɹɪŋ/",
+    "example": "Waiter, please bring me a single malt whiskey."
+  },
+  "brink": {
+    "meaning": "The edge, margin, or border of a steep place, as of a precipice; a bank or edge.",
+    "pronunciation": "/bɹɪŋk/",
+    "example": "He stood at the brink of the cliff, looking down."
+  },
+  "briny": {
+    "meaning": "The sea.; Of, pertaining to, resembling or containing brine; salty.",
+    "pronunciation": "/ˈbɹaɪni/",
+    "example": "The briny smell of the ocean filled the air."
+  },
+  "brisk": {
+    "meaning": "(often with \"up\") To make or become lively; to enliven; to animate.; Full of liveliness and activity; characterized by quickness of motion or action.",
+    "pronunciation": "/bɹɪsk/",
+    "example": "They took a brisk walk in the cool morning air."
+  },
+  "broad": {
+    "meaning": "Wide in extent or scope.; A shallow lake, one of a number of bodies of water in eastern Norfolk and Suffolk.",
+    "pronunciation": "/bɹɑd/",
+    "example": "The broad river flowed gently through the valley."
+  },
+  "broil": {
+    "meaning": "Food prepared by broiling.; To cook by direct, radiant heat.",
+    "pronunciation": "/bɹɔɪl/",
+    "example": "I like to broil my steak for a nice charred flavor."
+  },
+  "broke": {
+    "meaning": "Financially ruined, bankrupt.; To separate into two or more pieces, to fracture or crack, by a process that cannot easily be reversed for reassembly.",
+    "pronunciation": "/bɹəʊk/",
+    "example": "If the vase falls to the floor, it might break."
+  },
+  "brood": {
+    "meaning": "The young of certain animals, especially a group of young birds or fowl hatched at one time by the same mother.; To keep an egg warm to make it hatch.; Kept or reared for breeding, said of animals.",
+    "pronunciation": "/bɹuːd/",
+    "example": "The hen sat on her brood of chicks."
+  },
+  "brook": {
+    "meaning": "To tolerate or allow; to endure.",
+    "pronunciation": "/bɹʊk/",
+    "example": "I cannot brook any disrespect in my classroom."
+  },
+  "broom": {
+    "meaning": "A domestic utensil with fibers bound together at the end of a long handle, used for sweeping.; To sweep with a broom.",
+    "pronunciation": "/bɹuːm/",
+    "example": "She grabbed the broom to clean up the mess."
+  },
+  "broth": {
+    "meaning": "Water in which food (meat or vegetable etc) has been boiled.",
+    "pronunciation": "/bɹɑθ/",
+    "example": "The chicken broth simmered on the stove, filling the kitchen with aroma."
+  },
+  "brown": {
+    "meaning": "A colour like that of chocolate or coffee.; To become brown.; Having a brown colour.",
+    "pronunciation": "/bɹaʊn/",
+    "example": "The browns and greens in this painting give it a nice woodsy feel."
+  },
+  "brunt": {
+    "meaning": "The full adverse effects; the chief consequences or negative results of a thing or event.; To bear the brunt of; to weather or withstand.",
+    "pronunciation": "/bɹʌnt/",
+    "example": "Unfortunately, poor areas such as those in New Orleans bore the brunt of Hurricane Katrina’s winds."
+  },
+  "brush": {
+    "meaning": "An implement consisting of multiple more or less flexible bristles or other filaments attached to a handle, used for any of various purposes including cleaning, painting, and arranging hair.; To clean with a brush.",
+    "pronunciation": "/bɹʌʃ/",
+    "example": "She used a brush to paint the canvas."
+  },
+  "brute": {
+    "meaning": "An animal seen as being without human reason; a senseless beast.; Without reason or intelligence (of animals).",
+    "pronunciation": "/bɹuːt/",
+    "example": "The brute strength of the bear was impressive."
+  },
+  "buddy": {
+    "meaning": "A friend or casual acquaintance.; To assign a buddy, or partner, to.",
+    "pronunciation": "/bʌd.i/",
+    "example": "They have been buddies since they were in school."
+  },
+  "budge": {
+    "meaning": "To move.; Brisk; stirring; jocund.",
+    "pronunciation": "/bʌdʒ/",
+    "example": "I’ve been pushing this rock as hard as I can, but it won’t budge an inch."
+  },
+  "buggy": {
+    "meaning": "A small horse-drawn cart.; Infested with insects.",
+    "pronunciation": "/bʌ.ɡi/",
+    "example": "The old buggy was parked in the barn."
+  },
+  "bugle": {
+    "meaning": "A horn used by hunters.; To announce, sing, or cry in the manner of a musical bugle.",
+    "pronunciation": "/ˈbjuːɡəl/",
+    "example": "The bugle sounded at dawn, signaling the start of the hunt."
+  },
+  "build": {
+    "meaning": "The physique of a human body; constitution or structure of a human body.; To form (something) by combining materials or parts.",
+    "pronunciation": "/bɪld/",
+    "example": "Rugby players are of sturdy build."
+  },
+  "built": {
+    "meaning": "Well-built, muscular or toned.; To form (something) by combining materials or parts.",
+    "pronunciation": "/ˈbɪlt/",
+    "example": "He is well-built and athletic."
+  },
+  "bulge": {
+    "meaning": "Something sticking out from a surface; a swelling, protuberant part; a bending outward, especially when caused by pressure.; To stick out from (a surface).",
+    "pronunciation": "/bʌldʒ/",
+    "example": "There was a bulge in the wall where the pipe had burst."
+  },
+  "bulky": {
+    "meaning": "Being large in size, mass, or volume.",
+    "pronunciation": "/ˈbʌlki/",
+    "example": "The bulky package was difficult to carry."
+  },
+  "bully": {
+    "meaning": "A person who is intentionally, physically, or emotionally cruel to others; especially to those who are weaker or have less power or privilege.; To intimidate (someone) as a bully.; Very good.; (often followed by for) Well done!",
+    "pronunciation": "/ˈbʊli/",
+    "example": "A playground bully pushed a girl off the swing."
+  },
+  "bunch": {
+    "meaning": "A group of similar things, either growing together, or in a cluster or clump, usually fastened together.; To gather into a bunch.",
+    "pronunciation": "/ˈbʌntʃ/",
+    "example": "I bought a bunch of flowers for the table."
+  },
+  "bunny": {
+    "meaning": "A rabbit, especially a juvenile.; Easy or unchallenging.",
+    "pronunciation": "/ˈbʌni/",
+    "example": "The children were excited to see the bunny in the garden."
+  },
+  "burly": {
+    "meaning": "(usually of a man) Large, well-built, and muscular.",
+    "pronunciation": "/ˈbɜrli/",
+    "example": "He’s a big, burly rugby player who works as a landscape gardener."
+  },
+  "burnt": {
+    "meaning": "To cause to be consumed by fire.; Damaged or injured by fire or heat.",
+    "pronunciation": "/ˈbɜːnt/",
+    "example": "He burnt his manuscript in the fireplace."
+  },
+  "burst": {
+    "meaning": "An act or instance of bursting.; To break from internal pressure.",
+    "pronunciation": "/bɜːst/",
+    "example": "The burst of laughter filled the room."
+  },
+  "bused": {
+    "meaning": "To transport via a motor bus.",
+    "pronunciation": "/bʌst/",
+    "example": "The students were bused to the field trip location."
+  },
+  "bushy": {
+    "meaning": "Like a bush in having many widely spread branches.",
+    "pronunciation": "/ˈbʊʃi/",
+    "example": "The bushy tail of a squirrel was visible in the tree."
+  },
+  "butch": {
+    "meaning": "A lesbian who appears masculine or acts in a masculine manner.; (originally Polari) Very masculine, with a masculine appearance or attitude.",
+    "pronunciation": "/bʊtʃ/",
+    "example": "She has a butch style that challenges traditional gender norms."
+  },
+  "butte": {
+    "meaning": "An isolated hill with steep sides and a flat top.",
+    "pronunciation": "/ˈbjuːt/",
+    "example": "The butte stood majestically against the sunset."
+  },
+  "buxom": {
+    "meaning": "Pliant, obedient, tractable (to) (i.e. easily moved or bent, morally).",
+    "pronunciation": "/ˈbʌksəm/",
+    "example": "The buxom figure of the statue drew many admirers."
+  },
+  "buyer": {
+    "meaning": "A person who makes one or more purchases.",
+    "pronunciation": "/ˈbaɪ.ə(ɹ)/",
+    "example": "Every person who steps through the door is a potential buyer, so acknowledge their presence."
+  },
+  "bylaw": {
+    "meaning": "A local custom or law of a settlement or district.",
+    "pronunciation": "/ˈbaɪ.lɔː/",
+    "example": "The town council passed a bylaw to regulate noise levels."
+  },
+  "cabal": {
+    "meaning": "# A putative, secret organization of individuals gathered for a political purpose.; To engage in the activities of a cabal.",
+    "pronunciation": "/kəˈbæl/",
+    "example": "The cabal is plotting to influence the election."
+  },
+  "cabby": {
+    "meaning": "A cabdriver; someone who drives a taxi.",
+    "pronunciation": "/ˈkæ.bi/",
+    "example": "The cabby took us to the airport in record time."
+  },
+  "cabin": {
+    "meaning": "A small dwelling characteristic of the frontier, especially when built from logs with simple tools and not constructed by professional builders, but by those who meant to live in it.; To place in a cabin or other small space.",
+    "pronunciation": "/ˈkæbɪn/",
+    "example": "Abraham Lincoln was born in a log cabin."
+  },
+  "cable": {
+    "meaning": "(material) A long object used to make a physical connection.; To provide with cable(s)",
+    "pronunciation": "/keɪ.bl/",
+    "example": "We need to run a cable to connect the new television."
+  },
+  "cacao": {
+    "meaning": "A tree, Theobroma cacao, whose seed is used to make chocolate.",
+    "pronunciation": "/kəˈkeɪ̯əʊ̯/",
+    "example": "Cacao beans are harvested to produce chocolate."
+  },
+  "cache": {
+    "meaning": "A store of things that may be required in the future, which can be retrieved rapidly, protected or hidden in some way.; To place in a cache.",
+    "pronunciation": "/kæɪʃ/",
+    "example": "They found a cache of supplies hidden in the woods."
+  },
+  "cacti": {
+    "meaning": "Any member of the family Cactaceae, a family of flowering New World succulent plants suited to a hot, semi-desert climate.",
+    "pronunciation": "/ˈkæktaɪ/",
+    "example": "The desert was filled with various species of cacti."
+  },
+  "caddy": {
+    "meaning": "One hired to assist another in playing the game of golf.; To serve as a caddy, carrying golf clubs etc.",
+    "pronunciation": "/ˈkædi/",
+    "example": "Caddy, pass me my five iron."
+  },
+  "cadet": {
+    "meaning": "A student at a military school who is training to be an officer.",
+    "pronunciation": "/kəˈdɛt/",
+    "example": "The cadet was proud to wear his uniform."
+  },
+  "cagey": {
+    "meaning": "Wary, careful, shrewd.",
+    "pronunciation": "/ˈkeɪdʒi/",
+    "example": "He was cagey about revealing his plans."
+  },
+  "cairn": {
+    "meaning": "A rounded or conical heap of stones erected by early inhabitants of the British Isles, apparently as a sepulchral monument.",
+    "pronunciation": "/kɛən/",
+    "example": "The ancient cairn marked the burial site of a chieftain."
+  },
+  "camel": {
+    "meaning": "A beast of burden, much used in desert areas, of the genus Camelus.; Of a light brown color like that of a camel.",
+    "pronunciation": "/ˈkæməl/",
+    "example": "The camel is often referred to as the ship of the desert."
+  },
+  "cameo": {
+    "meaning": "A piece of jewelry, etc., carved in relief.; To appear in a cameo role.",
+    "pronunciation": "/ˈkæm.iː.əʊ/",
+    "example": "The actor made a brief cameo in the film."
+  },
+  "canal": {
+    "meaning": "An artificial waterway or artificially improved river used for travel, shipping, or irrigation.; To dig an artificial waterway in or to (a place), especially for drainage.",
+    "pronunciation": "/kəˈnɛl/",
+    "example": "The canal was built to facilitate trade between the two cities."
+  },
+  "candy": {
+    "meaning": "Edible, sweet-tasting confectionery containing sugar, or sometimes artificial sweeteners, and often flavored with fruit, chocolate, nuts, herbs and spices, or artificial flavors.; To cook in, or coat with, sugar syrup.",
+    "pronunciation": "/ˈkændi/",
+    "example": "She loves to eat candy during the movie."
+  },
+  "canny": {
+    "meaning": "Careful, prudent, cautious.; Very, considerably; quite, rather.",
+    "pronunciation": "/ˈkæni/",
+    "example": "The politician gave a canny response to the reporter's questions."
+  },
+  "canoe": {
+    "meaning": "A small long and narrow boat, propelled by one or more people (depending on the size of canoe), using single-bladed paddles. The paddlers face in the direction of travel, in either a seated position, or kneeling on the bottom of the boat. Canoes are open on top, and pointed at both ends.; To ride or paddle a canoe.",
+    "pronunciation": "/kəˈnuː/",
+    "example": "We decided to canoe down the river for the afternoon."
+  },
+  "canon": {
+    "meaning": "A generally accepted principle; a rule.",
+    "pronunciation": "/ˈkæn.ən/",
+    "example": "The trial must proceed according to the canons of law."
+  },
+  "caper": {
+    "meaning": "A playful leap or jump.; To leap or jump about in a sprightly or playful manner.",
+    "pronunciation": "/ˈkeɪpə/",
+    "example": "The children capered around the playground."
+  },
+  "caput": {
+    "meaning": "The head or chief part of something.",
+    "pronunciation": "/ˈkæpʊt/",
+    "example": "The caput of the organization is located in the city center."
+  },
+  "carat": {
+    "meaning": "A unit of weight for precious stones and pearls, equivalent to 200 milligrams.",
+    "pronunciation": "/ˈkæɹ.ət/",
+    "example": "This diamond is a stunning two-carat stone."
+  },
+  "cargo": {
+    "meaning": "Freight carried by a ship, aircraft, or motor vehicle.",
+    "pronunciation": "/ˈkɑːɡəʊ/",
+    "example": "The cargo ship was loaded with containers bound for Europe."
+  },
+  "carol": {
+    "meaning": "A song of joy or praise, especially one sung at Christmas.",
+    "pronunciation": "/ˈkær.əl/",
+    "example": "They sang a beautiful carol during the holiday season."
+  },
+  "carry": {
+    "meaning": "A manner of transporting or lifting something; the grip or position in which something is carried.; To lift (something) and take it to another place; to transport (something) by lifting.",
+    "pronunciation": "/ˈkæ.ɹi/",
+    "example": "Adjust your carry from time to time so that you don't tire too quickly."
+  },
+  "carve": {
+    "meaning": "To cut into a surface to create a design or shape.; To cut.",
+    "pronunciation": "/kɑːv/",
+    "example": "He decided to carve a pumpkin for Halloween."
+  },
+  "caste": {
+    "meaning": "Any of the hereditary social classes and subclasses of South Asian societies.",
+    "pronunciation": "/kɑːst/",
+    "example": "The caste system has been a significant aspect of Indian society."
+  },
+  "catch": {
+    "meaning": "The act of seizing or capturing.; (heading) To capture, overtake.",
+    "pronunciation": "/kæt͡ʃ/",
+    "example": "The catch of the perpetrator was the product of a year of police work."
+  },
+  "cater": {
+    "meaning": "To provide, particularly:; A person employed to obtain and maintain the storage of provisions, especially food.; Someone who supplies what is needed, especially food.",
+    "pronunciation": "/ˈkeɪtə/",
+    "example": "They hired a company to cater the wedding reception."
+  },
+  "catty": {
+    "meaning": "(of a person or remark) With subtle hostility in an effort to hurt, annoy or upset, particularly among women.",
+    "pronunciation": "/ˈkæti/",
+    "example": "Her catty remarks made the atmosphere tense."
+  },
+  "caulk": {
+    "meaning": "To seal a joint or seam to make it watertight.",
+    "pronunciation": "/kɔːk/",
+    "example": "Make sure to caulk the bathtub to prevent leaks."
+  },
+  "cause": {
+    "meaning": "(often with of, typically of adverse results) The source of, or reason for, an event or action; that which produces or effects a result.; To set off an event or action.",
+    "pronunciation": "/kɔːz/",
+    "example": "They identified a burst pipe as the cause of the flooding."
+  },
+  "cavil": {
+    "meaning": "A petty or trivial objection or criticism.; To criticize for petty or frivolous reasons.",
+    "pronunciation": "/ˈkæv.əl/",
+    "example": "He tends to cavil at the smallest details."
+  },
+  "cease": {
+    "meaning": "Cessation; extinction (see without cease).; To stop.",
+    "pronunciation": "/siːs/",
+    "example": "The factory will cease operations at the end of the month."
+  },
+  "cedar": {
+    "meaning": "A coniferous tree of the genus Cedrus in the family Pinaceae.",
+    "pronunciation": "/ˈsiː.də/",
+    "example": "The cedar tree is known for its fragrant wood."
+  },
+  "cello": {
+    "meaning": "A large stringed instrument of the violin family with four strings, tuned from lowest to highest C-G-D-A, and played with a bow.",
+    "pronunciation": "/ˈtʃɛləʊ/",
+    "example": "She plays the cello beautifully in the orchestra."
+  },
+  "chafe": {
+    "meaning": "Heat excited by friction.; To excite heat in by friction; to rub in order to stimulate and make warm.",
+    "pronunciation": "/tʃeɪf/",
+    "example": "The rough fabric began to chafe against her skin."
+  },
+  "chaff": {
+    "meaning": "The inedible parts of a grain-producing plant.; To use light, idle language by way of fun or ridicule; to banter.",
+    "pronunciation": "/tʃæf/",
+    "example": "To separate out the chaff, early cultures tossed baskets of grain into the air and let the wind blow away the lighter chaff."
+  },
+  "chain": {
+    "meaning": "A series of interconnected rings or links usually made of metal.; To fasten something with a chain.",
+    "pronunciation": "/ˈt͡ʃeɪn/",
+    "example": "He wore a gold chain around his neck."
+  },
+  "chair": {
+    "meaning": "An item of furniture used to sit on or in, comprising a seat, legs, back, and sometimes arm rests, for use by one person.; To act as chairperson at; to preside over.; A chairman or chairwoman, someone who presides over a meeting, board, etc.; A chair-like device used for performing execution by electrocution.",
+    "pronunciation": "/t͡ʃɛə(ɹ)/",
+    "example": "All I need to weather a snowstorm is hot coffee, a warm fire, a good book, and a comfortable chair."
+  },
+  "chalk": {
+    "meaning": "A soft, white, powdery limestone.; To apply chalk to anything, such as the tip of a billiard cue.",
+    "pronunciation": "/t͡ʃɔːk/",
+    "example": "The teacher used chalk to write on the blackboard."
+  },
+  "champ": {
+    "meaning": "Buddy, sport, mate (as a term of address); An ongoing winner in a game or contest.",
+    "pronunciation": "/t͡ʃæmp/",
+    "example": "Whatcha doing, champ?"
+  },
+  "chant": {
+    "meaning": "Type of singing done generally without instruments and harmony.; To sing, especially without instruments, and as applied to monophonic and pre-modern music.",
+    "pronunciation": "/tʃænt/",
+    "example": "The monks began to chant in the dimly lit chapel."
+  },
+  "chaos": {
+    "meaning": "The unordered state of matter in classical accounts of cosmogony.",
+    "pronunciation": "/ˈkeɪ.ɒs/",
+    "example": "The room was in complete chaos after the party."
+  },
+  "chard": {
+    "meaning": "An edible leafy vegetable, Beta vulgaris subsp. cicla, with a slightly bitter taste.",
+    "pronunciation": "/tʃɑːd/",
+    "example": "I added chard to the salad for extra flavor."
+  },
+  "charm": {
+    "meaning": "An object, act or words believed to have magic power (usually carries a positive connotation).; To seduce, persuade or fascinate someone or something.",
+    "pronunciation": "/tʃɑːm/",
+    "example": "It works like a charm."
+  },
+  "chart": {
+    "meaning": "A map.; To draw a chart or map of.",
+    "pronunciation": "/tʃɑːt/",
+    "example": "The scientist created a chart to display the data."
+  },
+  "chase": {
+    "meaning": "The act of one who chases another; a pursuit.; To pursue.",
+    "pronunciation": "/tʃeɪs/",
+    "example": "The dog began to chase the squirrel up the tree."
+  },
+  "chasm": {
+    "meaning": "A deep, steep-sided rift, gap or fissure; a gorge or abyss.",
+    "pronunciation": "/ˈkæz(ə)m/",
+    "example": "The hikers stood at the edge of the chasm, awed by its depth."
+  },
+  "cheap": {
+    "meaning": "Low and/or reduced in price.; Cheaply.",
+    "pronunciation": "/t͡ʃiːp/",
+    "example": "I found a cheap hotel for our stay."
+  },
+  "cheat": {
+    "meaning": "To violate rules in order to gain advantage from a situation.",
+    "pronunciation": "/tʃiːt/",
+    "example": "My brother flunked biology because he cheated on his mid-term."
+  },
+  "check": {
+    "meaning": "A situation in which the king is directly threatened by an opposing piece.",
+    "pronunciation": "/t͡ʃɛk/",
+    "example": "He put his opponent's king in check."
+  },
+  "cheek": {
+    "meaning": "The soft skin on each side of the face, below the eyes; the outer surface of the sides of the oral cavity.; To be impudent towards.",
+    "pronunciation": "/tʃiːk/",
+    "example": "She had a smudge of dirt on her cheek."
+  },
+  "cheer": {
+    "meaning": "A cheerful attitude; happiness; a good, happy, or positive mood.; To gladden; to make cheerful; often with up.",
+    "pronunciation": "/t͡ʃɪə(ɹ)/",
+    "example": "The crowd erupted in cheer when the team scored."
+  },
+  "chess": {
+    "meaning": "A board game for two players with each beginning with sixteen chess pieces moving according to fixed rules across a chessboard with the objective to checkmate the opposing king.",
+    "pronunciation": "/t͡ʃɛs/",
+    "example": "They spent the afternoon playing chess in the park."
+  },
+  "chest": {
+    "meaning": "A box, now usually a large strong box with a secure convex lid.; To hit with one's chest (front of one's body)",
+    "pronunciation": "/t͡ʃɛst/",
+    "example": "The clothes are kept in a chest."
+  },
+  "chick": {
+    "meaning": "A young bird.; To sprout, as seed does in the ground; to vegetate.",
+    "pronunciation": "/t͡ʃɪk/",
+    "example": "The chick hatched from its egg."
+  },
+  "chide": {
+    "meaning": "To admonish in blame; to reproach angrily.",
+    "pronunciation": "/tʃaɪd/",
+    "example": "She chided him for being late."
+  },
+  "chief": {
+    "meaning": "A leader or head of a group of people, organisation, etc.; Primary; principal.",
+    "pronunciation": "/tʃiːf/",
+    "example": "All firefighters report to the fire chief."
+  },
+  "child": {
+    "meaning": "A person who has not yet reached adulthood, whether natural (puberty), cultural (initiation), or legal (majority); A child of noble birth.",
+    "pronunciation": "/t͡ʃaɪld/",
+    "example": "Go easy on him: he is but a child."
+  },
+  "chili": {
+    "meaning": "The pungent, spicy fresh or dried fruit of any of several cultivated varieties of capsicum peppers, used in cooking.",
+    "pronunciation": "/ˈt͡ʃɪli/",
+    "example": "I love adding chili to my dishes for extra heat."
+  },
+  "chill": {
+    "meaning": "A moderate, but uncomfortable and penetrating coldness.; To lower the temperature of something; to cool; Moderately cold or chilly.",
+    "pronunciation": "/tʃɪl/",
+    "example": "There was a chill in the air."
+  },
+  "chime": {
+    "meaning": "A musical instrument producing a sound when struck, similar to a bell (e.g. a tubular metal bar) or actually a bell. Often used in the plural to refer to the set: the chimes.; To make the sound of a chime.",
+    "pronunciation": "/ˈtʃaɪm/",
+    "example": "Hugo was a chime player in the school orchestra."
+  },
+  "china": {
+    "meaning": "A country in East Asia, known for its rich history, diverse culture, and significant global influence.",
+    "pronunciation": "/ˈtʃaɪ.nə/",
+    "example": "China is the most populous country in the world, with over 1.4 billion people."
+  },
+  "chirp": {
+    "meaning": "A short, sharp or high note or noise, as of a bird or insect.; To make a short, sharp, cheerful note, as of small birds or crickets.",
+    "pronunciation": "/tʃɜː(ɹ)p/",
+    "example": "The birds began to chirp as the sun rose."
+  },
+  "chock": {
+    "meaning": "Any object used as a wedge or filler, especially when placed behind a wheel to prevent it from rolling.; To stop or fasten, as with a wedge, or block; to scotch.",
+    "pronunciation": "/tʃɒk/",
+    "example": "He used a chock to secure the wheel of the car."
+  },
+  "choir": {
+    "meaning": "Singing group; group of people who sing together; company of people who are trained to sing together.; To sing in concert.",
+    "pronunciation": "/kwaɪə(ɹ)/",
+    "example": "The church choir practices Thursday nights."
+  },
+  "choke": {
+    "meaning": "To be unable to breathe because of obstruction of the windpipe (for instance food or other objects that go down the wrong way, or fumes or particles in the air that cause the throat to constrict).",
+    "pronunciation": "/t͡ʃəʊk/",
+    "example": "He started to choke on his food and needed help."
+  },
+  "chord": {
+    "meaning": "A harmonic set of three or more notes that is heard as if sounding simultaneously.; To write chords for.",
+    "pronunciation": "/kɔː(ɹ)d/",
+    "example": "She played a beautiful chord progression on the piano."
+  },
+  "chore": {
+    "meaning": "A task, especially a difficult, unpleasant, or routine one.; To do chores.",
+    "pronunciation": "/tʃɔː/",
+    "example": "Washing dishes is a chore, but we cannot just stop eating."
+  },
+  "chose": {
+    "meaning": "To pick; to make the choice of; to select.",
+    "pronunciation": "/tʃəʊz/",
+    "example": "I chose a nice ripe apple from the fruit bowl."
+  },
+  "chuck": {
+    "meaning": "Meat from the shoulder of a cow or other animal.; To place in a chuck, or hold by means of a chuck, as in turning.",
+    "pronunciation": "/tʃʌk/",
+    "example": "He decided to chuck the old furniture."
+  },
+  "chump": {
+    "meaning": "An incompetent person, a blockhead; a loser.",
+    "pronunciation": "/tʃʌmp/",
+    "example": "Don't be a chump; think before you act."
+  },
+  "chunk": {
+    "meaning": "A part of something that has been separated.; To break into large pieces or chunks.",
+    "pronunciation": "/t͡ʃʌŋk/",
+    "example": "The statue broke into chunks."
+  },
+  "churn": {
+    "meaning": "A vessel used for churning, especially for producing butter.; To agitate rapidly and repetitively, or to stir with a rowing or rocking motion; generally applies to liquids, notably cream.",
+    "pronunciation": "/tʃɜː(ɹ)n/",
+    "example": "She used a churn to make fresh butter."
+  },
+  "chute": {
+    "meaning": "A framework, trough or tube, upon or through which objects are made to slide from a higher to a lower level.",
+    "pronunciation": "/ʃ(j)uːt/",
+    "example": "The water slid down the chute into the pool."
+  },
+  "cider": {
+    "meaning": "An alcoholic, often sparkling (carbonated) beverage made from fermented apples; hard cider; apple cider.",
+    "pronunciation": "/ˈsaɪdə/",
+    "example": "I enjoy a glass of apple cider in the fall."
+  },
+  "cigar": {
+    "meaning": "Tobacco rolled and wrapped with an outer covering of tobacco leaves, intended to be smoked.",
+    "pronunciation": "/sɪˈɡɑː(ɹ)/",
+    "example": "He lit a cigar to celebrate his promotion."
+  },
+  "cinch": {
+    "meaning": "A simple saddle girth used in Mexico.; To bring to certain conclusion.",
+    "pronunciation": "/sɪntʃ/",
+    "example": "Winning the game was a cinch for the experienced player."
+  },
+  "circa": {
+    "meaning": "Approximately, about, around (typically in relation to time).",
+    "pronunciation": "/ˈsɜːkə/",
+    "example": "Julius Caesar visited this area circa 50 BC."
+  },
+  "civic": {
+    "meaning": "Of, relating to, or belonging to a city, a citizen, or citizenship; municipal or civil.",
+    "pronunciation": "/ˈsɪvɪk/",
+    "example": "Thousands of people came to the Civic Center to show off their civic pride."
+  },
+  "civil": {
+    "meaning": "Having to do with people and government office as opposed to the military or religion.",
+    "pronunciation": "/ˈsɪv.əl/",
+    "example": "She went into civil service because she wanted to help the people."
+  },
+  "clack": {
+    "meaning": "An abrupt, sharp sound, especially one made by two hard objects colliding repetitively; a sound midway between a click and a clunk.; To make a sudden, sharp noise, or succession of noises; to click.",
+    "pronunciation": "/klæk/",
+    "example": "The clack of the train wheels was rhythmic."
+  },
+  "claim": {
+    "meaning": "A demand of ownership made for something.; To demand ownership of.",
+    "pronunciation": "/kleɪm/",
+    "example": "He made a claim for the lost luggage."
+  },
+  "clamp": {
+    "meaning": "A brace, band, or clasp for strengthening or holding things together.; To fasten in place or together with (or as if with) a clamp.",
+    "pronunciation": "/klæmp/",
+    "example": "Use a clamp to hold the pieces together while the glue dries."
+  },
+  "clang": {
+    "meaning": "A loud, ringing sound, like that made by free-hanging metal objects striking each other.; To strike (objects) together so as to produce a clang.",
+    "pronunciation": "/klæŋ/",
+    "example": "The clang of the bell echoed through the hall."
+  },
+  "clank": {
+    "meaning": "A loud, hard sound of metal hitting metal.; To make a clanking sound.",
+    "pronunciation": "/klæŋk/",
+    "example": "The clank of the chains could be heard in the distance."
+  },
+  "clash": {
+    "meaning": "A loud sound, like the crashing together of metal objects.; To make a clashing sound.",
+    "pronunciation": "/klaʃ/",
+    "example": "I heard a clash from the kitchen, and rushed in to find the cat had knocked over some pots and pans."
+  },
+  "clasp": {
+    "meaning": "A fastener or holder, particularly one that clasps.; To take hold of; to grasp; to grab tightly.",
+    "pronunciation": "/klɑːsp/",
+    "example": "I always have a hard time working the clasp on this necklace!"
+  },
+  "class": {
+    "meaning": "A group, collection, category or set sharing characteristics or attributes.; To assign to a class; to classify.; Great; fabulous",
+    "pronunciation": "/klas/",
+    "example": "Often used to imply membership of a large class."
+  },
+  "clean": {
+    "meaning": "Removal of dirt.; To remove dirt from a place or object.; (heading, physical) Free of dirt or impurities or protruberances.; Fully and completely.",
+    "pronunciation": "/kleːn/",
+    "example": "This place needs a clean."
+  },
+  "clear": {
+    "meaning": "Full extent; distance between extreme limits; especially; the distance between the nearest surfaces of two bodies, or the space between walls.; To remove obstructions, impediments or other unwanted items from.; Transparent in colour.; All the way; entirely.",
+    "pronunciation": "/klɪə(ɹ)/",
+    "example": "a room ten feet square in the clear"
+  },
+  "cleat": {
+    "meaning": "A strip of wood or iron fastened on transversely to something in order to give strength, prevent warping, hold position, etc.; To strengthen with a cleat.",
+    "pronunciation": "/kliːt/",
+    "example": "He secured the boat to the dock with a cleat."
+  },
+  "cleft": {
+    "meaning": "An opening, fissure, or V-shaped indentation made by or as if by splitting.; To syntactically separate a prominent constituent from the rest of the clause that concerns it.",
+    "pronunciation": "/klɛft/",
+    "example": "The cleft in the rock provided a perfect hiding spot."
+  },
+  "clerk": {
+    "meaning": "One who occupationally works with records, accounts, letters, etc.; an office worker.; To act as a clerk, to perform the duties or functions of a clerk.",
+    "pronunciation": "/klɐːk/",
+    "example": "The clerk processed the paperwork efficiently."
+  },
+  "click": {
+    "meaning": "A brief, sharp, not particularly loud, relatively high-pitched sound produced by the impact of something small and hard against something hard.; To cause to make a click; to operate (a switch, etc) so that it makes a click.",
+    "pronunciation": "/klɪk/",
+    "example": "I turned the key, the lock gave a click and the door opened."
+  },
+  "cliff": {
+    "meaning": "A vertical (or nearly vertical) rock face.",
+    "pronunciation": "/klɪf/",
+    "example": "The hikers stood at the edge of the cliff, admiring the view."
+  },
+  "climb": {
+    "meaning": "An act of climbing.; To ascend; rise; to go up.",
+    "pronunciation": "/klaɪm/",
+    "example": "The climb to the summit was challenging but rewarding."
+  },
+  "cling": {
+    "meaning": "Fruit (especially peach) whose flesh adheres strongly to the pit.; To hold very tightly, as to not fall off.",
+    "pronunciation": "/ˈklɪŋ/",
+    "example": "The child would cling to her mother in a crowd."
+  },
+  "clink": {
+    "meaning": "The sound of metal on metal, or glass on glass.; To make a clinking sound; to strike materials such as metal or glass against one another.",
+    "pronunciation": "/klɪŋk/",
+    "example": "You could hear the clink of the glasses from the next room."
+  },
+  "cloak": {
+    "meaning": "A long outer garment worn over the shoulders covering the back; a cape, often with a hood.; To cover as with a cloak.",
+    "pronunciation": "/ˈkloʊk/",
+    "example": "He wore a cloak to keep warm in the winter."
+  },
+  "clock": {
+    "meaning": "An instrument used to measure or keep track of time; a non-portable timepiece.; To measure the duration of.",
+    "pronunciation": "/klɒk/",
+    "example": "The clock on the wall chimed every hour."
+  },
+  "clone": {
+    "meaning": "A living organism (originally a plant) produced asexually from a single ancestor, to which it is genetically identical.; To create a clone of.",
+    "pronunciation": "/kləʊn/",
+    "example": "Scientists were able to clone the sheep successfully."
+  },
+  "close": {
+    "meaning": "An end or conclusion.; (physical) To remove a gap.",
+    "pronunciation": "/kləʊz/",
+    "example": "We owe them our thanks for bringing the project to a successful close."
+  },
+  "cloth": {
+    "meaning": "A woven fabric such as used in dressing, decorating, cleaning or other practical use.",
+    "pronunciation": "/klɑθ/",
+    "example": "She bought a beautiful piece of cloth for her sewing project."
+  }
+}

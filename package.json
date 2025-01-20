@@ -22,8 +22,11 @@
     "drizzle-orm": "^0.37.0",
     "express": "^4.21.2",
     "grammy": "^1.33.0",
+    "natural": "^8.0.1",
     "pg": "^8.13.1",
     "postgres": "^3.4.5",
+    "word-definition": "^2.1.6",
+    "wordnet-db": "^3.1.14",
     "zod": "^3.23.8"
   }
 }

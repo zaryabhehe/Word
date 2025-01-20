@@ -60,8 +60,10 @@ bot.command("new", async (ctx) => {
   try {
     const chatId = ctx.chat.id;
 
-    const randomIndex = crypto.randomInt(0, commonWords.length);
-    const randomWord = commonWords[randomIndex].toLowerCase();
+    const allWords = Object.keys(commonWords);
+
+    const randomIndex = crypto.randomInt(0, allWords.length);
+    const randomWord = allWords[randomIndex].toLowerCase();
 
     await db.insert(gamesTable).values({
       word: randomWord,
@@ -108,9 +110,11 @@ bot.command("end", async (ctx) => {
       .delete(gamesTable)
       .where(eq(gamesTable.activeChat, String(ctx.chat.id)));
 
-    ctx.reply(
-      "Game Ended!\nCorrect word was " + currentGame.word + "\nStart with /new"
-    );
+    const endResponse = `Game Ended!\nCorrect word was <strong>${
+      currentGame.word
+    }</strong>\nStart with /new\n${formatWordDetails(currentGame.word)}`;
+
+    ctx.reply(endResponse, { parse_mode: "HTML" });
   } catch (err) {
     console.error(err);
     return ctx.reply("Something went wrong. Please try again.");
@@ -546,7 +550,10 @@ bot.on("message", async (ctx) => {
 
   if (!currentGame) return;
 
-  if (!allWords.includes(currentGuess) && !commonWords.includes(currentGuess))
+  if (
+    !allWords.includes(currentGuess) &&
+    !Object.keys(commonWords).includes(currentGuess)
+  )
     return ctx.reply(`${currentGuess} is not a valid word.`);
 
   const guessExists = await db.query.guessesTable.findFirst({
@@ -599,12 +606,15 @@ bot.on("message", async (ctx) => {
         userId: dbUser.userId,
       });
     }
-    ctx.reply(
-      `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new`,
-      {
-        reply_parameters: { message_id: ctx.message.message_id },
-      }
-    );
+
+    const formattedResponse = `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new\n${formatWordDetails(
+      currentGuess
+    )}`;
+
+    ctx.reply(formattedResponse, {
+      reply_parameters: { message_id: ctx.message.message_id },
+      parse_mode: "HTML",
+    });
     ctx.react("🎉");
     await db.delete(gamesTable).where(eq(gamesTable.id, currentGame.id));
     return;
@@ -632,6 +642,32 @@ bot.on("message", async (ctx) => {
 
   ctx.reply(getFeedback(allGuesses, currentGame.word));
 });
+
+function capitalizeFirstLetter(string: string) {
+  if (!string) return string;
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function formatWordDetails(word: string) {
+  const wordDetails = commonWords[word];
+
+  return `
+<blockquote><strong>${escapeHtmlEntities(
+    capitalizeFirstLetter(word)
+  )}</strong> <code>${
+    escapeHtmlEntities(wordDetails.pronunciation) || ""
+  }</code>
+${
+  wordDetails.meaning
+    ? `<strong>Meaning</strong>: ${escapeHtmlEntities(wordDetails.meaning)}`
+    : ""
+}
+${
+  wordDetails.example
+    ? `<strong>Example</strong>: ${escapeHtmlEntities(wordDetails.example)}`
+    : ""
+}</blockquote>`;
+}
 
 async function init() {
   await bot.api.setMyCommands([
