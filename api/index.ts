@@ -2,6 +2,7 @@ import { Bot, InlineKeyboard, webhookCallback } from "grammy";
 import express from "express";
 import type { Request, Response } from "express";
 import { env } from "./env";
+import crypto from "crypto";
 import allWords from "./allWords.json";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
@@ -58,8 +59,9 @@ Commands:
 bot.command("new", async (ctx) => {
   try {
     const chatId = ctx.chat.id;
-    const randomWord =
-      commonWords[Math.floor(Math.random() * commonWords.length)].toLowerCase();
+
+    const randomIndex = crypto.randomInt(0, commonWords.length);
+    const randomWord = commonWords[randomIndex].toLowerCase();
 
     await db.insert(gamesTable).values({
       word: randomWord,
