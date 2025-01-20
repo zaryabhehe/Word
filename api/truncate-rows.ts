@@ -1,6 +1,6 @@
 import { sql, and, ne, lt, eq } from "drizzle-orm";
-import { leaderboardTable } from "./api/drizzle/schema";
-import { db } from "./api/drizzle/db";
+import { leaderboardTable } from "./drizzle/schema";
+import { db } from "./drizzle/db";
 
 await db.transaction(async (trx) => {
   // Step 1: Create temporary table for first items per user and chat_id

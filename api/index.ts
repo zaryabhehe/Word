@@ -691,7 +691,7 @@ async function init() {
   ]);
 }
 
-init();
+// init();
 
 const app = express();
 app.use(express.json());
