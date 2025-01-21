@@ -1,7 +1,7 @@
 {
   "name": "word-guesser-bot",
   "scripts": {
-    "start": "node api/app.js",
+    "start": "bun run api/index.ts",
     "dev": "bun run --watch api/index.ts",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",

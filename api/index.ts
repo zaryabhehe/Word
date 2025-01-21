@@ -1,6 +1,4 @@
-import { Bot, InlineKeyboard, webhookCallback } from "grammy";
-import express from "express";
-import type { Request, Response } from "express";
+import { Bot, InlineKeyboard } from "grammy";
 import { env } from "./env";
 import crypto from "crypto";
 import allWords from "./allWords.json";
@@ -13,7 +11,7 @@ import {
   usersTable,
 } from "./drizzle/schema";
 import { and, asc, count, countDistinct, desc, eq, sql } from "drizzle-orm";
-import { NeonDbError } from "@neondatabase/serverless";
+import { DatabaseError } from "pg";
 
 const bot = new Bot(env.BOT_TOKEN);
 
@@ -57,72 +55,68 @@ Commands:
 );
 
 bot.command("new", async (ctx) => {
-  return ctx.reply("Bot is down for meantime. Please try again later.");
+  try {
+    const chatId = ctx.chat.id;
 
-  // try {
-  //   const chatId = ctx.chat.id;
+    const allWords = Object.keys(commonWords);
 
-  //   const allWords = Object.keys(commonWords);
+    const randomIndex = crypto.randomInt(0, allWords.length);
+    const randomWord = allWords[randomIndex].toLowerCase();
 
-  //   const randomIndex = crypto.randomInt(0, allWords.length);
-  //   const randomWord = allWords[randomIndex].toLowerCase();
+    await db.insert(gamesTable).values({
+      word: randomWord,
+      activeChat: String(chatId),
+    });
+    ctx.reply("Game started! Guess the 5 letter word!");
+  } catch (error) {
+    if (error instanceof DatabaseError && error.code === "23505") {
+      return ctx.reply(
+        "There is already a game in progress in this chat. Use /end to end the current game."
+      );
+    }
 
-  //   await db.insert(gamesTable).values({
-  //     word: randomWord,
-  //     activeChat: String(chatId),
-  //   });
-  //   ctx.reply("Game started! Guess the 5 letter word!");
-  // } catch (error) {
-  //   if (error instanceof NeonDbError && error.code === "23505") {
-  //     return ctx.reply(
-  //       "There is already a game in progress in this chat. Use /end to end the current game."
-  //     );
-  //   }
-
-  //   console.error(error);
-  //   ctx.reply("Something went wrong. Please try again.");
-  // }
+    console.error(error);
+    ctx.reply("Something went wrong. Please try again.");
+  }
 });
 
 bot.command("end", async (ctx) => {
-  return ctx.reply("Bot is down for meantime. Please try again later.");
+  try {
+    if (!ctx.message) return;
 
-  // try {
-  //   if (!ctx.message) return;
+    if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
+      const chatMember = await ctx.api.getChatMember(
+        ctx.chat.id,
+        ctx.message.from.id
+      );
 
-  //   if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
-  //     const chatMember = await ctx.api.getChatMember(
-  //       ctx.chat.id,
-  //       ctx.message.from.id
-  //     );
+      chatMember.status;
 
-  //     chatMember.status;
+      const allowedStatus = ["administrator", "creator"];
+      if (!allowedStatus.includes(chatMember.status)) {
+        return ctx.reply("Only admins can end the game.");
+      }
+    }
 
-  //     const allowedStatus = ["administrator", "creator"];
-  //     if (!allowedStatus.includes(chatMember.status)) {
-  //       return ctx.reply("Only admins can end the game.");
-  //     }
-  //   }
+    const currentGame = await db.query.gamesTable.findFirst({
+      where: eq(gamesTable.activeChat, String(ctx.chat.id)),
+    });
 
-  //   const currentGame = await db.query.gamesTable.findFirst({
-  //     where: eq(gamesTable.activeChat, String(ctx.chat.id)),
-  //   });
+    if (!currentGame) return ctx.reply("There is no game in progress.");
 
-  //   if (!currentGame) return ctx.reply("There is no game in progress.");
+    await db
+      .delete(gamesTable)
+      .where(eq(gamesTable.activeChat, String(ctx.chat.id)));
 
-  //   await db
-  //     .delete(gamesTable)
-  //     .where(eq(gamesTable.activeChat, String(ctx.chat.id)));
+    const endResponse = `Game Ended!\nCorrect word was <strong>${
+      currentGame.word
+    }</strong>\nStart with /new\n${formatWordDetails(currentGame.word)}`;
 
-  //   const endResponse = `Game Ended!\nCorrect word was <strong>${
-  //     currentGame.word
-  //   }</strong>\nStart with /new\n${formatWordDetails(currentGame.word)}`;
-
-  //   ctx.reply(endResponse, { parse_mode: "HTML" });
-  // } catch (err) {
-  //   console.error(err);
-  //   return ctx.reply("Something went wrong. Please try again.");
-  // }
+    ctx.reply(endResponse, { parse_mode: "HTML" });
+  } catch (err) {
+    console.error(err);
+    return ctx.reply("Something went wrong. Please try again.");
+  }
 });
 
 type LeaderboardEntry = {
@@ -353,65 +347,62 @@ function escapeHtmlEntities(text: string) {
 }
 
 bot.command("myscore", async (ctx) => {
-  return ctx.reply("Bot is down for meantime. Please try again later.");
-  // if (!ctx.from) return;
+  if (!ctx.from) return;
 
-  // if (ctx.chat.type === "private")
-  //   return ctx.reply(
-  //     "This command is not available in private chats. Please add me in a group and use it."
-  //   );
+  if (ctx.chat.type === "private")
+    return ctx.reply(
+      "This command is not available in private chats. Please add me in a group and use it."
+    );
 
-  // const { searchKey, timeKey } = parseInput(ctx.match);
+  const { searchKey, timeKey } = parseInput(ctx.match);
 
-  // const keyboard = generateKeyboard(
-  //   searchKey,
-  //   timeKey,
-  //   `myscore ${ctx.from.id}`
-  // );
+  const keyboard = generateKeyboard(
+    searchKey,
+    timeKey,
+    `myscore ${ctx.from.id}`
+  );
 
-  // const userId = ctx.from.id.toString();
-  // const chatId = ctx.chat.id.toString();
-  // const userScores = await getUserScores({
-  //   userId,
-  //   chatId,
-  //   searchKey,
-  //   timeKey,
-  // });
+  const userId = ctx.from.id.toString();
+  const chatId = ctx.chat.id.toString();
+  const userScores = await getUserScores({
+    userId,
+    chatId,
+    searchKey,
+    timeKey,
+  });
 
-  // if (userScores === null) return ctx.reply("No one has scored yet.");
+  if (userScores === null) return ctx.reply("No one has scored yet.");
 
-  // const userScore = userScores[0];
+  const userScore = userScores[0];
 
-  // const message = formatUserScoreMessage(userScore, searchKey);
+  const message = formatUserScoreMessage(userScore, searchKey);
 
-  // ctx.reply(message, {
-  //   parse_mode: "HTML",
-  //   disable_notification: true,
-  //   reply_markup: keyboard,
-  //   reply_parameters: {
-  //     message_id: ctx.msgId,
-  //   },
-  //   link_preview_options: {
-  //     is_disabled: true,
-  //   },
-  // });
+  ctx.reply(message, {
+    parse_mode: "HTML",
+    disable_notification: true,
+    reply_markup: keyboard,
+    reply_parameters: {
+      message_id: ctx.msgId,
+    },
+    link_preview_options: {
+      is_disabled: true,
+    },
+  });
 });
 
 bot.command("stats", async (ctx) => {
-  return ctx.reply("Bot is down for meantime. Please try again later.");
+  if (!ctx.from) return;
 
-  // if (!ctx.from) return;
+  if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
 
-  // if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
+  const [{ usersCount }] = await db
+    .select({ usersCount: count(usersTable.id) })
+    .from(usersTable);
+  const [{ groupsCount }] = await db
+    .select({ groupsCount: countDistinct(leaderboardTable.chatId) })
+    .from(leaderboardTable);
 
-  // const [{ usersCount }] = await db
-  //   .select({ usersCount: count(usersTable.id) })
-  //   .from(usersTable);
-  // const [{ groupsCount }] = await db
-  //   .select({ groupsCount: countDistinct(leaderboardTable.chatId) })
-  //   .from(leaderboardTable);
-
-  // return ctx.reply(`Total Users: ${usersCount}\nTotal Groups: ${groupsCount}`);
+  return ctx.reply(`Total Users: ${usersCount}\nTotal Groups: ${groupsCount}`);
 });
 
 type FormatUserScoreData = {
@@ -439,35 +430,33 @@ function formatUserScoreMessage(
 }
 
 bot.command("leaderboard", async (ctx) => {
-  return ctx.reply("Bot is down for meantime. Please try again later.");
+  if (ctx.chat.type === "private")
+    return ctx.reply(
+      "This command is not available in private chats. Please add me in a group and use it."
+    );
 
-  // if (ctx.chat.type === "private")
-  //   return ctx.reply(
-  //     "This command is not available in private chats. Please add me in a group and use it."
-  //   );
+  const { searchKey, timeKey } = parseInput(ctx.match);
 
-  // const { searchKey, timeKey } = parseInput(ctx.match);
+  const keyboard = generateKeyboard(searchKey, timeKey);
 
-  // const keyboard = generateKeyboard(searchKey, timeKey);
+  const chatId = ctx.chat.id.toString();
+  const memberScores = await getLeaderboardScores({
+    chatId,
+    searchKey,
+    timeKey,
+  });
 
-  // const chatId = ctx.chat.id.toString();
-  // const memberScores = await getLeaderboardScores({
-  //   chatId,
-  //   searchKey,
-  //   timeKey,
-  // });
+  const message = formatLeaderboardMessage(memberScores, searchKey, timeKey);
+  console.log(message);
 
-  // const message = formatLeaderboardMessage(memberScores, searchKey, timeKey);
-  // console.log(message);
-
-  // ctx.reply(formatLeaderboardMessage(memberScores, searchKey, timeKey), {
-  //   parse_mode: "HTML",
-  //   disable_notification: true,
-  //   reply_markup: keyboard,
-  //   link_preview_options: {
-  //     is_disabled: true,
-  //   },
-  // });
+  ctx.reply(formatLeaderboardMessage(memberScores, searchKey, timeKey), {
+    parse_mode: "HTML",
+    disable_notification: true,
+    reply_markup: keyboard,
+    link_preview_options: {
+      is_disabled: true,
+    },
+  });
 });
 
 bot.on("callback_query:data", async (ctx) => {
@@ -678,6 +667,12 @@ ${
 }</blockquote>`;
 }
 
+bot.start({
+  onStart: () => console.log("Bot started"),
+});
+
+init();
+
 async function init() {
   await bot.api.setMyCommands([
     { command: "new", description: "Start a new game." },
@@ -699,26 +694,6 @@ async function init() {
     },
   ]);
 }
-
-// init();
-
-const app = express();
-app.use(express.json());
-
-if (env.NODE_ENV === "development") {
-  bot.start({
-    onStart: () => console.log("Bot started"),
-    drop_pending_updates: true,
-  });
-} else {
-  app.use(webhookCallback(bot, "express"));
-}
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Bot is running!");
-});
-
-export default app;
 
 interface GuessEntry {
   id: number;
