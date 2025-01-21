@@ -57,68 +57,72 @@ Commands:
 );
 
 bot.command("new", async (ctx) => {
-  try {
-    const chatId = ctx.chat.id;
+  return ctx.reply("Bot is down for meantime. Please try again later.");
 
-    const allWords = Object.keys(commonWords);
+  // try {
+  //   const chatId = ctx.chat.id;
 
-    const randomIndex = crypto.randomInt(0, allWords.length);
-    const randomWord = allWords[randomIndex].toLowerCase();
+  //   const allWords = Object.keys(commonWords);
 
-    await db.insert(gamesTable).values({
-      word: randomWord,
-      activeChat: String(chatId),
-    });
-    ctx.reply("Game started! Guess the 5 letter word!");
-  } catch (error) {
-    if (error instanceof NeonDbError && error.code === "23505") {
-      return ctx.reply(
-        "There is already a game in progress in this chat. Use /end to end the current game."
-      );
-    }
+  //   const randomIndex = crypto.randomInt(0, allWords.length);
+  //   const randomWord = allWords[randomIndex].toLowerCase();
 
-    console.error(error);
-    ctx.reply("Something went wrong. Please try again.");
-  }
+  //   await db.insert(gamesTable).values({
+  //     word: randomWord,
+  //     activeChat: String(chatId),
+  //   });
+  //   ctx.reply("Game started! Guess the 5 letter word!");
+  // } catch (error) {
+  //   if (error instanceof NeonDbError && error.code === "23505") {
+  //     return ctx.reply(
+  //       "There is already a game in progress in this chat. Use /end to end the current game."
+  //     );
+  //   }
+
+  //   console.error(error);
+  //   ctx.reply("Something went wrong. Please try again.");
+  // }
 });
 
 bot.command("end", async (ctx) => {
-  try {
-    if (!ctx.message) return;
+  return ctx.reply("Bot is down for meantime. Please try again later.");
 
-    if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
-      const chatMember = await ctx.api.getChatMember(
-        ctx.chat.id,
-        ctx.message.from.id
-      );
+  // try {
+  //   if (!ctx.message) return;
 
-      chatMember.status;
+  //   if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
+  //     const chatMember = await ctx.api.getChatMember(
+  //       ctx.chat.id,
+  //       ctx.message.from.id
+  //     );
 
-      const allowedStatus = ["administrator", "creator"];
-      if (!allowedStatus.includes(chatMember.status)) {
-        return ctx.reply("Only admins can end the game.");
-      }
-    }
+  //     chatMember.status;
 
-    const currentGame = await db.query.gamesTable.findFirst({
-      where: eq(gamesTable.activeChat, String(ctx.chat.id)),
-    });
+  //     const allowedStatus = ["administrator", "creator"];
+  //     if (!allowedStatus.includes(chatMember.status)) {
+  //       return ctx.reply("Only admins can end the game.");
+  //     }
+  //   }
 
-    if (!currentGame) return ctx.reply("There is no game in progress.");
+  //   const currentGame = await db.query.gamesTable.findFirst({
+  //     where: eq(gamesTable.activeChat, String(ctx.chat.id)),
+  //   });
 
-    await db
-      .delete(gamesTable)
-      .where(eq(gamesTable.activeChat, String(ctx.chat.id)));
+  //   if (!currentGame) return ctx.reply("There is no game in progress.");
 
-    const endResponse = `Game Ended!\nCorrect word was <strong>${
-      currentGame.word
-    }</strong>\nStart with /new\n${formatWordDetails(currentGame.word)}`;
+  //   await db
+  //     .delete(gamesTable)
+  //     .where(eq(gamesTable.activeChat, String(ctx.chat.id)));
 
-    ctx.reply(endResponse, { parse_mode: "HTML" });
-  } catch (err) {
-    console.error(err);
-    return ctx.reply("Something went wrong. Please try again.");
-  }
+  //   const endResponse = `Game Ended!\nCorrect word was <strong>${
+  //     currentGame.word
+  //   }</strong>\nStart with /new\n${formatWordDetails(currentGame.word)}`;
+
+  //   ctx.reply(endResponse, { parse_mode: "HTML" });
+  // } catch (err) {
+  //   console.error(err);
+  //   return ctx.reply("Something went wrong. Please try again.");
+  // }
 });
 
 type LeaderboardEntry = {
@@ -349,62 +353,65 @@ function escapeHtmlEntities(text: string) {
 }
 
 bot.command("myscore", async (ctx) => {
-  if (!ctx.from) return;
+  return ctx.reply("Bot is down for meantime. Please try again later.");
+  // if (!ctx.from) return;
 
-  if (ctx.chat.type === "private")
-    return ctx.reply(
-      "This command is not available in private chats. Please add me in a group and use it."
-    );
+  // if (ctx.chat.type === "private")
+  //   return ctx.reply(
+  //     "This command is not available in private chats. Please add me in a group and use it."
+  //   );
 
-  const { searchKey, timeKey } = parseInput(ctx.match);
+  // const { searchKey, timeKey } = parseInput(ctx.match);
 
-  const keyboard = generateKeyboard(
-    searchKey,
-    timeKey,
-    `myscore ${ctx.from.id}`
-  );
+  // const keyboard = generateKeyboard(
+  //   searchKey,
+  //   timeKey,
+  //   `myscore ${ctx.from.id}`
+  // );
 
-  const userId = ctx.from.id.toString();
-  const chatId = ctx.chat.id.toString();
-  const userScores = await getUserScores({
-    userId,
-    chatId,
-    searchKey,
-    timeKey,
-  });
+  // const userId = ctx.from.id.toString();
+  // const chatId = ctx.chat.id.toString();
+  // const userScores = await getUserScores({
+  //   userId,
+  //   chatId,
+  //   searchKey,
+  //   timeKey,
+  // });
 
-  if (userScores === null) return ctx.reply("No one has scored yet.");
+  // if (userScores === null) return ctx.reply("No one has scored yet.");
 
-  const userScore = userScores[0];
+  // const userScore = userScores[0];
 
-  const message = formatUserScoreMessage(userScore, searchKey);
+  // const message = formatUserScoreMessage(userScore, searchKey);
 
-  ctx.reply(message, {
-    parse_mode: "HTML",
-    disable_notification: true,
-    reply_markup: keyboard,
-    reply_parameters: {
-      message_id: ctx.msgId,
-    },
-    link_preview_options: {
-      is_disabled: true,
-    },
-  });
+  // ctx.reply(message, {
+  //   parse_mode: "HTML",
+  //   disable_notification: true,
+  //   reply_markup: keyboard,
+  //   reply_parameters: {
+  //     message_id: ctx.msgId,
+  //   },
+  //   link_preview_options: {
+  //     is_disabled: true,
+  //   },
+  // });
 });
 
 bot.command("stats", async (ctx) => {
-  if (!ctx.from) return;
+  return ctx.reply("Bot is down for meantime. Please try again later.");
 
-  if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
+  // if (!ctx.from) return;
 
-  const [{ usersCount }] = await db
-    .select({ usersCount: count(usersTable.id) })
-    .from(usersTable);
-  const [{ groupsCount }] = await db
-    .select({ groupsCount: countDistinct(leaderboardTable.chatId) })
-    .from(leaderboardTable);
+  // if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
 
-  return ctx.reply(`Total Users: ${usersCount}\nTotal Groups: ${groupsCount}`);
+  // const [{ usersCount }] = await db
+  //   .select({ usersCount: count(usersTable.id) })
+  //   .from(usersTable);
+  // const [{ groupsCount }] = await db
+  //   .select({ groupsCount: countDistinct(leaderboardTable.chatId) })
+  //   .from(leaderboardTable);
+
+  // return ctx.reply(`Total Users: ${usersCount}\nTotal Groups: ${groupsCount}`);
 });
 
 type FormatUserScoreData = {
@@ -432,33 +439,35 @@ function formatUserScoreMessage(
 }
 
 bot.command("leaderboard", async (ctx) => {
-  if (ctx.chat.type === "private")
-    return ctx.reply(
-      "This command is not available in private chats. Please add me in a group and use it."
-    );
+  return ctx.reply("Bot is down for meantime. Please try again later.");
 
-  const { searchKey, timeKey } = parseInput(ctx.match);
+  // if (ctx.chat.type === "private")
+  //   return ctx.reply(
+  //     "This command is not available in private chats. Please add me in a group and use it."
+  //   );
 
-  const keyboard = generateKeyboard(searchKey, timeKey);
+  // const { searchKey, timeKey } = parseInput(ctx.match);
 
-  const chatId = ctx.chat.id.toString();
-  const memberScores = await getLeaderboardScores({
-    chatId,
-    searchKey,
-    timeKey,
-  });
+  // const keyboard = generateKeyboard(searchKey, timeKey);
 
-  const message = formatLeaderboardMessage(memberScores, searchKey, timeKey);
-  console.log(message);
+  // const chatId = ctx.chat.id.toString();
+  // const memberScores = await getLeaderboardScores({
+  //   chatId,
+  //   searchKey,
+  //   timeKey,
+  // });
 
-  ctx.reply(formatLeaderboardMessage(memberScores, searchKey, timeKey), {
-    parse_mode: "HTML",
-    disable_notification: true,
-    reply_markup: keyboard,
-    link_preview_options: {
-      is_disabled: true,
-    },
-  });
+  // const message = formatLeaderboardMessage(memberScores, searchKey, timeKey);
+  // console.log(message);
+
+  // ctx.reply(formatLeaderboardMessage(memberScores, searchKey, timeKey), {
+  //   parse_mode: "HTML",
+  //   disable_notification: true,
+  //   reply_markup: keyboard,
+  //   link_preview_options: {
+  //     is_disabled: true,
+  //   },
+  // });
 });
 
 bot.on("callback_query:data", async (ctx) => {
