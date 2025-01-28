@@ -92,7 +92,5 @@ We welcome contributions to enhance the bot! Here's how you can help:
 2. Create a new branch for your feature or bugfix.
 3. Commit your changes and open a pull request.
 
----
-
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
