@@ -9,8 +9,6 @@
 - Commands to view personal scores and leaderboard rankings filtered by time (today, week, month, etc.).
 - Flexible game settings: customizable limits for attempts and group admin permissions.
 
----
-
 ## How to Play
 1. **Start a game**: Use the `/new` command in a group or private chat.
 2. **Guess the word**: Players try to guess a random 5-letter word.
@@ -22,8 +20,6 @@
    - The word is correctly guessed, or
    - Maximum number of guesses (30) is reached.
 5. The first person to guess the word correctly wins!
-
----
 
 ## Commands
 - **/new** - Start a new game.
@@ -38,8 +34,6 @@
   /myscore group all
   ```
 - **/stats** - View bot usage stats (admin users only).
-
----
 
 ## Installation & Setup
 
@@ -77,16 +71,12 @@
      bun run start
      ```
 
----
-
 ## Technologies Used
 - **[grammy](https://grammy.dev/)**: Telegram Bot API framework.
 - **Drizzle ORM**: Simplified database queries.
 - **PostgreSQL**: Persistent storage for game data.
 - **Bun.js**: Blazing fast JavaScript runtime.
 - **Zod**: Schema validation.
-
----
 
 ## Additional Resources
 - **Try the Bot**:
@@ -95,8 +85,6 @@
 - **Join the Official Group**: [Word Guesser Group](https://t.me/wordguesser) - Play the game, discuss strategies, and share feedback.
 - **Support the Developer**: [Binamra Bots Channel](https://t.me/BinamraBots)
 - **Contact the Developer**: Suggestions? Reach out on Telegram: [@binamralamsal](https://t.me/binamralamsal)
-
----
 
 ## Contributing
 We welcome contributions to enhance the bot! Here's how you can help:
