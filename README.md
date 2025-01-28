@@ -1,4 +1,4 @@
-# Word Guesser Bot
+# WordSeek
 
 **A fun and competitive Wordle-style game that you can play directly on Telegram!**
 
@@ -80,8 +80,8 @@
 
 ## Additional Resources
 - **Try the Bot**:
-  - [Word Guesser Bot](https://t.me/word_guesserbot) *(Main bot)*
-  - [Backup Bot](https://t.me/wordguesser_game_bot) *(Use this if the main bot is busy)*
+  - [WordSeek I](https://t.me/word_guesserbot) *(Main bot)*
+  - [WordSeek II](https://t.me/wordguesser_game_bot) *(Use this if the main bot is busy)*
 - **Join the Official Group**: [Word Guesser Group](https://t.me/wordguesser) - Play the game, discuss strategies, and share feedback.
 - **Support the Developer**: [Binamra Bots Channel](https://t.me/BinamraBots)
 - **Contact the Developer**: Suggestions? Reach out on Telegram: [@binamralamsal](https://t.me/binamralamsal)
