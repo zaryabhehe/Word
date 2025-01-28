@@ -45,8 +45,8 @@
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/binamralamsal/word-guesser-bot
-   cd word-guesser-bot
+   git clone https://github.com/binamralamsal/WordSeek
+   cd WordSeek
    ```
 
 2. Install dependencies:
