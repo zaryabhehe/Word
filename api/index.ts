@@ -2,6 +2,7 @@ import { Bot, InlineKeyboard } from "grammy";
 import { env } from "./env";
 import crypto from "crypto";
 import allWords from "./allWords.json";
+import { autoRetry } from "@grammyjs/auto-retry";
 import commonWords from "./commonWords.json";
 import { db } from "./drizzle/db";
 import {
@@ -12,8 +13,11 @@ import {
 } from "./drizzle/schema";
 import { and, asc, count, countDistinct, desc, eq, sql } from "drizzle-orm";
 import { DatabaseError } from "pg";
+import { run } from "@grammyjs/runner";
 
 const bot = new Bot(env.BOT_TOKEN);
+
+bot.api.config.use(autoRetry());
 
 bot.command("start", (ctx) =>
   ctx.reply(
@@ -667,9 +671,12 @@ ${
 }</blockquote>`;
 }
 
-bot.start({
-  onStart: () => console.log("Bot started"),
-});
+// bot.start({
+//   onStart: () => console.log("Bot started"),
+//   drop_pending_updates: true,
+// });
+run(bot);
+console.log("Bot started");
 
 init();
 
