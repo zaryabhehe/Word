@@ -169,7 +169,7 @@ type AllowedChatSearchKey = (typeof allowedChatSearchKeys)[number];
 const allowedChatTimeKeys = ["today", "week", "month", "year", "all"] as const;
 type AllowedChatTimeKey = (typeof allowedChatTimeKeys)[number];
 
-function parseInput(
+function parseLeaderboardInput(
   input: string,
   defaultSearchKey: AllowedChatSearchKey = "group",
   defaultTimeKey: AllowedChatTimeKey = "month"
@@ -203,7 +203,7 @@ function generateKeyboard(
       generateButtonText(
         searchKey,
         key,
-        key === "group" ? "This group" : "Global"
+        key === "group" ? "This chat" : "Global"
       ),
       `${callbackKey} ${key} ${timeKey}`
     );
@@ -353,12 +353,10 @@ function escapeHtmlEntities(text: string) {
 bot.command("myscore", async (ctx) => {
   if (!ctx.from) return;
 
-  if (ctx.chat.type === "private")
-    return ctx.reply(
-      "This command is not available in private chats. Please add me in a group and use it."
-    );
-
-  const { searchKey, timeKey } = parseInput(ctx.match);
+  const { searchKey, timeKey } = parseLeaderboardInput(
+    ctx.match,
+    ctx.chat.type === "private" ? "global" : undefined
+  );
 
   const keyboard = generateKeyboard(
     searchKey,
@@ -427,19 +425,17 @@ function formatUserScoreMessage(
     : `${name}'s`;
 
   const message = `<blockquote><strong>🏆 ${mentionLink} total score ${
-    searchKey === "global" ? "globally" : "in group"
+    searchKey === "global" ? "globally" : "in this chat"
   } is ${data.totalScore.toLocaleString()}, and rank is ${data.rank.toLocaleString()} 🏆</strong></blockquote>`;
 
   return `${message}\n\n<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`;
 }
 
 bot.command("leaderboard", async (ctx) => {
-  if (ctx.chat.type === "private")
-    return ctx.reply(
-      "This command is not available in private chats. Please add me in a group and use it."
-    );
-
-  const { searchKey, timeKey } = parseInput(ctx.match);
+  const { searchKey, timeKey } = parseLeaderboardInput(
+    ctx.match,
+    ctx.chat.type === "private" ? "global" : undefined
+  );
 
   const keyboard = generateKeyboard(searchKey, timeKey);
 
@@ -582,32 +578,31 @@ bot.on("message", async (ctx) => {
     const userId = ctx.from.id.toString();
     const chatId = ctx.chat.id.toString();
 
-    let additionalMessage = "";
-    if (ctx.chat.type === "group" || ctx.chat.type === "supergroup") {
-      const score = 30 - allGuesses.length;
-      additionalMessage = `Added ${30 - allGuesses.length} to the leaderboard.`;
+    const score = 30 - allGuesses.length;
+    const additionalMessage = `Added ${
+      30 - allGuesses.length
+    } to the leaderboard.`;
 
-      const [dbUser] = await db
-        .insert(usersTable)
-        .values({
+    const [dbUser] = await db
+      .insert(usersTable)
+      .values({
+        name,
+        telegramUserId: userId,
+        username,
+      })
+      .onConflictDoUpdate({
+        target: [usersTable.telegramUserId],
+        set: {
           name,
-          telegramUserId: userId,
           username,
-        })
-        .onConflictDoUpdate({
-          target: [usersTable.telegramUserId],
-          set: {
-            name,
-            username,
-          },
-        })
-        .returning({ userId: usersTable.id });
-      await db.insert(leaderboardTable).values({
-        score,
-        chatId,
-        userId: dbUser.userId,
-      });
-    }
+        },
+      })
+      .returning({ userId: usersTable.id });
+    await db.insert(leaderboardTable).values({
+      score,
+      chatId,
+      userId: dbUser.userId,
+    });
 
     const formattedResponse = `Congrats! You guessed it correctly.\n${additionalMessage}\nStart with /new\n${formatWordDetails(
       currentGuess
