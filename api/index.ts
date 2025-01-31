@@ -19,12 +19,15 @@ const bot = new Bot(env.BOT_TOKEN);
 
 bot.api.config.use(autoRetry());
 
+const FOOTER_MESSAGE = `<blockquote>🛠 Developed by Binamra Lamsal\n📢 Official Channel for announcements: @WordSeek\n🗨 Official Group for playing and suggestions: @WordGuesser</blockquote>`;
+
 bot.command("start", (ctx) =>
   ctx.reply(
-    `<blockquote>How to Play:</blockquote>
+    `<blockquote><strong>WordSeek</strong></blockquote>
+A fun and competitive Wordle-style game that you can play directly on Telegram!
 1. Use /new to start a game. Add me to a group with admin permission to play with your friends.
-2. Use /help to get help on how to play and commands list.
-  <blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser</blockquote>`,
+2. Use /help to get help on how to play and commands list.\n
+${FOOTER_MESSAGE}`,
     {
       parse_mode: "HTML",
     }
@@ -51,7 +54,7 @@ Commands:
 - Leaderboard, and MyScore parameters: /[leaderboard/myscore] [global/group] [today/week/month/year/all]
 - Example: <code>/leaderboard global month</code> <code>/myscore group all</code>
 
-<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`,
+${FOOTER_MESSAGE}`,
     {
       parse_mode: "HTML",
     }
@@ -161,7 +164,7 @@ function formatLeaderboardMessage(
 
   return `<blockquote>🏆 ${
     searchKey === "global" ? "Global" : "Group"
-  } Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`;
+  } Leaderboard 🏆</blockquote>\n\n${formattedEntries}\n\n${FOOTER_MESSAGE}`;
 }
 
 const allowedChatSearchKeys = ["global", "group"] as const;
@@ -428,7 +431,7 @@ function formatUserScoreMessage(
     searchKey === "global" ? "globally" : "in this chat"
   } is ${data.totalScore.toLocaleString()}, and rank is ${data.rank.toLocaleString()} 🏆</strong></blockquote>`;
 
-  return `${message}\n\n<blockquote>Developed by Binamra Lamsal | Join for discussions related to the game: @wordguesser.</blockquote>`;
+  return `${message}\n\n${FOOTER_MESSAGE}`;
 }
 
 bot.command("leaderboard", async (ctx) => {
