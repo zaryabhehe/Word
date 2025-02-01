@@ -1,6 +1,7 @@
-import { sql, and, ne, lt, eq } from "drizzle-orm";
-import { leaderboardTable } from "./drizzle/schema";
-import { db } from "./drizzle/db";
+import { and, eq, lt, ne, sql } from "drizzle-orm";
+
+import { db } from "../drizzle/db";
+import { leaderboardTable } from "../drizzle/schema";
 
 await db.transaction(async (trx) => {
   // Step 1: Create temporary table for first items per user and chat_id
@@ -51,7 +52,7 @@ await db.transaction(async (trx) => {
 });
 
 console.log(
-  "Leaderboard table updated for all users and chat_ids successfully."
+  "Leaderboard table updated for all users and chat_ids successfully.",
 );
 
 console.log("Leaderboard table updated for all users successfully.");

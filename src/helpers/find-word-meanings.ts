@@ -54,7 +54,7 @@ async function processWords() {
         await fs.writeFile(
           outputFilePath,
           JSON.stringify(result, null, 2),
-          "utf-8"
+          "utf-8",
         );
         await delay(1000); // Delay to avoid rate limiting
       } else {
