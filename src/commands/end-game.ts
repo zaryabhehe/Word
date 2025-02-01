@@ -19,8 +19,6 @@ composer.command("end", async (ctx) => {
         ctx.message.from.id,
       );
 
-      chatMember.status;
-
       const allowedStatus = ["administrator", "creator"];
       if (!allowedStatus.includes(chatMember.status)) {
         return ctx.reply("Only admins can end the game.");

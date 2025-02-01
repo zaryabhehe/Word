@@ -5,6 +5,7 @@ import { run } from "@grammyjs/runner";
 import { commands } from "./commands";
 import { bot } from "./config/bot";
 import { callbackQueryHandler } from "./handlers/callback-query";
+import { onBotAddedInChat } from "./handlers/on-bot-added-in-chat";
 import { onMessageHander } from "./handlers/on-message";
 import { CommandsHelper } from "./util/commands-helper";
 
@@ -14,6 +15,7 @@ bot.api.config.use(parseMode("HTML"));
 bot.use(commands);
 bot.use(callbackQueryHandler);
 bot.use(onMessageHander);
+bot.use(onBotAddedInChat);
 
 // bot.start({
 //   onStart: () => console.log("Bot started"),

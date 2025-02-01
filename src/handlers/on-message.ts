@@ -17,7 +17,12 @@ const composer = new Composer();
 
 composer.on("message", async (ctx) => {
   const currentGuess = ctx.message.text?.toLowerCase();
-  if (!currentGuess || currentGuess.length !== 5) return;
+  if (
+    !currentGuess ||
+    currentGuess.length !== 5 ||
+    currentGuess.startsWith("/")
+  )
+    return;
 
   const currentGame = await db.query.gamesTable.findFirst({
     where: eq(gamesTable.activeChat, String(ctx.chat.id)),
