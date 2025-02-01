@@ -5689,6 +5689,11 @@
     "pronunciation": "/ˈlɪŋ.ɡəʊ/",
     "example": ""
   },
+  "linux": {
+    "meaning": "An open-source, Unix-like operating system kernel that serves as the foundation for many operating systems, including various distributions such as Ubuntu, Debian, and Fedora.",
+    "pronunciation": "/ˈlɪn.ʊks/ or /ˈlaɪ.nʊks/",
+    "example": "Many servers and embedded systems run on Linux due to its stability and security."
+  },
   "lipid": {
     "meaning": "Any of a group of organic compounds including the fats, oils, waxes, sterols, and triglycerides. Lipids are characterized by being insoluble in water, and account for most of the fat present in the human body.",
     "pronunciation": "/ˈlɪpɪd/",
@@ -7258,6 +7263,11 @@
     "meaning": "A dog.",
     "pronunciation": "/puːt͡ʃ/",
     "example": ""
+  },
+  "pooja": {
+    "meaning": "A ritualistic act of worship in Hinduism, Buddhism, and Jainism, involving prayers, offerings, and devotional practices to deities or spiritual figures.",
+    "pronunciation": "/ˈpuː.dʒə/",
+    "example": "Every morning, she performs pooja to seek blessings from the deity."
   },
   "poppy": {
     "meaning": "Any plant of the genus Papaver or the family Papaveraceae, with crumpled, often red, petals and a milky juice having narcotic properties; especially the common poppy or corn poppy (Papaver rhoeas) which has orange-red flowers; the flower of such a plant.; Of a bright red colour tinted with orange, like that of the common poppy flower (Papaver rhoeas).",
