@@ -1,6 +1,6 @@
 import { autoRetry } from "@grammyjs/auto-retry";
 import { parseMode } from "@grammyjs/parse-mode";
-import { run } from "@grammyjs/runner";
+import { run, sequentialize } from "@grammyjs/runner";
 
 import { commands } from "./commands";
 import { bot } from "./config/bot";
@@ -11,6 +11,11 @@ import { CommandsHelper } from "./util/commands-helper";
 
 bot.api.config.use(autoRetry());
 bot.api.config.use(parseMode("HTML"));
+bot.use(
+  sequentialize((ctx) => {
+    return ctx.chatId?.toString() || ctx.from?.id.toString();
+  }),
+);
 
 bot.use(commands);
 bot.use(callbackQueryHandler);

@@ -31,7 +31,7 @@ composer.command("myscore", async (ctx) => {
     timeKey,
   });
 
-  if (userScores === null) return ctx.reply("No one has scored yet.");
+  if (userScores === null) return ctx.reply("No one has scored yet");
 
   const userScore = userScores[0];
 
