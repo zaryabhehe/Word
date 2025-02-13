@@ -1,6 +1,5 @@
 # WordSeek
-
-**A fun and competitive Wordle-style game that you can play directly on Telegram!**
+<img width="1173" alt="Group 40 5" src="https://github.com/user-attachments/assets/bf444d36-2eea-4ad5-83e7-4a99acda2bfe" />
 
 ## Features
 - Play the Wordle-inspired word guessing game in private chats or group chats.
