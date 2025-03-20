@@ -119,7 +119,17 @@ composer.on("message", async (ctx) => {
     );
   }
 
-  ctx.reply(getFeedback(allGuesses, currentGame.word));
+  let responseMessage = getFeedback(allGuesses, currentGame.word);
+
+  if (allGuesses.length >= 20) {
+    const currentWord = currentGame.word;
+    const meaning = commonWords[currentWord]?.meaning;
+
+    if (meaning)
+      responseMessage += `\n\n<blockquote><strong>Hint:</strong> ${meaning}</blockquote>`;
+  }
+
+  ctx.reply(responseMessage);
 });
 
 export const onMessageHander = composer;
