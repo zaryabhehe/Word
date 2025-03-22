@@ -8,6 +8,7 @@ import { myScoreCommand } from "./my-score";
 import { newGameCommand } from "./new-game";
 import { startCommand } from "./start";
 import { statsCommand } from "./stats";
+import { unbanCommand } from "./unban-user";
 
 const composer = new Composer();
 
@@ -19,6 +20,7 @@ composer.use(
   myScoreCommand,
   statsCommand,
   banCommand,
+  unbanCommand,
   leaderboardCommand,
 );
 
