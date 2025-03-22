@@ -6,6 +6,7 @@ import allWords from "../data/allWords.json";
 import commonWords from "../data/commonWords.json";
 import { db } from "../drizzle/db";
 import {
+  bannedUsersTable,
   gamesTable,
   guessesTable,
   leaderboardTable,
@@ -23,6 +24,34 @@ composer.on("message", async (ctx) => {
     currentGuess.startsWith("/")
   )
     return;
+
+  const [isUserBanned] = await db
+    .select()
+    .from(bannedUsersTable)
+    .where(eq(usersTable.telegramUserId, ctx.from.id.toString()))
+    .innerJoin(usersTable, eq(bannedUsersTable.userId, usersTable.id));
+
+  if (isUserBanned) {
+    const randomEmoji = (["🤡", "🤣"] as const)[Math.floor(Math.random() * 2)];
+    ctx.react(randomEmoji);
+    const me = ctx.me.id.toString();
+
+    const botMentioned =
+      ctx.message.reply_to_message?.from?.id.toString() === me;
+
+    if (botMentioned) {
+      const harshReplies = [
+        "Oh, you again? Didn't expect wisdom from you anyway. 🤡",
+        "The circus is back in town, and you're the main act! 🎪",
+        "Mentioning me won't make you any smarter. Try again. 😂",
+        "Still banned, still clueless. What's next? 🤡",
+      ];
+      const randomReply =
+        harshReplies[Math.floor(Math.random() * harshReplies.length)];
+      ctx.reply(randomReply, { reply_parameters: { message_id: ctx.msgId } });
+    }
+    return;
+  }
 
   const currentGame = await db.query.gamesTable.findFirst({
     where: eq(gamesTable.activeChat, String(ctx.chat.id)),

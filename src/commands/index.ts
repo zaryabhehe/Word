@@ -1,5 +1,6 @@
 import { Composer } from "grammy";
 
+import { banCommand } from "./ban-user";
 import { endGameCommand } from "./end-game";
 import { helpCommand } from "./help";
 import { leaderboardCommand } from "./leaderboard";
@@ -17,6 +18,7 @@ composer.use(
   endGameCommand,
   myScoreCommand,
   statsCommand,
+  banCommand,
   leaderboardCommand,
 );
 
