@@ -105,7 +105,7 @@ composer.on("message", async (ctx) => {
         target: [usersTable.telegramUserId],
         set: {
           name,
-          username,
+          username: username || null,
         },
       })
       .returning({ userId: usersTable.id });
