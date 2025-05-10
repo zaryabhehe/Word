@@ -13,6 +13,7 @@ import {
   usersTable,
 } from "../drizzle/schema";
 import { formatWordDetails } from "../util/format-word-details";
+import { toFancyText } from "../util/to-fancy-text";
 
 const composer = new Composer();
 
@@ -148,7 +149,7 @@ composer.on("message", async (ctx) => {
     );
   }
 
-  let responseMessage = getFeedback(allGuesses, currentGame.word);
+  let responseMessage = toFancyText(getFeedback(allGuesses, currentGame.word));
 
   if (allGuesses.length >= 20) {
     const currentWord = currentGame.word;
