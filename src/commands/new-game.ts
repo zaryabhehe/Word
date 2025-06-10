@@ -1,12 +1,13 @@
 import { Composer } from "grammy";
 
-import crypto from "node:crypto";
+// import crypto from "node:crypto";
 import { DatabaseError } from "pg";
 
-import commonWords from "../data/commonWords.json";
+// import commonWords from "../data/commonWords.json";
 import { db } from "../drizzle/db";
 import { gamesTable } from "../drizzle/schema";
 import { CommandsHelper } from "../util/commands-helper";
+import { WordSelector } from "../util/word-selector";
 
 const composer = new Composer();
 
@@ -14,10 +15,13 @@ composer.command("new", async (ctx) => {
   try {
     const chatId = ctx.chat.id;
 
-    const allWords = Object.keys(commonWords);
+    // const allWords = Object.keys(commonWords);
 
-    const randomIndex = crypto.randomInt(0, allWords.length);
-    const randomWord = allWords[randomIndex].toLowerCase();
+    // const randomIndex = crypto.randomInt(0, allWords.length);
+    // const randomWord = allWords[randomIndex].toLowerCase();
+
+    const wordSelector = new WordSelector();
+    const randomWord = await wordSelector.getRandomWord(chatId);
 
     await db.insert(gamesTable).values({
       word: randomWord,
