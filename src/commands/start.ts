@@ -1,20 +1,21 @@
-import { InlineKeyboard, Context } from "grammy";
+import "dotenv/config";
+import { InlineKeyboard } from "grammy";
 import { bot } from "../config/bot";
 
-// Utility function for sleep/delay
-const sleep = (ms: number) => new Promise(res => setTimeout(res, ms));
+// Utility sleep function
+const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-// Start command with animation
-bot.command("start", async (ctx: Context) => {
-  // Animation sequence
-  const animationMsg = await ctx.reply("⚡");
+// Start command
+bot.command("start", async (ctx) => {
+  // Animation effect
+  const tempMsg = await ctx.reply("⚡");
   await sleep(300);
-  await ctx.api.editMessageText(ctx.chat!.id, animationMsg.message_id, "⚡⚡");
+  await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, "⚡⚡");
   await sleep(300);
-  await ctx.api.editMessageText(ctx.chat!.id, animationMsg.message_id, "⚡⚡⚡");
+  await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, "⚡⚡⚡");
   await sleep(300);
 
-  // Final start message
+  // Start message
   const startText = `ʜᴇʟʟᴏ 𝐒ᴏᴘʜɪᴀ 🧸
 I am WordSeek, your fun and engaging Wordle-style game bot!
 
@@ -25,6 +26,7 @@ I am WordSeek, your fun and engaging Wordle-style game bot!
 
 📚 Need Help? Click the Help button below to see commands and instructions.`;
 
+  // Start keyboard
   const startKeyboard = new InlineKeyboard()
     .text("➕ Add Me to Group").url("https://t.me/YourBotUsername?startgroup=true")
     .row()
@@ -33,7 +35,7 @@ I am WordSeek, your fun and engaging Wordle-style game bot!
     .row()
     .text("👑 Owner").url("https://t.me/YourUsername");
 
-  await ctx.api.editMessageText(ctx.chat!.id, animationMsg.message_id, startText, {
+  await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, startText, {
     reply_markup: startKeyboard,
   });
 });
@@ -41,42 +43,38 @@ I am WordSeek, your fun and engaging Wordle-style game bot!
 // Help button callback
 bot.callbackQuery("help", async (ctx) => {
   const helpText = `📘 <b>How to Play:</b>
-1. You have to guess a random 5-letter word.
+1. Guess a random 5-letter word.
 2. After each guess, you'll get hints:
    - 🟩 - Correct letter in the right spot.
    - 🟨 - Correct letter in the wrong spot.
    - 🟥 - Letter not in the word.
-3. The game will run until the word is found or a maximum of 30 guesses are reached.
-4. The first person to guess the word correctly wins.
+3. Game runs until word is found or 30 guesses max.
+4. First to guess wins.
 
 <b>Commands:</b>
-- /new - Start a new game.
-- /end - End the current game (admins only in groups).
-- /help - Get help on how to play and commands list.
-- /leaderboard - Get leaderboard from current group.
-- /myscore - Get your score of the game.
-- Leaderboard and MyScore parameters: /[leaderboard/myscore] [global/group] [today/week/month/year/all]
-- Example: /leaderboard global month /myscore group all
+- /new - Start a new game
+- /end - End current game (admins only)
+- /help - Get this help
+- /leaderboard - Group leaderboard
+- /myscore - Your score
 
 🛠 Developed by Tamanna
-📢 Official Channel for announcements: @pookue_updates
-🗨 Official Group for playing and suggestions: @Echoclubx`;
+📢 Channel: @pookue_updates
+🗨 Group: @Echoclubx`;
 
   const helpKeyboard = new InlineKeyboard()
     .text("⬅ Back").callback("back")
     .text("❌ Delete").callback("delete");
 
-  await ctx.api.editMessageText(
-    ctx.chat!.id,
-    ctx.callbackQuery.message!.message_id,
-    helpText,
-    { reply_markup: helpKeyboard, parse_mode: "HTML" }
-  );
+  await ctx.api.editMessageText(ctx.chat!.id, ctx.callbackQuery.message!.message_id, helpText, {
+    reply_markup: helpKeyboard,
+    parse_mode: "HTML"
+  });
 
   await ctx.answerCallbackQuery();
 });
 
-// Back button callback
+// Back button
 bot.callbackQuery("back", async (ctx) => {
   const startText = `ʜᴇʟʟᴏ 𝐒ᴏᴘʜɪᴀ 🧸
 I am WordSeek, your fun and engaging Wordle-style game bot!
@@ -96,17 +94,14 @@ I am WordSeek, your fun and engaging Wordle-style game bot!
     .row()
     .text("👑 Owner").url("https://t.me/YourUsername");
 
-  await ctx.api.editMessageText(
-    ctx.chat!.id,
-    ctx.callbackQuery.message!.message_id,
-    startText,
-    { reply_markup: startKeyboard }
-  );
+  await ctx.api.editMessageText(ctx.chat!.id, ctx.callbackQuery.message!.message_id, startText, {
+    reply_markup: startKeyboard
+  });
 
   await ctx.answerCallbackQuery();
 });
 
-// Delete button callback
+// Delete button
 bot.callbackQuery("delete", async (ctx) => {
   await ctx.api.deleteMessage(ctx.chat!.id, ctx.callbackQuery.message!.message_id);
   await ctx.answerCallbackQuery();
