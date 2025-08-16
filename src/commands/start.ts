@@ -1,5 +1,4 @@
 import { Composer, InlineKeyboard } from "grammy";
-import { FOOTER_MESSAGE } from "../config/constants";
 import { CommandsHelper } from "../util/commands-helper";
 
 const composer = new Composer();
@@ -15,47 +14,49 @@ const startKeyboard = new InlineKeyboard()
 
 // Helper function to simulate animated text
 async function animateMessage(ctx: any, texts: string[], delay = 500) {
-  const msg = await ctx.reply(texts[0]);
+  const msg = await ctx.reply(texts[0], { parse_mode: undefined });
   for (let i = 1; i < texts.length; i++) {
     await new Promise((r) => setTimeout(r, delay));
-    await ctx.api.editMessageText(msg.chat.id, msg.message_id, texts[i]);
+    await ctx.api.editMessageText(msg.chat.id, msg.message_id, texts[i], { parse_mode: undefined });
   }
   return msg;
 }
 
 // /start command
 composer.command("start", async (ctx) => {
-  // React to user
+  // React with emoji
   try { await ctx.api.sendMessage(ctx.chat.id, "🍓"); } catch {}
 
-  // Animated welcome messages
-  await animateMessage(ctx, ["`ʜᴇʟʟᴏ " + ctx.from?.first_name + " ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`",
-                             "🕊️", "⚡", "ꜱᴛᴀʀᴛɪɴɢ..."]);
+  // Animated greeting messages
+  await animateMessage(ctx, [
+    `ʜᴇʟʟᴏ ${ctx.from?.first_name} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`,
+    "🕊️",
+    "⚡",
+    "ꜱᴛᴀʀᴛɪɴɢ..."
+  ]);
 
-  // Reply with quote image on top
+  // Reply with quote image at top
   await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
 
-  // Main bot message
-  const userMention = ctx.from?.first_name;
-  const botMention = ctx.botInfo?.first_name;
+  // Main welcome message
+  const userName = ctx.from?.first_name || "there";
+  const botName = ctx.botInfo?.first_name || "WordSeek";
 
   await ctx.reply(
-    `**𝖧𝖾𝗒, ${userMention} 🧸**\n` +
-    `**𝖨 𝖺𝗆 ${botMention}, your fun and engaging Wordle-style game bot!**\n\n` +
-    `[✨](https://files.catbox.moe/spvlya.jpg) **What I Can Do:**\n` +
+    `Hey, ${userName} 🧸\n` +
+    `I am ${botName}, your fun and engaging Wordle-style game bot!\n\n` +
+    `✨ What I Can Do:\n` +
     " • Fun and engaging word games\n" +
     " • Track your scores & leaderboard\n" +
     " • Play solo or with friends\n\n" +
-    "📚 **Need Help?**\nClick the Help button below to see commands and instructions.",
-    {
-      reply_markup: startKeyboard,
-    }
+    "📚 Need Help?\nClick the Help button below to see commands and instructions.",
+    { reply_markup: startKeyboard, parse_mode: undefined }
   );
 });
 
 // Callback for Help button
 composer.callbackQuery("help_callback", async (ctx) => {
-  await ctx.answerCallbackQuery(); // acknowledge click
+  await ctx.answerCallbackQuery(); // acknowledge button click
   await ctx.reply(
     `📘 WordSeek - How to Play:
 1. Guess a random 5-letter word.
@@ -79,7 +80,8 @@ Leaderboard/MyScore example:
 
 🛠 Developed by Zaryab
 📢 Channel: @Pookie_updates
-🗨 Group: @EchoClubX`
+🗨 Group: @EchoClubX`,
+    { parse_mode: undefined }
   );
 });
 
