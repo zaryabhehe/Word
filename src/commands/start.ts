@@ -8,24 +8,24 @@ const startKeyboard = new InlineKeyboard()
   .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
   .row()
   .url("Support", "https://t.me/echoclubx")
-  .url("Help", "help_callback")
+  .text("Help").callback("help_callback") // Fixed: use callback
   .row()
   .url("Owner", "https://t.me/billichor");
 
-// Helper for animation
+// Helper for animated greeting
 async function animateMessage(ctx: any, texts: string[], delay = 500) {
   const msg = await ctx.reply(texts[0], { parse_mode: undefined });
   for (let i = 1; i < texts.length; i++) {
     await new Promise((r) => setTimeout(r, delay));
     await ctx.api.editMessageText(msg.chat.id, msg.message_id, texts[i], { parse_mode: undefined });
   }
-  // Delete the animated message at the end
+  // Delete the animated message after animation
   await ctx.api.deleteMessage(msg.chat.id, msg.message_id);
 }
 
 // /start command
 composer.command("start", async (ctx) => {
-  // Animate greeting and delete it afterward
+  // Animate greeting and delete afterward
   await animateMessage(ctx, [
     `ʜᴇʟʟᴏ ${ctx.from?.first_name} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`,
     "🕊️",
@@ -33,7 +33,7 @@ composer.command("start", async (ctx) => {
     "ꜱᴛᴀʀᴛɪɴɢ..."
   ]);
 
-  // Send quote image
+  // Send top quote image
   await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
 
   // Main welcome message
@@ -54,7 +54,7 @@ composer.command("start", async (ctx) => {
 
 // Help button callback
 composer.callbackQuery("help_callback", async (ctx) => {
-  await ctx.answerCallbackQuery();
+  await ctx.answerCallbackQuery(); // acknowledge click
   await ctx.reply(
     `📘 WordSeek - How to Play:
 1. Guess a random 5-letter word.
