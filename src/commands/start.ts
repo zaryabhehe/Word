@@ -3,12 +3,12 @@ import { CommandsHelper } from "../util/commands-helper";
 
 const composer = new Composer();
 
-// Inline keyboard for /start
+// Inline keyboard for /start (fixed)
 const startKeyboard = new InlineKeyboard()
   .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
   .row()
   .url("Support", "https://t.me/echoclubx")
-  .text("Help").callback("help_callback") // Fixed: use callback
+  .text("Help", "help_callback") // callback data for Help button
   .row()
   .url("Owner", "https://t.me/billichor");
 
@@ -25,7 +25,7 @@ async function animateMessage(ctx: any, texts: string[], delay = 500) {
 
 // /start command
 composer.command("start", async (ctx) => {
-  // Animate greeting and delete afterward
+  // Animated greeting message
   await animateMessage(ctx, [
     `ʜᴇʟʟᴏ ${ctx.from?.first_name} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`,
     "🕊️",
@@ -54,7 +54,7 @@ composer.command("start", async (ctx) => {
 
 // Help button callback
 composer.callbackQuery("help_callback", async (ctx) => {
-  await ctx.answerCallbackQuery(); // acknowledge click
+  await ctx.answerCallbackQuery(); // acknowledge button click
   await ctx.reply(
     `📘 WordSeek - How to Play:
 1. Guess a random 5-letter word.
