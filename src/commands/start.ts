@@ -3,60 +3,60 @@ import { CommandsHelper } from "../util/commands-helper";
 
 const composer = new Composer();
 
-// Inline keyboard for /start (fixed)
-const startKeyboard = new InlineKeyboard()
-  .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
-  .row()
-  .url("Support", "https://t.me/echoclubx")
-  .text("Help", "help_callback") // callback data for Help button
-  .row()
-  .url("Owner", "https://t.me/billichor");
-
-// Helper for animated greeting
-async function animateMessage(ctx: any, texts: string[], delay = 500) {
-  const msg = await ctx.reply(texts[0], { parse_mode: undefined });
-  for (let i = 1; i < texts.length; i++) {
-    await new Promise((r) => setTimeout(r, delay));
-    await ctx.api.editMessageText(msg.chat.id, msg.message_id, texts[i], { parse_mode: undefined });
-  }
-  // Delete the animated message after animation
-  await ctx.api.deleteMessage(msg.chat.id, msg.message_id);
-}
-
-// /start command
-composer.command("start", async (ctx) => {
-  // Animated greeting message
-  await animateMessage(ctx, [
-    `ʜᴇʟʟᴏ ${ctx.from?.first_name} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`,
-    "🕊️",
-    "⚡",
-    "ꜱᴛᴀʀᴛɪɴɢ..."
-  ]);
-
-  // Send top quote image
-  await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
-
-  // Main welcome message
-  const userName = ctx.from?.first_name || "there";
-  const botName = ctx.botInfo?.first_name || "WordSeek";
-
-  await ctx.reply(
-    `Hey, ${userName} 🧸\n` +
+// Function to generate the start message text
+function getStartText(userName: string, botName: string) {
+  return `Hey, ${userName} 🧸\n` +
     `I am ${botName}, your fun and engaging Wordle-style game bot!\n\n` +
     `✨ What I Can Do:\n` +
     " • Fun and engaging word games\n" +
     " • Track your scores & leaderboard\n" +
     " • Play solo or with friends\n\n" +
-    "📚 Need Help?\nClick the Help button below to see commands and instructions.",
-    { reply_markup: startKeyboard, parse_mode: undefined }
+    "📚 Need Help?\nClick the Help button below to see commands and instructions.";
+}
+
+// Function to generate start keyboard
+function getStartKeyboard() {
+  return new InlineKeyboard()
+    .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
+    .row()
+    .url("Support", "https://t.me/echoclubx")
+    .text("Help", "help") // callback data
+    .row()
+    .url("Owner", "https://t.me/billichor")
+    .text("Delete", "delete"); // callback to delete the message
+}
+
+// Function to generate help keyboard
+function getHelpKeyboard() {
+  return new InlineKeyboard()
+    .text("Back", "back") // go back to start message
+    .row()
+    .text("Delete", "delete");
+}
+
+// /start command
+composer.command("start", async (ctx) => {
+  const userName = ctx.from?.first_name || "there";
+  const botName = ctx.botInfo?.first_name || "WordSeek";
+
+  await ctx.replyWithPhoto(
+    "https://files.catbox.moe/spvlya.jpg",
+    {
+      caption: getStartText(userName, botName),
+      reply_markup: getStartKeyboard(),
+    }
   );
 });
 
-// Help button callback
-composer.callbackQuery("help_callback", async (ctx) => {
-  await ctx.answerCallbackQuery(); // acknowledge button click
-  await ctx.reply(
-    `📘 WordSeek - How to Play:
+// Callback query handler
+composer.callbackQuery(/.*/, async (ctx) => {
+  const data = ctx.callbackQuery.data;
+
+  if (data === "help") {
+    await ctx.api.editMessageCaption(
+      ctx.chat.id,
+      ctx.callbackQuery.message?.message_id!,
+      `📘 WordSeek - How to Play:
 1. Guess a random 5-letter word.
 2. After each guess, hints:
    - 🟩 Correct letter in the right spot
@@ -79,10 +79,28 @@ Leaderboard/MyScore example:
 🛠 Developed by Zaryab
 📢 Channel: @Pookie_updates
 🗨 Group: @EchoClubX`,
-    { parse_mode: undefined }
-  );
+      { reply_markup: getHelpKeyboard() }
+    );
+    await ctx.answerCallbackQuery();
+  }
+
+  else if (data === "back") {
+    const userName = ctx.from?.first_name || "there";
+    const botName = ctx.botInfo?.first_name || "WordSeek";
+    await ctx.api.editMessageCaption(
+      ctx.chat.id,
+      ctx.callbackQuery.message?.message_id!,
+      getStartText(userName, botName),
+      { reply_markup: getStartKeyboard() }
+    );
+    await ctx.answerCallbackQuery();
+  }
+
+  else if (data === "delete") {
+    await ctx.api.deleteMessage(ctx.chat.id, ctx.callbackQuery.message?.message_id!);
+  }
 });
 
-CommandsHelper.addNewCommand("start", "Start the bot with welcome buttons, animation, and help.");
+CommandsHelper.addNewCommand("start", "Start the bot with inline image, help, back, and delete.");
 
 export const startCommand = composer;
