@@ -8,26 +8,24 @@ const startKeyboard = new InlineKeyboard()
   .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
   .row()
   .url("Support", "https://t.me/echoclubx")
-  .url("Help", "help_callback") // Callback to show help
+  .url("Help", "help_callback")
   .row()
   .url("Owner", "https://t.me/billichor");
 
-// Helper function to simulate animated text
+// Helper for animation
 async function animateMessage(ctx: any, texts: string[], delay = 500) {
   const msg = await ctx.reply(texts[0], { parse_mode: undefined });
   for (let i = 1; i < texts.length; i++) {
     await new Promise((r) => setTimeout(r, delay));
     await ctx.api.editMessageText(msg.chat.id, msg.message_id, texts[i], { parse_mode: undefined });
   }
-  return msg;
+  // Delete the animated message at the end
+  await ctx.api.deleteMessage(msg.chat.id, msg.message_id);
 }
 
 // /start command
 composer.command("start", async (ctx) => {
-  // React with emoji
-  try { await ctx.api.sendMessage(ctx.chat.id, "🍓"); } catch {}
-
-  // Animated greeting messages
+  // Animate greeting and delete it afterward
   await animateMessage(ctx, [
     `ʜᴇʟʟᴏ ${ctx.from?.first_name} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`,
     "🕊️",
@@ -35,7 +33,7 @@ composer.command("start", async (ctx) => {
     "ꜱᴛᴀʀᴛɪɴɢ..."
   ]);
 
-  // Reply with quote image at top
+  // Send quote image
   await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
 
   // Main welcome message
@@ -54,9 +52,9 @@ composer.command("start", async (ctx) => {
   );
 });
 
-// Callback for Help button
+// Help button callback
 composer.callbackQuery("help_callback", async (ctx) => {
-  await ctx.answerCallbackQuery(); // acknowledge button click
+  await ctx.answerCallbackQuery();
   await ctx.reply(
     `📘 WordSeek - How to Play:
 1. Guess a random 5-letter word.
