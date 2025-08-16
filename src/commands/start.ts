@@ -1,21 +1,31 @@
-import { Bot, InlineKeyboard } from "grammy";
-import * as dotenv from "dotenv";
+import { Composer, InlineKeyboard } from "grammy";
+import { FOOTER_MESSAGE } from "../config/constants";
+import { CommandsHelper } from "../util/commands-helper";
 
-dotenv.config();
+const composer = new Composer();
 
-const bot = new Bot(process.env.BOT_TOKEN!);
+// Start buttons
+const startKeyboard = new InlineKeyboard()
+  .url("➕ Add Me", "https://t.me/YourBotUsername?startgroup=true")
+  .row()
+  .url("Updates", "https://t.me/echoclubx")
+  .text("Help", "help")
+  .row()
+  .text("Owner", "owner");
 
-// URLs and texts
-const START_IMAGE = "https://files.catbox.moe/v2y36k.jpg";
-const START_TEXT = `
-Hey, 🧸
-I am WordSeek, your fun Wordle-style game bot!
+// Help buttons
+const helpKeyboard = new InlineKeyboard().text("Delete", "delete");
 
-✨ What I Can Do:
-• Play fun 5-letter word games
-• Track scores & leaderboard
-• Play solo or with friends
-`;
+// Main start message
+const START_TEXT = `<blockquote><strong>WordSeek</strong></blockquote>
+A fun and competitive Wordle-style game that you can play directly on Telegram!
+
+1. Use /new to start a game. Add me to a group with admin permission to play with your friends.
+2. Use /help to get help on how to play and commands list.
+
+${FOOTER_MESSAGE}`;
+
+// Help message
 const HELP_TEXT = `
 How to Play:
 1. Guess a random 5-letter word.
@@ -29,7 +39,7 @@ How to Play:
 Commands:
 /new - Start new game
 /end - End current game (admins only)
-/help - Show help
+/help - Show this help
 /leaderboard - Show leaderboard
 /myscore - Show your score
 
@@ -38,54 +48,37 @@ Commands:
 🗨 Group: @Echoclubx
 `;
 
-// Start keyboard
-function getStartKeyboard() {
-  return new InlineKeyboard()
-    .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
-    .row()
-    .url("Support", "https://t.me/echoclubx")
-    .text("Help", "help")
-    .row()
-    .text("Owner", "owner");
-}
+// /start command with animation
+composer.command("start", async (ctx) => {
+  const tempMsg = await ctx.reply("🟢⚪⚪");
 
-// Help keyboard
-function getHelpKeyboard() {
-  return new InlineKeyboard()
-    .text("Back", "back")
-    .text("Delete", "delete");
-}
+  await new Promise((res) => setTimeout(res, 500));
+  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, "🟢🟢⚪");
 
-// /start command
-bot.command("start", async (ctx) => {
-  await ctx.replyWithPhoto(START_IMAGE, {
-    caption: START_TEXT,
-    reply_markup: getStartKeyboard(),
+  await new Promise((res) => setTimeout(res, 500));
+  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, "🟢🟢🟢");
+
+  // Replace with main start message
+  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, START_TEXT, {
+    parse_mode: "HTML",
+    reply_markup: startKeyboard,
   });
 });
 
-// Callback query handler
-bot.on("callback_query:data", async (ctx) => {
-  const data = ctx.callbackQuery.data;
-
-  if (data === "help") {
-    await ctx.editMessageCaption(HELP_TEXT, {
-      reply_markup: getHelpKeyboard(),
-    });
-  }
-
-  if (data === "back") {
-    await ctx.editMessageCaption(START_TEXT, {
-      reply_markup: getStartKeyboard(),
-    });
-  }
-
-  if (data === "delete") {
-    await ctx.deleteMessage();
-  }
-
-  await ctx.answerCallbackQuery(); // remove loading state
+// Callback queries for buttons
+composer.callbackQuery("help", async (ctx) => {
+  await ctx.editMessageText(HELP_TEXT, {
+    parse_mode: "HTML",
+    reply_markup: helpKeyboard,
+  });
+  await ctx.answerCallbackQuery();
 });
 
-console.log("Bot started");
-bot.start();
+composer.callbackQuery("delete", async (ctx) => {
+  await ctx.deleteMessage();
+  await ctx.answerCallbackQuery();
+});
+
+CommandsHelper.addNewCommand("start", "Start the bot.");
+
+export const startCommand = composer;
