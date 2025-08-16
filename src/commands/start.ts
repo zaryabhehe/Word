@@ -3,14 +3,13 @@ import { CommandsHelper } from "../util/commands-helper";
 
 const composer = new Composer();
 
-// Animation helper
+// Helper: animated start messages
 async function animateStart(ctx: any, texts: string[], delay = 500) {
   const msg = await ctx.reply(texts[0]);
   for (let i = 1; i < texts.length; i++) {
     await new Promise(r => setTimeout(r, delay));
     await ctx.api.editMessageText(ctx.chat.id, msg.message_id, texts[i]);
   }
-  // Delete the animated message after finishing
   await ctx.api.deleteMessage(ctx.chat.id, msg.message_id);
 }
 
@@ -47,15 +46,15 @@ composer.command("start", async (ctx) => {
   const userName = ctx.from?.first_name || "there";
   const botName = ctx.botInfo?.first_name || "WordSeek";
 
-  // Animated starting message
+  // Animated starting messages (safe Unicode)
   await animateStart(ctx, [
-    `ʜᴇʟʟᴏ ${userName} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ ... <3`,
+    `ʜᴇʟʟᴏ ${userName} ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ ... ❤️`,
     "🕊️",
     "⚡",
     "ꜱᴛᴀʀᴛɪɴɢ..."
   ], 400);
 
-  // Send main start message with image + buttons
+  // Send main start message with image + caption
   await ctx.replyWithPhoto(
     "https://files.catbox.moe/spvlya.jpg",
     {
