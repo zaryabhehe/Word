@@ -4,47 +4,85 @@ import { CommandsHelper } from "../util/commands-helper";
 
 const composer = new Composer();
 
-// Create the inline keyboard
+// Inline keyboard for /start
 const startKeyboard = new InlineKeyboard()
-  .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true") // first big button
+  .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
   .row()
-  .url("💭 Support", "https://t.me/echoclubx") // second button
-  .url("📚 Help", "https://t.me/echoclubx")    // third button in same row
+  .url("Support", "https://t.me/echoclubx")
+  .url("Help", "help_callback") // Callback to show help
   .row()
-  .url("🌟 Owner", "https://t.me/billichor");  // fourth button
+  .url("Owner", "https://t.me/billichor");
 
-composer.command("start", (ctx) =>
-  ctx.reply(
-    `<blockquote><strong>WordSeek</strong></blockquote>
+// Helper function to simulate animated text
+async function animateMessage(ctx: any, texts: string[], delay = 500) {
+  const msg = await ctx.reply(texts[0]);
+  for (let i = 1; i < texts.length; i++) {
+    await new Promise((r) => setTimeout(r, delay));
+    await ctx.api.editMessageText(msg.chat.id, msg.message_id, texts[i]);
+  }
+  return msg;
+}
 
-How to Play:
+// /start command
+composer.command("start", async (ctx) => {
+  // React to user
+  try { await ctx.api.sendMessage(ctx.chat.id, "🍓"); } catch {}
+
+  // Animated welcome messages
+  await animateMessage(ctx, ["`ʜᴇʟʟᴏ " + ctx.from?.first_name + " ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ... <3`",
+                             "🕊️", "⚡", "ꜱᴛᴀʀᴛɪɴɢ..."]);
+
+  // Reply with quote image on top
+  await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
+
+  // Main bot message
+  const userMention = ctx.from?.first_name;
+  const botMention = ctx.botInfo?.first_name;
+
+  await ctx.reply(
+    `**𝖧𝖾𝗒, ${userMention} 🧸**\n` +
+    `**𝖨 𝖺𝗆 ${botMention}, your fun and engaging Wordle-style game bot!**\n\n` +
+    `[✨](https://files.catbox.moe/spvlya.jpg) **What I Can Do:**\n` +
+    " • Fun and engaging word games\n" +
+    " • Track your scores & leaderboard\n" +
+    " • Play solo or with friends\n\n" +
+    "📚 **Need Help?**\nClick the Help button below to see commands and instructions.",
+    {
+      reply_markup: startKeyboard,
+    }
+  );
+});
+
+// Callback for Help button
+composer.callbackQuery("help_callback", async (ctx) => {
+  await ctx.answerCallbackQuery(); // acknowledge click
+  await ctx.reply(
+    `📘 WordSeek - How to Play:
 1. Guess a random 5-letter word.
-2. After each guess, you'll get hints:
+2. After each guess, hints:
    - 🟩 Correct letter in the right spot
-   - 🟨 Correct letter in the wrong spot
-   - 🟥 Letter not in the word
-3. Game runs until word is found or max 30 guesses.
-4. First person to guess correctly wins.
+   - 🟨 Correct letter wrong spot
+   - 🟥 Letter not in word
+3. Up to 30 guesses per round.
+4. First to guess correctly wins.
 
 Commands:
-- /new - Start a new game
-- /end - End current game (admins only)
+- /new - Start new game
+- /end - End game (admins)
 - /help - Get help
-- /leaderboard - Get leaderboard
-- /myscore - Get your score
+- /leaderboard - See leaderboard
+- /myscore - Check score
 
-Leaderboard & MyScore parameters: /[leaderboard/myscore] [global/group] [today/week/month/year/all]
-Example: /leaderboard global month /myscore group all
+Leaderboard/MyScore example:
+/leaderboard global month
+/myscore group all
 
 🛠 Developed by Zaryab
-📢 Official Channel: @Pookie_updates
-🗨 Official Group: @EchoClubX
+📢 Channel: @Pookie_updates
+🗨 Group: @EchoClubX`
+  );
+});
 
-${FOOTER_MESSAGE}`,
-    { reply_markup: startKeyboard }
-  ),
-);
-
-CommandsHelper.addNewCommand("start", "Start the bot with buttons.");
+CommandsHelper.addNewCommand("start", "Start the bot with welcome buttons, animation, and help.");
 
 export const startCommand = composer;
