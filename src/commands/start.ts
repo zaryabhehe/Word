@@ -5,10 +5,10 @@ dotenv.config();
 // Bot token from .env
 const bot = new Bot(process.env.BOT_TOKEN || "");
 
-// URL for your quote image
+// URL for your start image
 const START_IMAGE = "https://files.catbox.moe/spvlya.jpg";
 
-// Function to get start menu keyboard
+// Start menu keyboard
 function getStartKeyboard() {
   return new InlineKeyboard()
     .url("➕  Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
@@ -19,7 +19,7 @@ function getStartKeyboard() {
     .url("Owner", "https://t.me/billichor");
 }
 
-// Function to get help menu keyboard
+// Help menu keyboard
 function getHelpKeyboard() {
   return new InlineKeyboard()
     .text("⬅ Back").callback("back")
@@ -28,28 +28,26 @@ function getHelpKeyboard() {
 
 // /start command
 bot.command("start", async (ctx) => {
-  // Optional animation sequence before sending image
+  // Animation sequence
   const tempMsg = await ctx.reply("⚡");
   await new Promise(res => setTimeout(res, 500));
   await tempMsg.editText("🕊️");
   await new Promise(res => setTimeout(res, 500));
   await tempMsg.editText("Starting...");
-
-  // Delete temp message
   await tempMsg.delete();
 
   // Send start image + caption
   await ctx.replyWithPhoto(
     START_IMAGE,
     {
-      caption: `**𝖧𝖾𝗒, ${ctx.from?.first_name || "there"} 🧸**\nI am WordSeek, your fun and engaging Wordle-style game bot on Telegram!\n\n✨  What I Can Do:\n • Fun and engaging word games\n • Track your scores & leaderboard\n • Play solo or with friends\n\n📚 Need Help? Click Help button below to see commands.`,
+      caption: `**𝖧𝖾𝗒, ${ctx.from?.first_name || "there"} 🧸**\nI am WordSeek, your fun and engaging Wordle-style game bot!\n\n✨  What I Can Do:\n • Fun and engaging word games\n • Track your scores & leaderboard\n • Play solo or with friends\n\n📚 Need Help? Click Help button below to see commands.`,
       parse_mode: "Markdown",
       reply_markup: getStartKeyboard()
     }
   );
 });
 
-// Callback for Help button
+// Help button callback
 bot.callbackQuery("help", async (ctx) => {
   await ctx.editMessageCaption(
     `📘 **WordSeek - How to Play:**\n
@@ -78,15 +76,15 @@ Example: /leaderboard global month /myscore group all
   );
 });
 
-// Callback for Back button
+// Back button callback
 bot.callbackQuery("back", async (ctx) => {
   await ctx.editMessageCaption(
-    `**𝖧𝖾𝗒, ${ctx.from?.first_name || "there"} 🧸**\nI am WordSeek, your fun and engaging Wordle-style game bot on Telegram!\n\n✨  What I Can Do:\n • Fun and engaging word games\n • Track your scores & leaderboard\n • Play solo or with friends\n\n📚 Need Help? Click Help button below to see commands.`,
+    `**𝖧𝖾𝗒, ${ctx.from?.first_name || "there"} 🧸**\nI am WordSeek, your fun and engaging Wordle-style game bot!\n\n✨  What I Can Do:\n • Fun and engaging word games\n • Track your scores & leaderboard\n • Play solo or with friends\n\n📚 Need Help? Click Help button below to see commands.`,
     { reply_markup: getStartKeyboard() }
   );
 });
 
-// Callback for Delete button
+// Delete button callback
 bot.callbackQuery("delete", async (ctx) => {
   await ctx.deleteMessage();
 });
