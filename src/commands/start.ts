@@ -1,90 +1,80 @@
-import "dotenv/config";
-import { InlineKeyboard } from "grammy";
-import { bot } from "../config/bot";
+import "dotenv/config"; // Load BOT_TOKEN from .env
+import { Bot, InlineKeyboard } from "grammy";
 
-// Utility sleep function
+const bot = new Bot(process.env.BOT_TOKEN!);
+
+// Helper sleep function
 const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-// Start command
 bot.command("start", async (ctx) => {
-  // Animation effect
+  // Send temporary blank message for animation
   const tempMsg = await ctx.reply("⚡");
-  await sleep(300);
-  await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, "⚡⚡");
-  await sleep(300);
-  await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, "⚡⚡⚡");
-  await sleep(300);
 
-  // Start message
+  const word = "WordSeek";
+  let display = "";
+
+  for (let i = 0; i < word.length; i++) {
+    display += word[i];
+    await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, `ʜᴇʟʟᴏ 𝐒ᴏᴘʜɪᴀ 🧸\n\n${display}`);
+    await sleep(200);
+  }
+
+  // Full start message
   const startText = `ʜᴇʟʟᴏ 𝐒ᴏᴘʜɪᴀ 🧸
-I am WordSeek, your fun and engaging Wordle-style game bot!
+I am WordSeek, your fun Wordle-style game bot!
 
 ✨ What I Can Do:
  • Fun and engaging word games
  • Track your scores & leaderboard
  • Play solo or with friends
 
-📚 Need Help? Click the Help button below to see commands and instructions.`;
+📚 Need Help? Click Help below!`;
 
-  // Start keyboard
   const startKeyboard = new InlineKeyboard()
     .text("➕ Add Me to Group").url("https://t.me/YourBotUsername?startgroup=true")
     .row()
     .text("Support").url("https://t.me/echoclubx")
     .text("Help").callback("help")
     .row()
-    .text("👑 Owner").url("https://t.me/YourUsername");
+    .text("👑 Owner").callback("owner");
 
   await ctx.api.editMessageText(ctx.chat!.id, tempMsg.message_id, startText, {
     reply_markup: startKeyboard,
   });
 });
 
-// Help button callback
+// Help callback
 bot.callbackQuery("help", async (ctx) => {
-  const helpText = `📘 <b>How to Play:</b>
+  const helpText = `How to Play:
 1. Guess a random 5-letter word.
-2. After each guess, you'll get hints:
-   - 🟩 - Correct letter in the right spot.
-   - 🟨 - Correct letter in the wrong spot.
-   - 🟥 - Letter not in the word.
-3. Game runs until word is found or 30 guesses max.
-4. First to guess wins.
+2. Hints: 🟩 correct spot, 🟨 wrong spot, 🟥 not in word.
+3. First to guess wins!
 
-<b>Commands:</b>
-- /new - Start a new game
-- /end - End current game (admins only)
-- /help - Get this help
-- /leaderboard - Group leaderboard
-- /myscore - Your score
-
-🛠 Developed by Tamanna
-📢 Channel: @pookue_updates
-🗨 Group: @Echoclubx`;
+Commands:
+• /new - Start a new game
+• /end - End current game
+• /leaderboard - Show leaderboard
+• /myscore - Show your score`;
 
   const helpKeyboard = new InlineKeyboard()
-    .text("⬅ Back").callback("back")
-    .text("❌ Delete").callback("delete");
+    .text("⬅️ Back").callback("back")
+    .text("🗑 Delete").callback("delete");
 
-  await ctx.api.editMessageText(ctx.chat!.id, ctx.callbackQuery.message!.message_id, helpText, {
-    reply_markup: helpKeyboard,
-    parse_mode: "HTML"
-  });
-
-  await ctx.answerCallbackQuery();
+  await ctx.editMessageText(helpText, { reply_markup: helpKeyboard });
 });
 
 // Back button
 bot.callbackQuery("back", async (ctx) => {
+  await ctx.answerCallbackQuery();
   const startText = `ʜᴇʟʟᴏ 𝐒ᴏᴘʜɪᴀ 🧸
-I am WordSeek, your fun and engaging Wordle-style game bot!
+I am WordSeek, your fun Wordle-style game bot!
 
 ✨ What I Can Do:
  • Fun and engaging word games
  • Track your scores & leaderboard
  • Play solo or with friends
 
-📚 Need Help? Click the Help button below to see commands and instructions.`;
+📚 Need Help? Click Help below!`;
 
   const startKeyboard = new InlineKeyboard()
     .text("➕ Add Me to Group").url("https://t.me/YourBotUsername?startgroup=true")
@@ -92,17 +82,16 @@ I am WordSeek, your fun and engaging Wordle-style game bot!
     .text("Support").url("https://t.me/echoclubx")
     .text("Help").callback("help")
     .row()
-    .text("👑 Owner").url("https://t.me/YourUsername");
+    .text("👑 Owner").callback("owner");
 
-  await ctx.api.editMessageText(ctx.chat!.id, ctx.callbackQuery.message!.message_id, startText, {
-    reply_markup: startKeyboard
-  });
-
-  await ctx.answerCallbackQuery();
+  await ctx.editMessageText(startText, { reply_markup: startKeyboard });
 });
 
 // Delete button
 bot.callbackQuery("delete", async (ctx) => {
-  await ctx.api.deleteMessage(ctx.chat!.id, ctx.callbackQuery.message!.message_id);
-  await ctx.answerCallbackQuery();
+  await ctx.deleteMessage();
+});
+
+bot.start({
+  drop_pending_updates: true,
 });
