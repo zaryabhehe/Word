@@ -1,6 +1,5 @@
-import { Composer, InlineKeyboard } from "grammy";
+import { Composer } from "grammy";
 import { eq } from "drizzle-orm";
-import { performance } from "perf_hooks";
 
 import { env } from "../config/env";
 import { db } from "../drizzle/db";
@@ -8,142 +7,93 @@ import { bannedUsersTable, usersTable } from "../drizzle/schema";
 
 const composer = new Composer();
 
-// --- Utils ---
-function isAdmin(ctx: any) {
-  return ctx.from && env.ADMIN_USERS.includes(ctx.from.id);
+// Helper: check admin
+function isAdmin(userId: number) {
+  return env.ADMIN_USERS.includes(userId);
 }
 
-function formatUser(user: any) {
-  return `👤 Name: ${user.name}
-🆔 ID: <code>${user.telegramUserId}</code>
-🔗 Username: ${user.username ? "@" + user.username : "No Username"}`;
-}
-
-function nowUTC() {
-  return new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
-}
-
-const deleteKeyboard = new InlineKeyboard().text("🗑 Delete", "delete");
-
-// --- /gban ---
+// /gban command
 composer.command("gban", async (ctx) => {
-  if (!ctx.from || ctx.chat.type !== "private") return;
-  if (!isAdmin(ctx)) return;
+  if (!ctx.from) return;
 
-  const args = ctx.message?.text?.split(" ").slice(1).join(" ");
-  if (!args) return ctx.reply("⚠️ Provide a user ID or username.");
+  if (!isAdmin(ctx.from.id)) {
+    return ctx.reply("🚫 You are not authorized to use this command.");
+  }
 
-  const t0 = performance.now();
+  const target = ctx.match?.trim();
+  if (!target) return ctx.reply("Usage: /gban <user_id | @username>");
 
-  const isUsername = args.startsWith("@");
+  const isUsername = target.startsWith("@");
+
   const [user] = await db
     .select()
     .from(usersTable)
     .where(
       isUsername
-        ? eq(usersTable.username, args.substring(1))
-        : eq(usersTable.telegramUserId, Number(args)),
+        ? eq(usersTable.username, target.substring(1))
+        : eq(usersTable.telegramUserId, target),
+    );
+
+  if (!user) return ctx.reply("❌ Can't find that user in database.");
+
+  // Check if already banned
+  const [already] = await db
+    .select()
+    .from(bannedUsersTable)
+    .where(eq(bannedUsersTable.userId, user.id));
+
+  if (already) return ctx.reply(`⚠️ ${user.name} is already globally banned.`);
+
+  await db.insert(bannedUsersTable).values({ userId: user.id });
+
+  ctx.reply(`✅ Globally banned ${user.name} (${user.telegramUserId})`);
+});
+
+// /ungban command
+composer.command("ungban", async (ctx) => {
+  if (!ctx.from) return;
+
+  if (!isAdmin(ctx.from.id)) {
+    return ctx.reply("🚫 You are not authorized to use this command.");
+  }
+
+  const target = ctx.match?.trim();
+  if (!target) return ctx.reply("Usage: /ungban <user_id | @username>");
+
+  const isUsername = target.startsWith("@");
+
+  const [user] = await db
+    .select()
+    .from(usersTable)
+    .where(
+      isUsername
+        ? eq(usersTable.username, target.substring(1))
+        : eq(usersTable.telegramUserId, target),
     );
 
   if (!user) return ctx.reply("❌ Can't find that user in database.");
 
   await db
-    .insert(bannedUsersTable)
-    .values({ userId: user.id })
-    .onConflictDoNothing();
+    .delete(bannedUsersTable)
+    .where(eq(bannedUsersTable.userId, user.id));
 
-  const t1 = performance.now();
-  const execTime = ((t1 - t0) / 1000).toFixed(2);
-
-  return ctx.reply(
-    `📡 Applying Global Ban to all chats...
-💾 Saving ban records...
-✅ Global Ban Successful
-
-${formatUser(user)}
-⚡ Action: <b>Global Ban</b>
-👑 By: <b>${ctx.from.first_name}</b>
-⏱ Time Taken: ${execTime}s
-📅 Time: ${nowUTC()}`,
-    { parse_mode: "HTML", reply_markup: deleteKeyboard },
-  );
+  ctx.reply(`✅ Removed global ban for ${user.name} (${user.telegramUserId})`);
 });
 
-// --- /ungban ---
-composer.command("ungban", async (ctx) => {
-  if (!ctx.from || ctx.chat.type !== "private") return;
-  if (!isAdmin(ctx)) return;
+// Middleware: block banned users everywhere
+composer.use(async (ctx, next) => {
+  if (!ctx.from) return;
 
-  const args = ctx.message?.text?.split(" ").slice(1).join(" ");
-  if (!args) return ctx.reply("⚠️ Provide a user ID or username.");
-
-  const t0 = performance.now();
-
-  const isUsername = args.startsWith("@");
-  const [user] = await db
-    .select()
-    .from(usersTable)
-    .where(
-      isUsername
-        ? eq(usersTable.username, args.substring(1))
-        : eq(usersTable.telegramUserId, Number(args)),
-    );
-
-  if (!user) return ctx.reply("❌ Can't find that user in database.");
-
-  await db.delete(bannedUsersTable).where(eq(bannedUsersTable.userId, user.id));
-
-  const t1 = performance.now();
-  const execTime = ((t1 - t0) / 1000).toFixed(2);
-
-  return ctx.reply(
-    `📡 Removing Global Ban from system...
-💾 Updating records...
-✅ Unban Successful
-
-${formatUser(user)}
-⚡ Action: <b>Unban</b>
-👑 By: <b>${ctx.from.first_name}</b>
-⏱ Time Taken: ${execTime}s
-📅 Time: ${nowUTC()}`,
-    { parse_mode: "HTML", reply_markup: deleteKeyboard },
-  );
-});
-
-// --- /gbanned ---
-composer.command("gbanned", async (ctx) => {
-  if (!ctx.from || ctx.chat.type !== "private") return;
-  if (!isAdmin(ctx)) return;
-
-  const banned = await db
+  const [banned] = await db
     .select()
     .from(bannedUsersTable)
-    .innerJoin(usersTable, eq(bannedUsersTable.userId, usersTable.id));
+    .where(eq(bannedUsersTable.userId, ctx.from.id));
 
-  if (banned.length === 0) {
-    return ctx.reply("🟢 No globally banned users.", {
-      reply_markup: deleteKeyboard,
-    });
+  if (banned) {
+    return ctx.reply("🚫 You are globally banned from using this bot.");
   }
 
-  let list = "🔰 <b>Globally Banned Users</b>\n═══════════════════════\n";
-  banned.forEach((entry, i) => {
-    const u = entry.users;
-    list += `➤ ${i + 1}. ${u.name} ${
-      u.username ? "@" + u.username : "No Username"
-    }\n   🆔 <code>${u.telegramUserId}</code>\n───────────────────────\n`;
-  });
-  list +=
-    "⚠️ Use with caution! Global actions affect all groups where the bot is present.";
-
-  return ctx.reply(list, { parse_mode: "HTML", reply_markup: deleteKeyboard });
+  return next();
 });
 
-// --- Delete handler ---
-composer.callbackQuery("delete", async (ctx) => {
-  await ctx.deleteMessage();
-  await ctx.answerCallbackQuery();
-});
-
-// ✅ Correct export (matches your import)
-export const banCommand = composer;
+export const gbanCommand = composer;
