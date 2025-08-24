@@ -1,4 +1,4 @@
-import { Composer } from "grammy";
+import { Composer, InlineKeyboard } from "grammy";
 import { eq } from "drizzle-orm";
 
 import { env } from "../config/env";
@@ -6,7 +6,9 @@ import { db } from "../drizzle/db";
 import { bannedUsersTable, usersTable } from "../drizzle/schema";
 
 const composer = new Composer();
+const deleteKeyboard = new InlineKeyboard().text("🗑 Delete", "delete");
 
+// --- /ungban ---
 composer.command("ungban", async (ctx) => {
   if (!ctx.from) return;
   if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
@@ -29,7 +31,11 @@ composer.command("ungban", async (ctx) => {
 
   await db.delete(bannedUsersTable).where(eq(bannedUsersTable.userId, user.id));
 
-  return ctx.reply(`✅ Unbanned ${user.name}`);
+  return ctx.reply(
+    `✅ Successfully unbanned ${user.name}`,
+    { reply_markup: deleteKeyboard }
+  );
 });
 
+// ✅ Export correctly
 export const ungbanCommand = composer;
