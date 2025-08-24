@@ -8,24 +8,21 @@ import { bannedUsersTable, usersTable } from "../drizzle/schema";
 
 const composer = new Composer();
 
-// Utility: Check admin
+// --- Utils ---
 function isAdmin(ctx: any) {
   return ctx.from && env.ADMIN_USERS.includes(ctx.from.id);
 }
 
-// Utility: Format user
 function formatUser(user: any) {
-  return `👤 Name: ${user.name}\n🆔 ID: <code>${user.telegramUserId}</code>\n🔗 Username: ${
-    user.username ? "@" + user.username : "No Username"
-  }`;
+  return `👤 Name: ${user.name}
+🆔 ID: <code>${user.telegramUserId}</code>
+🔗 Username: ${user.username ? "@" + user.username : "No Username"}`;
 }
 
-// Utility: Current time
 function nowUTC() {
   return new Date().toISOString().replace("T", " ").split(".")[0] + " UTC";
 }
 
-// Delete button
 const deleteKeyboard = new InlineKeyboard().text("🗑 Delete", "delete");
 
 // --- /gban ---
@@ -33,31 +30,41 @@ composer.command("gban", async (ctx) => {
   if (!ctx.from || ctx.chat.type !== "private") return;
   if (!isAdmin(ctx)) return;
 
-  if (!ctx.match) return ctx.reply("⚠️ Provide a user ID or username.");
+  const args = ctx.message?.text?.split(" ").slice(1).join(" ");
+  if (!args) return ctx.reply("⚠️ Provide a user ID or username.");
 
   const t0 = performance.now();
 
-  const isUsername = ctx.match.startsWith("@");
+  const isUsername = args.startsWith("@");
   const [user] = await db
     .select()
     .from(usersTable)
     .where(
       isUsername
-        ? eq(usersTable.username, ctx.match.substring(1))
-        : eq(usersTable.telegramUserId, ctx.match),
+        ? eq(usersTable.username, args.substring(1))
+        : eq(usersTable.telegramUserId, Number(args)),
     );
 
   if (!user) return ctx.reply("❌ Can't find that user in database.");
 
-  await db.insert(bannedUsersTable).values({ userId: user.id }).onConflictDoNothing();
+  await db
+    .insert(bannedUsersTable)
+    .values({ userId: user.id })
+    .onConflictDoNothing();
 
   const t1 = performance.now();
   const execTime = ((t1 - t0) / 1000).toFixed(2);
 
   return ctx.reply(
-    `📡 Applying Global Ban to all chats...\n💾 Saving ban records...\n✅ Global Ban Successful\n\n${formatUser(
-      user,
-    )}\n⚡ Action: <b>Global Ban</b>\n👑 By: <b>${ctx.from.first_name}</b>\n⏱ Time Taken: ${execTime}s\n📅 Time: ${nowUTC()}`,
+    `📡 Applying Global Ban to all chats...
+💾 Saving ban records...
+✅ Global Ban Successful
+
+${formatUser(user)}
+⚡ Action: <b>Global Ban</b>
+👑 By: <b>${ctx.from.first_name}</b>
+⏱ Time Taken: ${execTime}s
+📅 Time: ${nowUTC()}`,
     { parse_mode: "HTML", reply_markup: deleteKeyboard },
   );
 });
@@ -67,18 +74,19 @@ composer.command("ungban", async (ctx) => {
   if (!ctx.from || ctx.chat.type !== "private") return;
   if (!isAdmin(ctx)) return;
 
-  if (!ctx.match) return ctx.reply("⚠️ Provide a user ID or username.");
+  const args = ctx.message?.text?.split(" ").slice(1).join(" ");
+  if (!args) return ctx.reply("⚠️ Provide a user ID or username.");
 
   const t0 = performance.now();
 
-  const isUsername = ctx.match.startsWith("@");
+  const isUsername = args.startsWith("@");
   const [user] = await db
     .select()
     .from(usersTable)
     .where(
       isUsername
-        ? eq(usersTable.username, ctx.match.substring(1))
-        : eq(usersTable.telegramUserId, ctx.match),
+        ? eq(usersTable.username, args.substring(1))
+        : eq(usersTable.telegramUserId, Number(args)),
     );
 
   if (!user) return ctx.reply("❌ Can't find that user in database.");
@@ -89,14 +97,20 @@ composer.command("ungban", async (ctx) => {
   const execTime = ((t1 - t0) / 1000).toFixed(2);
 
   return ctx.reply(
-    `📡 Removing Global Ban from system...\n💾 Updating records...\n✅ Unban Successful\n\n${formatUser(
-      user,
-    )}\n⚡ Action: <b>Unban</b>\n👑 By: <b>${ctx.from.first_name}</b>\n⏱ Time Taken: ${execTime}s\n📅 Time: ${nowUTC()}`,
+    `📡 Removing Global Ban from system...
+💾 Updating records...
+✅ Unban Successful
+
+${formatUser(user)}
+⚡ Action: <b>Unban</b>
+👑 By: <b>${ctx.from.first_name}</b>
+⏱ Time Taken: ${execTime}s
+📅 Time: ${nowUTC()}`,
     { parse_mode: "HTML", reply_markup: deleteKeyboard },
   );
 });
 
-// --- /gbanned list ---
+// --- /gbanned ---
 composer.command("gbanned", async (ctx) => {
   if (!ctx.from || ctx.chat.type !== "private") return;
   if (!isAdmin(ctx)) return;
@@ -115,9 +129,12 @@ composer.command("gbanned", async (ctx) => {
   let list = "🔰 <b>Globally Banned Users</b>\n═══════════════════════\n";
   banned.forEach((entry, i) => {
     const u = entry.users;
-    list += `➤ ${i + 1}. ${u.name} ${u.username ? "@" + u.username : "No Username"}\n   🆔 <code>${u.telegramUserId}</code>\n───────────────────────\n`;
+    list += `➤ ${i + 1}. ${u.name} ${
+      u.username ? "@" + u.username : "No Username"
+    }\n   🆔 <code>${u.telegramUserId}</code>\n───────────────────────\n`;
   });
-  list += "⚠️ Use with caution! Global actions affect all groups where the bot is present.";
+  list +=
+    "⚠️ Use with caution! Global actions affect all groups where the bot is present.";
 
   return ctx.reply(list, { parse_mode: "HTML", reply_markup: deleteKeyboard });
 });
