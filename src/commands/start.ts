@@ -18,6 +18,7 @@ const START_TEXT = `
 Click the <b>Help</b> button below to get details about my modules and commands.
 `;
 
+// --- Help Message ---
 const HELP_TEXT = `
 <b>How to Play:</b>
 1. You have to guess a random 5-letter word.  
@@ -66,14 +67,10 @@ const helpKeyboard = new InlineKeyboard()
 
 // --- Commands ---
 composer.command("start", async (ctx) => {
-  // Step 1: Send the photo first
-  const photoMsg = await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
-
-  // Step 2: Reply to that photo with the start text
-  await ctx.reply(START_TEXT, {
+  await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg", {
+    caption: START_TEXT,
     parse_mode: "HTML",
     reply_markup: startKeyboard,
-    reply_parameters: { message_id: photoMsg.message_id }, // reply to image
   });
 });
 
