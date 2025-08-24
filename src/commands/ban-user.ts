@@ -145,4 +145,5 @@ composer.callbackQuery("delete", async (ctx) => {
   await ctx.answerCallbackQuery();
 });
 
+// ✅ Correct export
 export const gbanCommand = composer;
