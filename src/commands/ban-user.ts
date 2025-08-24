@@ -145,5 +145,5 @@ composer.callbackQuery("delete", async (ctx) => {
   await ctx.answerCallbackQuery();
 });
 
-// ✅ Correct export
-export const gbanCommand = composer;
+// ✅ Correct export (matches your import)
+export const banCommand = composer;
