@@ -6,7 +6,7 @@ const composer = new Composer();
 // --- Stylish Start Message ---
 const START_TEXT = `
 𝖧𝖾𝗒, 🧸
-𝖨 𝖺𝗆 <b>Word Seek</b>, 𝗒𝗈𝗎𝗋 𝗏𝖾𝗋𝗌𝖺𝗍𝗂𝗅𝖾 gaming 𝖻𝗈𝗍, 𝖽𝖾𝗌𝗂𝗀𝗇𝖾𝖽 𝗍𝗈 𝗁𝖾𝗅𝗉 𝗒𝗈𝗎 learn and guess new words with their meaning.  
+𝖨 𝖺𝗆 <b>Word Seek</b>, 𝗒𝗈𝗎𝗋 𝗏𝖾𝗋𝗌𝖺𝗍𝗂𝗅 gaming 𝖻𝗈𝗍, 𝖽𝖾𝗌𝗂𝗀𝗇𝖾𝖽 𝗍𝗈 𝗁𝖾𝗅𝗉 𝗒𝗈𝗎 learn and guess new words with their meaning.  
 ➕ Add me to your groups for using my 𝗉𝗈𝗐𝖾𝗋𝖿𝗎𝗅 modules and commands!
 
 ✨ <b>What I Can Do</b>:
@@ -15,7 +15,7 @@ const START_TEXT = `
  • 𝖥𝗎𝗇 𝖺𝗇𝖽 𝖾𝗇𝗀𝖺𝗀𝗂𝗇𝗀 features  
 
 📚 <b>Need Help?</b>  
-Click the <b>Help</b> button below to get details about my modules and commands.
+Click the <b>Commands & Help</b> button below to get details about my modules and commands.
 `;
 
 // --- Help Message ---
@@ -52,14 +52,15 @@ Example:
 
 // --- Inline Keyboards ---
 const startKeyboard = new InlineKeyboard()
-  .url("➕ Add Me to Your Group", "https://t.me/YourBotUsername?startgroup=true")
+  .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
   .row()
-  .url("📢 Updates", "https://t.me/pookie_updates")
   .url("🛠 Support", "https://t.me/pookietechteam")
+  .url("📢 Updates", "https://t.me/pookie_updates")
   .row()
-  .text("📚 Help", "help")
   .url("👨‍💻 Coder", "https://t.me/iambilli")
-  .url("👑 Owner", "https://t.me/billichor");
+  .url("👑 Owner", "https://t.me/billichor")
+  .row()
+  .text("📚 Commands & Help", "help");
 
 const helpKeyboard = new InlineKeyboard()
   .text("⬅️ Back", "back")
@@ -67,8 +68,16 @@ const helpKeyboard = new InlineKeyboard()
 
 // --- Commands ---
 composer.command("start", async (ctx) => {
-  await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg", {
-    caption: START_TEXT,
+  const tempMsg = await ctx.reply("🟢⚪⚪");
+
+  await new Promise((res) => setTimeout(res, 500));
+  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, "🟢🟢⚪");
+
+  await new Promise((res) => setTimeout(res, 500));
+  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, "🟢🟢🟢");
+
+  // Final Start Text
+  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, START_TEXT, {
     parse_mode: "HTML",
     reply_markup: startKeyboard,
   });
