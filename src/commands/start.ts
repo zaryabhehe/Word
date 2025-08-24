@@ -18,7 +18,6 @@ const START_TEXT = `
 Click the <b>Help</b> button below to get details about my modules and commands.
 `;
 
-// --- Help Message ---
 const HELP_TEXT = `
 <b>How to Play:</b>
 1. You have to guess a random 5-letter word.  
@@ -51,7 +50,6 @@ Example:
 `;
 
 // --- Inline Keyboards ---
-// Start buttons
 const startKeyboard = new InlineKeyboard()
   .url("➕ Add Me to Your Group", "https://t.me/YourBotUsername?startgroup=true")
   .row()
@@ -62,26 +60,20 @@ const startKeyboard = new InlineKeyboard()
   .url("👨‍💻 Coder", "https://t.me/iambilli")
   .url("👑 Owner", "https://t.me/billichor");
 
-// Help buttons
 const helpKeyboard = new InlineKeyboard()
   .text("⬅️ Back", "back")
   .text("🗑 Delete", "delete");
 
 // --- Commands ---
-// /start with animation
 composer.command("start", async (ctx) => {
-  const tempMsg = await ctx.reply("🟢⚪⚪");
+  // Step 1: Send the photo first
+  const photoMsg = await ctx.replyWithPhoto("https://files.catbox.moe/spvlya.jpg");
 
-  await new Promise((res) => setTimeout(res, 500));
-  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, "🟢🟢⚪");
-
-  await new Promise((res) => setTimeout(res, 500));
-  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, "🟢🟢🟢");
-
-  // Final Start Text
-  await ctx.api.editMessageText(ctx.chat.id, tempMsg.message_id, START_TEXT, {
+  // Step 2: Reply to that photo with the start text
+  await ctx.reply(START_TEXT, {
     parse_mode: "HTML",
     reply_markup: startKeyboard,
+    reply_parameters: { message_id: photoMsg.message_id }, // reply to image
   });
 });
 
@@ -112,5 +104,5 @@ composer.callbackQuery("delete", async (ctx) => {
 // Register command for helper
 CommandsHelper.addNewCommand("start", "Start the bot.");
 
-// ✅ Export as named (fix for Bun)
+// ✅ Export
 export const startCommand = composer;
