@@ -112,4 +112,5 @@ composer.callbackQuery("delete", async (ctx) => {
 // Register command for helper
 CommandsHelper.addNewCommand("start", "Start the bot.");
 
-export default composer;
+// ✅ Export as named (fix for Bun)
+export const startCommand = composer;
