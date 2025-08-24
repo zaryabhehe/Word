@@ -9,24 +9,26 @@ import { onBotAddedInChat } from "./handlers/on-bot-added-in-chat";
 import { onMessageHander } from "./handlers/on-message";
 import { CommandsHelper } from "./util/commands-helper";
 
+// --- Middlewares ---
 bot.api.config.use(autoRetry());
 bot.api.config.use(parseMode("HTML"));
+
 bot.use(
   sequentialize((ctx) => {
     return ctx.chatId?.toString() || ctx.from?.id.toString();
   }),
 );
 
+// --- Handlers ---
 bot.use(commands);
 bot.use(callbackQueryHandler);
 bot.use(onMessageHander);
 bot.use(onBotAddedInChat);
 
-// bot.start({
-//   onStart: () => console.log("Bot started"),
-//   drop_pending_updates: true,
-// });
-run(bot);
+// --- Start bot ---
+run(bot); // ✅ Use runner instead of bot.start()
 
-console.log("Bot started");
+console.log("✅ Bot started with @grammyjs/runner");
+
+// --- Set bot commands on startup ---
 await CommandsHelper.setCommands();
