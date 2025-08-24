@@ -52,9 +52,9 @@ Example:
 
 // --- Inline Keyboards ---
 const startKeyboard = new InlineKeyboard()
-  .url("➕ Add Me to Group", "https://t.me/YourBotUsername?startgroup=true")
+  .url("➕ Add Me to Group", "https://t.me/WordSeekXBot?startgroup=true")
   .row()
-  .url("🛠 Support", "https://t.me/pookietechteam")
+  .url("🛠 Support", "https://t.me/pookieempire")
   .url("📢 Updates", "https://t.me/pookie_updates")
   .row()
   .url("👨‍💻 Coder", "https://t.me/iambilli")
