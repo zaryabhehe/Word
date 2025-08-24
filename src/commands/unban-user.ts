@@ -7,33 +7,29 @@ import { bannedUsersTable, usersTable } from "../drizzle/schema";
 
 const composer = new Composer();
 
-// /ungban command (works in groups + PMs)
 composer.command("ungban", async (ctx) => {
   if (!ctx.from) return;
+  if (!env.ADMIN_USERS.includes(ctx.from.id)) return;
 
-  if (!env.ADMIN_USERS.includes(ctx.from.id)) {
-    return ctx.reply("🚫 You are not authorized to use this command.");
-  }
+  const args = ctx.message?.text?.split(" ").slice(1).join(" ");
+  if (!args) return ctx.reply("⚠️ Provide a user ID or username.");
 
-  const target = ctx.match?.trim();
-  if (!target) return ctx.reply("Usage: /ungban <user_id | @username>");
-
-  const isUsername = target.startsWith("@");
+  const isUsername = args.startsWith("@");
 
   const [user] = await db
     .select()
     .from(usersTable)
     .where(
       isUsername
-        ? eq(usersTable.username, target.substring(1))
-        : eq(usersTable.telegramUserId, target),
+        ? eq(usersTable.username, args.substring(1))
+        : eq(usersTable.telegramUserId, Number(args)),
     );
 
   if (!user) return ctx.reply("❌ Can't find that user in database.");
 
   await db.delete(bannedUsersTable).where(eq(bannedUsersTable.userId, user.id));
 
-  ctx.reply(`✅ Removed global ban for ${user.name} (${user.telegramUserId})`);
+  return ctx.reply(`✅ Unbanned ${user.name}`);
 });
 
 export const ungbanCommand = composer;
